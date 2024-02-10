@@ -7,9 +7,11 @@ export const SITE: Site = {
   title: "余腾靖的博客",
   ogImage: "astropaper-og.jpg",
   lightAndDarkMode: true,
-  postPerPage: 6,
+  postPerPage: 5,
   scheduledPostMargin: 15 * 60 * 1000, // 15 minutes
 };
+
+export const LOGO_TEXT = "余腾靖";
 
 export const LOCALE = {
   lang: "zh", // html lang code. Set this empty and default will be "en"
@@ -41,6 +43,7 @@ export const SOCIALS: SocialObjects = [
     href: "mailto:ytj2713151713@gmail.com",
     linkTitle: `Send an email to ${SITE.title}`,
     active: true,
+    openInNewTab: true,
   },
   {
     name: "Facebook",
