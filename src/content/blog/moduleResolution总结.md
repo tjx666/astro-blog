@@ -2,6 +2,7 @@
 title: moduleResolution总结
 description: 待补充描述
 pubDatetime: 2024-02-10
+featured: true
 ---
 
 模块化之争的在 ESM 标准出来的时候已成为定局，这两年前端界也在进行 ESM 大迁移。关于 ESM 个人感觉可以聊的并不多，最近讨论最多的可能还是到底该不该用 default import 以及它俩互相转换的各种坑。前不久 TS 发布了 5.0，引入了新的 moduleResolution：`bundler`。官方文档对此的描述非常简单，阅读完本文，你会对它的产生有更深刻的理解。
