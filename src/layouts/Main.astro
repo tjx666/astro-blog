@@ -27,9 +27,7 @@ const { props } = Astro;
           {props.pageTitle[1]}
         </span>
       </h1>
-    ) : (
-      <h1>{props.pageTitle}</h1>
-    )
+    ) : null
   }
   <p>{props.pageDesc}</p>
   <slot />
