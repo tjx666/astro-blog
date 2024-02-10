@@ -62,7 +62,7 @@ const layoutProps = {
         ><path
           d="M13.293 6.293 7.586 12l5.707 5.707 1.414-1.414L10.414 12l4.293-4.293z"
         ></path>
-      </svg><span>Go back</span>
+      </svg><span>返回</span>
     </button>
   </div>
   <main id="main-content">
@@ -93,7 +93,7 @@ const layoutProps = {
             d="M13.293 6.293 7.586 12l5.707 5.707 1.414-1.414L10.414 12l4.293-4.293z"
           ></path>
         </svg>
-        <span>Back to Top</span>
+        <span>回到顶部</span>
       </button>
 
       <ShareLinks />
@@ -179,10 +179,18 @@ const layoutProps = {
 
       let copyButton = document.createElement("button");
       copyButton.className =
-        "copy-code absolute right-3 -top-3 rounded bg-skin-card px-2 py-1 text-xs leading-4 text-skin-base font-medium";
+        "opacity-0 transition-opacity copy-code absolute right-3 -top-3 rounded bg-skin-card px-2 py-1 text-xs leading-4 text-skin-base font-medium";
       copyButton.innerHTML = copyButtonLabel;
       codeBlock.setAttribute("tabindex", "0");
       codeBlock.appendChild(copyButton);
+
+      // hover to show copy button
+      codeBlock.addEventListener("pointerenter", () => {
+        copyButton.classList.remove("opacity-0");
+      });
+      codeBlock.addEventListener("pointerleave", () => {
+        copyButton.classList.add("opacity-0");
+      });
 
       // wrap codebock with relative parent element
       codeBlock?.parentNode?.insertBefore(wrapper, codeBlock);
