@@ -8,7 +8,7 @@
     "preview": "astro preview",
     "sync": "astro sync",
     "astro": "astro",
-    "format:check                                            ": "prettier --check . --plugin=prettier-plugin-astro",
+    "format:check": "prettier --check . --plugin=prettier-plugin-astro",
     "format": "prettier --write . --plugin=prettier-plugin-astro",
     "cz": "cz",
     "prepare": "husky install",
