@@ -33,9 +33,21 @@ export const SOCIALS: SocialObjects = [
     active: true,
   },
   {
-    name: "Twitter",
+    name: "X",
     href: "https://twitter.com/YuTengjing",
-    linkTitle: `${SITE.title} on Twitter`,
+    linkTitle: `${SITE.title} on X`,
+    active: true,
+  },
+  {
+    name: "Zhihu",
+    href: "https://www.zhihu.com/people/yu-teng-jing",
+    linkTitle: `${SITE.title} on 知乎`,
+    active: true,
+  },
+  {
+    name: "Juejin",
+    href: "https://juejin.cn/user/2664871915684493/posts",
+    linkTitle: `${SITE.title} on 掘金`,
     active: true,
   },
   {
