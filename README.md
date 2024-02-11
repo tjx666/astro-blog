@@ -1,25 +1,36 @@
-# [Blog](https://yutengjing.com)
+# <https://yutengjing.com>
 
-Based on [astro](https://github.com/withastro/astro) and [astro paper](https://github.com/satnaing/astro-paper).
+基于 [astro](https://github.com/withastro/astro) 和 [astro paper](https://github.com/satnaing/astro-paper) 模版，使用 [cloudflare pages](https://dash.cloudflare.com/) 部署。
 
-Deployed on [cloudflare pages](https://dash.cloudflare.com/).
+## 本地开发
 
-## Local Development
-
-### Install Dependencies
+### 安装依赖
 
 ```bash
 pnpm install
 ```
 
-### Writing and Preview
+### 写作和预览
 
 ```bash
 pnpm dev
 ```
 
-### Build for production
+### 生产构建
 
 ```bash
 pnpm build
 ```
+
+## TODOS
+
+- [ ] 根据文章内容自动生成摘要
+- [ ] 社交链接图片
+- [ ] 支持将博客按照不同年份目录存放
+- [ ] 支持草稿
+- [ ] 支持文章封面
+- [ ] 集成 autocorrect
+- [ ] 显示一篇阅读耗时
+- [ ] 按照年份对文章归档
+- [ ] 汉化搜索页
+- [ ] 支持评论
