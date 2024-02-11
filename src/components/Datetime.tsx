@@ -1,4 +1,5 @@
 import { LOCALE } from "@config";
+import { useMemo } from "react";
 
 interface DatetimesProps {
   pubDatetime: string | Date;
@@ -46,25 +47,35 @@ export default function Datetime({
 }
 
 const FormattedDatetime = ({ pubDatetime, modDatetime }: DatetimesProps) => {
-  const myDatetime = new Date(modDatetime ? modDatetime : pubDatetime);
+  const timeStr = modDatetime ? modDatetime : pubDatetime;
+  const myDatetime = new Date(timeStr);
 
-  const date = myDatetime.toLocaleDateString(LOCALE.langTag, {
+  const dateStr = myDatetime.toLocaleDateString(LOCALE.langTag, {
     year: "numeric",
     month: "short",
     day: "numeric",
   });
-
-  const time = myDatetime.toLocaleTimeString(LOCALE.langTag, {
-    hour: "2-digit",
-    minute: "2-digit",
-  });
-
-  return (
-    <>
-      <time dateTime={myDatetime.toISOString()}>{date}</time>
-      <span aria-hidden="true"> | </span>
-      <span className="sr-only">&nbsp;at&nbsp;</span>
-      <span className="text-nowrap">{time}</span>
-    </>
+  const date = useMemo(
+    () => <time dateTime={myDatetime.toISOString()}>{dateStr}</time>,
+    [myDatetime, dateStr]
   );
+
+  const hasTime = Boolean(typeof timeStr === "string" && timeStr.includes(":"));
+  if (hasTime) {
+    const timeStr = myDatetime.toLocaleTimeString(LOCALE.langTag, {
+      hour: "2-digit",
+      minute: "2-digit",
+    });
+    return (
+      <>
+        {date}
+        <time dateTime={myDatetime.toISOString()}>{dateStr}</time>
+        <span aria-hidden="true"> | </span>
+        <span className="sr-only">&nbsp;at&nbsp;</span>
+        <span className="text-nowrap">{timeStr}</span>
+      </>
+    );
+  }
+
+  return dateStr;
 };
