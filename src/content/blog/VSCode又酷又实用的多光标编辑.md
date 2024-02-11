@@ -1,6 +1,5 @@
 ---
-title: VSCode又酷又实用的多光标编辑
-description: 待补充描述
+title: VSCode 又酷又实用的多光标编辑
 pubDatetime: 2022-03-27
 modDatetime: 2022-03-29
 ---

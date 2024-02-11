@@ -1,6 +1,5 @@
 ---
-title: TS类型体操技巧总结
-description: 待补充描述
+title: TS 类型体操技巧总结
 pubDatetime: 2024-01-16
 modDatetime: 2024-01-16
 featured: true

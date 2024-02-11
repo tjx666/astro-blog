@@ -1,6 +1,5 @@
 ---
-title: 如何给shell自定义快捷键
-description: 待补充描述
+title: 如何给 shell 自定义快捷键
 pubDatetime: 2022-03-20
 ---
 

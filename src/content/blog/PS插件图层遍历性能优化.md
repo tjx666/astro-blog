@@ -1,6 +1,5 @@
 ---
-title: PS插件图层遍历性能优化
-description: 待补充描述
+title: PS 插件图层遍历性能优化
 pubDatetime: 2022-09-11
 modDatetime: 2022-09-11
 ---

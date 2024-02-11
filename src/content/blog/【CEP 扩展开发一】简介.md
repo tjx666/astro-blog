@@ -1,6 +1,5 @@
 ---
 title: 【CEP 扩展开发一】简介
-description: 待补充描述
 pubDatetime: 2022-04-25
 modDatetime: 2022-05-01
 ---

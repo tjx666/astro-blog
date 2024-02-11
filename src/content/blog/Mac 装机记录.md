@@ -1,6 +1,5 @@
 ---
 title: Mac 装机记录
-description: 待补充描述
 pubDatetime: 2023-05-15
 modDatetime: 2023-10-22
 ---

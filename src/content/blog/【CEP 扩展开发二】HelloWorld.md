@@ -1,6 +1,5 @@
 ---
 title: 【CEP 扩展开发二】HelloWorld
-description: 待补充描述
 pubDatetime: 2022-05-01
 modDatetime: 2022-08-14
 ---

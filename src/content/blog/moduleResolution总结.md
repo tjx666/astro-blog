@@ -1,6 +1,5 @@
 ---
-title: moduleResolution总结
-description: 待补充描述
+title: moduleResolution 总结
 pubDatetime: 2023-04-14
 modDatetime: 2023-04-15
 featured: true

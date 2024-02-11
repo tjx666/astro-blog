@@ -1,6 +1,5 @@
 ---
 title: TS 类型体操实例解析
-description: 待补充描述
 pubDatetime: 2022-03-25
 modDatetime: 2022-03-25
 ---
@@ -371,7 +370,7 @@ string extends '666' ? true : false; // => false
 在 TS 4.1 以前，由于没有模板字符串类型，下面的代码会报错：
 
 ```ts
-function dateFormat(date: Date, formatStr: string, isUtc: boolean) {
+function dateFormat(pubDatetime: Date, formatStr: string, isUtc: boolean) {
   const getPrefix = isUtc ? "getUTC" : "get";
   // eslint-disable-next-line unicorn/better-regex
   return formatStr.replace(/%[YmdHMS]/g, (m: string) => {

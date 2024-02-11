@@ -1,6 +1,5 @@
 ---
-title: VSCodeWebview完美集成Webpack热更新
-description: 待补充描述
+title: VSCodeWebview 完美集成 Webpack 热更新
 pubDatetime: 2022-03-19
 modDatetime: 2022-03-19
 ---
