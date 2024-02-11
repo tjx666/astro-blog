@@ -7,6 +7,7 @@ categories:
   - 推荐
 author: 余腾靖
 pubDatetime: 2019-04-06 16:18:00
+featured: true
 ---
 
 ![新标签页](https://i.loli.net/2019/04/06/5ca8647de4816.png)
