@@ -38,26 +38,6 @@ const socialCount = SOCIALS.filter(social => social.active).length;
     <Hr />
 
     {
-      featuredPosts.length > 0 && (
-        <>
-          <section id="featured">
-            <h2>热门文章</h2>
-            <ul>
-              {featuredPosts.map(({ data, slug }) => (
-                <Card
-                  href={`/posts/${slug}/`}
-                  frontmatter={data}
-                  secHeading={false}
-                />
-              ))}
-            </ul>
-          </section>
-          {recentPosts.length > 0 && <Hr />}
-        </>
-      )
-    }
-
-    {
       recentPosts.length > 0 && (
         <section id="recent-posts">
           <h2>最近发布</h2>
@@ -74,6 +54,26 @@ const socialCount = SOCIALS.filter(social => social.active).length;
             )}
           </ul>
         </section>
+      )
+    }
+
+    {
+      featuredPosts.length > 0 && (
+        <>
+          <section id="featured">
+            <h2>热门文章</h2>
+            <ul>
+              {featuredPosts.map(({ data, slug }) => (
+                <Card
+                  href={`/posts/${slug}/`}
+                  frontmatter={data}
+                  secHeading={false}
+                />
+              ))}
+            </ul>
+          </section>
+          {recentPosts.length > 0 && <Hr />}
+        </>
       )
     }
 
@@ -119,8 +119,13 @@ const socialCount = SOCIALS.filter(social => social.active).length;
   /* ===== Featured & Recent Posts Sections ===== */
   #featured,
   #recent-posts {
-    @apply pb-6 pt-12;
+    @apply pb-4;
   }
+
+  #recent-posts {
+    @apply pt-8;
+  }
+
   #featured h2,
   #recent-posts h2 {
     @apply text-2xl font-semibold tracking-wide;
