@@ -1,7 +1,8 @@
 ---
 title: VSCodeWebview完美集成Webpack热更新
 description: 待补充描述
-pubDatetime: 2024-02-10
+pubDatetime: 2022-03-19
+modDatetime: 2022-03-19
 ---
 
 最近在写一个 VSCode 扩展时需要通过一个 Webview 去渲染一些网页内容，作为一个前端配置工程师，自然是忍受不了没有热更新的网页开发。经过了一番折腾，最终实现了让 VSCode Webview 完美集成 webpack 的热更新。

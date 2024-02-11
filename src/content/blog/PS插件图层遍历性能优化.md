@@ -1,7 +1,8 @@
 ---
 title: PS插件图层遍历性能优化
 description: 待补充描述
-pubDatetime: 2024-02-10
+pubDatetime: 2022-09-11
+modDatetime: 2022-09-11
 ---
 
 Photoshop 中的 ExtendScript 和浏览器环境下 JavaScript 一样存在 DOM API 用于访问 PS 中的各种对象。图层类似 Web 中的 Element 是最基本的操作对象，也是我们编写 CEP 插件最常访问的 DOM 对象。一个 PSD 文档由众多的图层组成一棵 n 叉树，经常性我们需要去完整遍历这棵 n 叉树，而且往往是一次调用 JSX 接口就需要遍历多遍。这个时候遍历图层树就会成为性能瓶颈，本文将探讨各种遍历图层方式的性能差异，最终给出一种兼具性能和实用性的图层遍历方案。

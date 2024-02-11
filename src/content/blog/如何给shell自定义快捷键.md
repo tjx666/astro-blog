@@ -1,7 +1,7 @@
 ---
 title: 如何给shell自定义快捷键
 description: 待补充描述
-pubDatetime: 2024-02-10
+pubDatetime: 2022-03-20
 ---
 
 最近在开发的时候有刻意的去思考有哪些影响自己开发效率的因素。比如我实际碰到的一个问题就是当 `zsh-autosuggestions` 插件完整提示出你要运行的命令，但是我在 Mac 上要先输入 `cmd + ->`，再敲回车。输入 Mac 自带键盘的右箭头是很影响输入效率的，当时我就想，我能不能通过快捷键 `shift + enter` 实现接受 zsh 提示并回车运行。在摸了两小时 🐟 后，总算是在 iterm2 和 VSCode 的 terminal 都完美实现了自己的需求。

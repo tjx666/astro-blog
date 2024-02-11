@@ -1,7 +1,7 @@
 ---
 title: 面向 lint 编程
 description: 待补充描述
-pubDatetime: 2024-02-10
+pubDatetime: 2023-06-13
 ---
 
 ## 何为 linter
