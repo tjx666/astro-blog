@@ -5,7 +5,7 @@ export const SITE: Site = {
   author: "余腾靖",
   desc: "记录知识和生活的互联网角落",
   title: "余腾靖的博客",
-  ogImage: "og.png",
+  ogImage: "index-og.png",
   lightAndDarkMode: true,
   postPerPage: 5,
   scheduledPostMargin: 15 * 60 * 1000, // 15 minutes

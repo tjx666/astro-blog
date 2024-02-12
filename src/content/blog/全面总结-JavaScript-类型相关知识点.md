@@ -157,7 +157,7 @@ console.log(typeof NaN); // => number
 
 JavaScript 中没有整数和小数之分，统一叫做 number 类型，所以 `5 / 2` 不会像很多其它语言一样等于 2。另外 JavaScript 的数字类型是遵循 IEEE（跟我一起读：I triple E）754 64 位浮点标准的，因此它也有浮点数精度问题：
 
-```JavaScript
+```javascript
 console.log(0.1 + 0.2 === 0.3); // => false
 ```
 
