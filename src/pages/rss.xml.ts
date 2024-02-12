@@ -1,7 +1,9 @@
-import rss from '@astrojs/rss';
 import { getCollection } from 'astro:content';
-import getSortedPosts from '@utils/getSortedPosts';
+
+import rss from '@astrojs/rss';
+
 import { SITE } from '@config';
+import getSortedPosts from '@utils/getSortedPosts';
 
 export async function GET() {
     const posts = await getCollection('blog');

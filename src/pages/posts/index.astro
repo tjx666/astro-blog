@@ -1,8 +1,9 @@
 ---
 import { getCollection } from 'astro:content';
+
 import Posts from '@layouts/Posts.astro';
-import getSortedPosts from '@utils/getSortedPosts';
 import getPagination from '@utils/getPagination';
+import getSortedPosts from '@utils/getSortedPosts';
 
 const posts = await getCollection('blog');
 

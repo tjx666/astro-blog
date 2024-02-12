@@ -1,14 +1,16 @@
-import Fuse from 'fuse.js';
-import { useEffect, useRef, useState, useMemo } from 'react';
-import Card from '@components/Card';
 import type { CollectionEntry } from 'astro:content';
+import { useEffect, useMemo, useRef, useState } from 'react';
 
-export type SearchItem = {
+import Fuse from 'fuse.js';
+
+import Card from '@components/Card';
+
+export interface SearchItem {
     title: string;
     description?: string;
     data: CollectionEntry<'blog'>['data'];
     slug: string;
-};
+}
 
 interface Props {
     searchList: SearchItem[];
@@ -47,7 +49,7 @@ export default function SearchBar({ searchList }: Props) {
         if (searchStr) setInputVal(searchStr);
 
         // put focus cursor at the end of the string
-        setTimeout(function () {
+        setTimeout(() => {
             inputRef.current!.selectionStart = inputRef.current!.selectionEnd =
                 searchStr?.length || 0;
         }, 50);
@@ -63,7 +65,7 @@ export default function SearchBar({ searchList }: Props) {
         if (inputVal.length > 0) {
             const searchParams = new URLSearchParams(window.location.search);
             searchParams.set('q', inputVal);
-            const newRelativePathQuery = window.location.pathname + '?' + searchParams.toString();
+            const newRelativePathQuery = `${window.location.pathname}?${searchParams.toString()}`;
             history.replaceState(history.state, '', newRelativePathQuery);
         } else {
             history.replaceState(history.state, '', window.location.pathname);

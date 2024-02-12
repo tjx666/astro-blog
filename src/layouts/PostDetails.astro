@@ -1,13 +1,14 @@
 ---
-import Layout from '@layouts/Layout.astro';
-import Header from '@components/Header.astro';
-import Footer from '@components/Footer.astro';
-import Tag from '@components/Tag.astro';
-import Datetime from '@components/Datetime';
 import type { CollectionEntry } from 'astro:content';
-import { slugifyStr } from '@utils/slugify';
+
+import Datetime from '@components/Datetime';
+import Footer from '@components/Footer.astro';
+import Header from '@components/Header.astro';
 import ShareLinks from '@components/ShareLinks.astro';
+import Tag from '@components/Tag.astro';
 import { SITE } from '@config';
+import Layout from '@layouts/Layout.astro';
+import { slugifyStr } from '@utils/slugify';
 
 export interface Props {
     post: CollectionEntry<'blog'>;
@@ -105,10 +106,10 @@ const layoutProps = {
         progressBar.id = 'myBar';
 
         // Append the progress bar to the progress container
-        progressContainer.appendChild(progressBar);
+        progressContainer.append(progressBar);
 
         // Append the progress container to the document body or any other desired parent element
-        document.body.appendChild(progressContainer);
+        document.body.append(progressContainer);
     }
     createProgressBar();
 
@@ -121,9 +122,9 @@ const layoutProps = {
             document.documentElement.scrollHeight - document.documentElement.clientHeight;
         const scrolled = (winScroll / height) * 100;
         if (document) {
-            const myBar = document.getElementById('myBar');
+            const myBar = document.querySelector('#myBar');
             if (myBar) {
-                myBar.style.width = scrolled + '%';
+                myBar.style.width = `${scrolled}%`;
             }
         }
     }
@@ -133,15 +134,15 @@ const layoutProps = {
      * Attaches links to headings in the document, allowing sharing of sections easily
      */
     function addHeadingLinks() {
-        let headings = Array.from(document.querySelectorAll('h2, h3, h4, h5, h6'));
-        for (let heading of headings) {
+        const headings = Array.from(document.querySelectorAll('h2, h3, h4, h5, h6'));
+        for (const heading of headings) {
             heading.classList.add('group');
-            let link = document.createElement('a');
-            link.innerText = '#';
+            const link = document.createElement('a');
+            link.textContent = '#';
             link.className = 'heading-link hidden group-hover:inline-block ml-2';
-            link.href = '#' + heading.id;
+            link.href = `#${heading.id}`;
             link.ariaHidden = 'true';
-            heading.appendChild(link);
+            heading.append(link);
         }
     }
     addHeadingLinks();
@@ -150,19 +151,19 @@ const layoutProps = {
      * Attaches copy buttons to code blocks in the document, allowing users to copy code easily.
      */
     function attachCopyButtons() {
-        let copyButtonLabel = 'Copy';
-        let codeBlocks = Array.from(document.querySelectorAll('pre'));
+        const copyButtonLabel = 'Copy';
+        const codeBlocks = Array.from(document.querySelectorAll('pre'));
 
-        for (let codeBlock of codeBlocks) {
-            let wrapper = document.createElement('div');
+        for (const codeBlock of codeBlocks) {
+            const wrapper = document.createElement('div');
             wrapper.style.position = 'relative';
 
-            let copyButton = document.createElement('button');
+            const copyButton = document.createElement('button');
             copyButton.className =
                 'opacity-0 transition-opacity copy-code absolute right-3 -top-3 rounded bg-skin-card px-2 py-1 text-xs leading-4 text-skin-base font-medium';
             copyButton.innerHTML = copyButtonLabel;
             codeBlock.setAttribute('tabindex', '0');
-            codeBlock.appendChild(copyButton);
+            codeBlock.append(copyButton);
 
             // hover to show copy button
             codeBlock.addEventListener('pointerenter', () => {
@@ -174,7 +175,7 @@ const layoutProps = {
 
             // wrap codebock with relative parent element
             codeBlock?.parentNode?.insertBefore(wrapper, codeBlock);
-            wrapper.appendChild(codeBlock);
+            wrapper.append(codeBlock);
 
             copyButton.addEventListener('click', async () => {
                 await copyCode(codeBlock, copyButton);
@@ -182,16 +183,16 @@ const layoutProps = {
         }
 
         async function copyCode(block, button) {
-            let code = block.querySelector('code');
-            let text = code?.innerText;
+            const code = block.querySelector('code');
+            const text = code?.textContent;
 
             await navigator.clipboard.writeText(text ?? '');
 
             // visual feedback that task is completed
-            button.innerText = 'Copied';
+            button.textContent = 'Copied';
 
             setTimeout(() => {
-                button.innerText = copyButtonLabel;
+                button.textContent = copyButtonLabel;
             }, 700);
         }
     }

@@ -1,6 +1,6 @@
 import type socialIcons from '@assets/socialIcons';
 
-export type Site = {
+export interface Site {
     website: string;
     author: string;
     desc: string;
@@ -9,12 +9,12 @@ export type Site = {
     lightAndDarkMode: boolean;
     postPerPage: number;
     scheduledPostMargin: number;
-};
+}
 
-export type SocialObjects = {
+export type SocialObjects = Array<{
     name: keyof typeof socialIcons;
     href: string;
     active: boolean;
     linkTitle: string;
     openInNewTab?: boolean;
-}[];
+}>;

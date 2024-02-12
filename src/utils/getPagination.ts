@@ -1,4 +1,5 @@
 import { SITE } from '@config';
+
 import getPageNumbers from './getPageNumbers';
 
 interface GetPaginationProps<T> {
@@ -13,7 +14,7 @@ const getPagination = <T>({ posts, page, isIndex = false }: GetPaginationProps<T
 
     const currentPage = isIndex
         ? 1
-        : page && !isNaN(Number(page)) && totalPagesArray.includes(Number(page))
+        : page && !Number.isNaN(Number(page)) && totalPagesArray.includes(Number(page))
           ? Number(page)
           : 0;
 

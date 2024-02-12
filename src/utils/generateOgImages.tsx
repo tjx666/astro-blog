@@ -1,13 +1,14 @@
-import fs from 'fs/promises';
-import { resolve } from 'path';
+import fs from 'node:fs/promises';
+import { resolve } from 'node:path';
 
-import satori, { type SatoriOptions } from 'satori';
-import { Resvg } from '@resvg/resvg-js';
 import { type CollectionEntry } from 'astro:content';
 
+import { Resvg } from '@resvg/resvg-js';
+import satori, { type SatoriOptions } from 'satori';
+
+import { projectRoot } from './constants';
 import postOgImage from './og-templates/post';
 import siteOgImage from './og-templates/site';
-import { projectRoot } from './constants';
 
 const fetchFonts = async () =>
     Promise.all(

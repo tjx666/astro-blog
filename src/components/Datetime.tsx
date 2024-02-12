@@ -1,10 +1,45 @@
-import { LOCALE } from '@config';
 import { useMemo } from 'react';
+
+import { LOCALE } from '@config';
 
 interface DatetimesProps {
     pubDatetime: string | Date;
     modDatetime: string | Date | undefined | null;
 }
+
+const FormattedDatetime = ({ pubDatetime, modDatetime }: DatetimesProps) => {
+    const timeStr = modDatetime ?? pubDatetime;
+    const myDatetime = new Date(timeStr);
+
+    const dateStr = myDatetime.toLocaleDateString(LOCALE.langTag, {
+        year: 'numeric',
+        month: 'short',
+        day: 'numeric',
+    });
+    const date = useMemo(
+        () => <time dateTime={myDatetime.toISOString()}>{dateStr}</time>,
+        [myDatetime, dateStr],
+    );
+
+    const hasTime = Boolean(typeof timeStr === 'string' && timeStr.includes(':'));
+    if (hasTime) {
+        const timeStr = myDatetime.toLocaleTimeString(LOCALE.langTag, {
+            hour: '2-digit',
+            minute: '2-digit',
+        });
+        return (
+            <>
+                {date}
+                <time dateTime={myDatetime.toISOString()}>{dateStr}</time>
+                <span aria-hidden="true"> | </span>
+                <span className="sr-only">&nbsp;at&nbsp;</span>
+                <span className="text-nowrap">{timeStr}</span>
+            </>
+        );
+    }
+
+    return dateStr;
+};
 
 interface Props extends DatetimesProps {
     size?: 'sm' | 'lg';
@@ -37,37 +72,3 @@ export default function Datetime({ pubDatetime, modDatetime, size = 'sm', classN
         </div>
     );
 }
-
-const FormattedDatetime = ({ pubDatetime, modDatetime }: DatetimesProps) => {
-    const timeStr = modDatetime ? modDatetime : pubDatetime;
-    const myDatetime = new Date(timeStr);
-
-    const dateStr = myDatetime.toLocaleDateString(LOCALE.langTag, {
-        year: 'numeric',
-        month: 'short',
-        day: 'numeric',
-    });
-    const date = useMemo(
-        () => <time dateTime={myDatetime.toISOString()}>{dateStr}</time>,
-        [myDatetime, dateStr],
-    );
-
-    const hasTime = Boolean(typeof timeStr === 'string' && timeStr.includes(':'));
-    if (hasTime) {
-        const timeStr = myDatetime.toLocaleTimeString(LOCALE.langTag, {
-            hour: '2-digit',
-            minute: '2-digit',
-        });
-        return (
-            <>
-                {date}
-                <time dateTime={myDatetime.toISOString()}>{dateStr}</time>
-                <span aria-hidden="true"> | </span>
-                <span className="sr-only">&nbsp;at&nbsp;</span>
-                <span className="text-nowrap">{timeStr}</span>
-            </>
-        );
-    }
-
-    return dateStr;
-};
