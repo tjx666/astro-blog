@@ -1,30 +1,30 @@
 ---
-import { SITE } from "@config";
-import Footer from "@components/Footer.astro";
-import Layout from "./Layout.astro";
+import { SITE } from '@config';
+import Footer from '@components/Footer.astro';
+import Layout from './Layout.astro';
 
 export interface Props {
-  frontmatter: {
-    title: string;
-    description?: string;
-  };
+    frontmatter: {
+        title: string;
+        description?: string;
+    };
 }
 
 const { frontmatter } = Astro.props;
 ---
 
 <Layout title={`${frontmatter.title} | ${SITE.title}`}>
-  <main id="main-content">
-    <section id="about" class="prose mb-28 max-w-3xl prose-img:border-0">
-      <h1 class="pt-5 text-center text-2xl tracking-wider sm:text-3xl">
-        {frontmatter.title}
-      </h1>
-      <slot />
-      <p class="pt-4 text-center">
-        <a href="/">返回首页</a>
-        <a href="https://github.com/tjx666/astro-blog">站点仓库</a>
-      </p>
-    </section>
-  </main>
-  <Footer />
+    <main id="main-content">
+        <section id="about" class="prose mb-28 max-w-3xl prose-img:border-0">
+            <h1 class="pt-5 text-center text-2xl tracking-wider sm:text-3xl">
+                {frontmatter.title}
+            </h1>
+            <slot />
+            <p class="pt-4 text-center">
+                <a href="/">返回首页</a>
+                <a href="https://github.com/tjx666/astro-blog">站点仓库</a>
+            </p>
+        </section>
+    </main>
+    <Footer />
 </Layout>

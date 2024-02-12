@@ -63,9 +63,7 @@ CEP 扩展本身是跨系统（Windows，MacOS）平台的，但是不同宿主�
 ```javascript
 // 至于怎么拿到 layerDesc 这个后序教程讲 AM 的时候就知道了，暂时你就理解为图层的描述对象，和底层 c++ 图层的结构体对应
 function isVectorDensityModified(layerDesc) {
-  return (
-    layerDesc.vectorMaskDensity != null && layerDesc.vectorMaskDensity !== 255
-  );
+  return layerDesc.vectorMaskDensity != null && layerDesc.vectorMaskDensity !== 255;
 }
 ```
 
@@ -295,22 +293,19 @@ mkdir cep-hello-world
       // 调用 jsx 接口获取当前选中的图层名称
       function getCurrentLayerNameFromJsx(cb) {
         // evalScript 在某些 JSX engine 的实现是异步的，也有是同步的
-        return window.__adobe_cep__.evalScript(
-          "api.getCurrentLayerName()",
-          function (result) {
-            cb(result);
-          }
-        );
+        return window.__adobe_cep__.evalScript('api.getCurrentLayerName()', function (result) {
+          cb(result);
+        });
       }
 
-      const refreshBtn = document.querySelector("#refresh");
+      const refreshBtn = document.querySelector('#refresh');
       function refresh() {
         getCurrentLayerNameFromJsx(function (layerName) {
-          const span = document.querySelector("#currentLayerName");
+          const span = document.querySelector('#currentLayerName');
           span.textContent = layerName;
         });
       }
-      refreshBtn.addEventListener("click", function () {
+      refreshBtn.addEventListener('click', function () {
         refresh();
       });
 
@@ -366,7 +361,7 @@ CEP 插件的代码按照职责可以分为两部分：
 ```javascript
 // 使用立即执行函数避免全局污染
 (function () {
-  "use strict";
+  'use strict';
 
   function getCurrentLayerName() {
     // 没有打开的文档返回 null

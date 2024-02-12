@@ -69,46 +69,46 @@ private setupHtmlForWebview() {
 
 ```javascript
 // scripts/webpack.config.js
-const { resolve } = require("path");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
+const { resolve } = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 /** @type {import('webpack').Configuration} */
 module.exports = {
-  mode: "development",
-  entry: [resolve(__dirname, "../web/index.tsx")],
+  mode: 'development',
+  entry: [resolve(__dirname, '../web/index.tsx')],
   output: {
-    path: resolve(__dirname, "../dist/web"),
-    filename: "webview.js",
+    path: resolve(__dirname, '../dist/web'),
+    filename: 'webview.js',
   },
   resolve: {
-    extensions: [".js", ".ts", ".tsx", ".json"],
+    extensions: ['.js', '.ts', '.tsx', '.json'],
   },
   module: {
     rules: [
       {
         test: /\.(js|ts|tsx)$/,
-        loader: "babel-loader",
+        loader: 'babel-loader',
         options: { cacheDirectory: true },
         exclude: /node_modules/,
       },
       {
         test: [/\.bmp$/, /\.gif$/, /\.jpe?g$/, /\.png$/, /\.svg$/],
-        type: "asset",
+        type: 'asset',
         parser: {
           dataUrlCondition: {
             maxSize: 10 * 1024,
           },
         },
         generator: {
-          filename: "images/[hash]-[name][ext][query]",
+          filename: 'images/[hash]-[name][ext][query]',
         },
       },
     ],
   },
-  devtool: "eval-source-map",
+  devtool: 'eval-source-map',
   plugins: [
     new HtmlWebpackPlugin({
-      template: resolve(__dirname, "../web/index.html"),
+      template: resolve(__dirname, '../web/index.html'),
     }),
   ],
 };
@@ -118,10 +118,10 @@ module.exports = {
 
 ```javascript
 // scripts/start.js
-const webpack = require("webpack");
-const WebpackDevServer = require("webpack-dev-server");
+const webpack = require('webpack');
+const WebpackDevServer = require('webpack-dev-server');
 
-const devConfig = require("./webpack.config");
+const devConfig = require('./webpack.config');
 
 function start() {
   const compiler = webpack(devConfig);
@@ -129,11 +129,11 @@ function start() {
     hot: false,
     client: false,
     liveReload: false,
-    host: "localhost",
+    host: 'localhost',
     port: 3000,
     open: false,
     devMiddleware: {
-      stats: "minimal",
+      stats: 'minimal',
     },
   };
   const server = new WebpackDevServer(devServerOptions, compiler);
@@ -169,30 +169,30 @@ start();
 const devServerClientOptions = {
   hot: true,
   // !: 指定构造 WebSocket 的协议是 ws
-  protocol: "ws",
-  hostname: "localhost",
+  protocol: 'ws',
+  hostname: 'localhost',
   port: 3000,
-  path: "ws",
+  path: 'ws',
 };
 const devServerClientQuery = Object.entries(devServerClientOptions)
   .map(([k, v]) => `${k}=${v}`)
-  .join("&");
+  .join('&');
 const devEntries = [
-  "webpack/hot/dev-server.js",
+  'webpack/hot/dev-server.js',
   `webpack-dev-server/client/index.js?${devServerClientQuery}`,
 ];
 
 /** @type {import('webpack').Configuration} */
 module.exports = {
-  mode: "development",
-  entry: [...devEntries, resolve(__dirname, "../web/index.tsx")],
+  mode: 'development',
+  entry: [...devEntries, resolve(__dirname, '../web/index.tsx')],
   output: {
-    publicPath: "http://localhost:3000/",
-    path: resolve(__dirname, "../dist/web"),
-    filename: "webview.js",
+    publicPath: 'http://localhost:3000/',
+    path: resolve(__dirname, '../dist/web'),
+    filename: 'webview.js',
   },
   resolve: {
-    extensions: [".js", ".ts", ".tsx", ".json"],
+    extensions: ['.js', '.ts', '.tsx', '.json'],
   },
 };
 ```
@@ -220,14 +220,14 @@ function start() {
     hot: false,
     client: false,
     liveReload: false,
-    host: "localhost",
+    host: 'localhost',
     port: 3000,
     open: false,
     devMiddleware: {
-      stats: "minimal",
+      stats: 'minimal',
     },
     // 允许任何 host
-    allowedHosts: "all",
+    allowedHosts: 'all',
   };
 }
 
@@ -274,10 +274,10 @@ function start() {
   const compiler = webpack(devConfig);
   const devServerOptions = {
     // ...
-    allowedHosts: "all",
+    allowedHosts: 'all',
     // 允许任何域名访问
     headers: {
-      "Access-Control-Allow-Origin": "*",
+      'Access-Control-Allow-Origin': '*',
     },
   };
 }
@@ -330,7 +330,7 @@ webpack-dev-server 定位是一个使用内存文件系统的静态服务器，�
 
 ```javascript
 const devEntries = [
-  "webpack/hot/dev-server.js",
+  'webpack/hot/dev-server.js',
   `webpack-dev-server/client/index.js?${devServerClientQuery}`,
 ];
 ```
@@ -344,17 +344,14 @@ if (module.hot) {
   var upToDate = function upToDate() {
     return lastHash.indexOf(__webpack_hash__) >= 0;
   };
-  var log = require("./log");
+  var log = require('./log');
   var check = function check() {
     module.hot
       .check(true)
       .then(function (updatedModules) {
         if (!updatedModules) {
-          log("warning", "[HMR] Cannot find update. Need to do a full reload!");
-          log(
-            "warning",
-            "[HMR] (Probably because of restarting the webpack-dev-server)"
-          );
+          log('warning', '[HMR] Cannot find update. Need to do a full reload!');
+          log('warning', '[HMR] (Probably because of restarting the webpack-dev-server)');
           window.location.reload();
           return;
         }
@@ -363,37 +360,34 @@ if (module.hot) {
           check();
         }
 
-        require("./log-apply-result")(updatedModules, updatedModules);
+        require('./log-apply-result')(updatedModules, updatedModules);
 
         if (upToDate()) {
-          log("info", "[HMR] App is up to date.");
+          log('info', '[HMR] App is up to date.');
         }
       })
       .catch(function (err) {
         var status = module.hot.status();
-        if (["abort", "fail"].indexOf(status) >= 0) {
-          log(
-            "warning",
-            "[HMR] Cannot apply update. Need to do a full reload!"
-          );
-          log("warning", "[HMR] " + log.formatError(err));
+        if (['abort', 'fail'].indexOf(status) >= 0) {
+          log('warning', '[HMR] Cannot apply update. Need to do a full reload!');
+          log('warning', '[HMR] ' + log.formatError(err));
           window.location.reload();
         } else {
-          log("warning", "[HMR] Update failed: " + log.formatError(err));
+          log('warning', '[HMR] Update failed: ' + log.formatError(err));
         }
       });
   };
-  var hotEmitter = require("./emitter");
-  hotEmitter.on("webpackHotUpdate", function (currentHash) {
+  var hotEmitter = require('./emitter');
+  hotEmitter.on('webpackHotUpdate', function (currentHash) {
     lastHash = currentHash;
-    if (!upToDate() && module.hot.status() === "idle") {
-      log("info", "[HMR] Checking for updates on the server...");
+    if (!upToDate() && module.hot.status() === 'idle') {
+      log('info', '[HMR] Checking for updates on the server...');
       check();
     }
   });
-  log("info", "[HMR] Waiting for update signal from WDS...");
+  log('info', '[HMR] Waiting for update signal from WDS...');
 } else {
-  throw new Error("[HMR] Hot Module Replacement is disabled.");
+  throw new Error('[HMR] Hot Module Replacement is disabled.');
 }
 ```
 
@@ -407,10 +401,7 @@ if (module.hot) {
 
 ```javascript
 // scripts/webpack.config.js
-const webpackHotDevServer = resolvePath(
-  __dirname,
-  "./webpack-hot-dev-server.js"
-);
+const webpackHotDevServer = resolvePath(__dirname, './webpack-hot-dev-server.js');
 const devEntries = [
   // 替换成改过的文件
   webpackHotDevServer,
@@ -428,10 +419,10 @@ const devEntries = [
 if (!window.__vscode__) {
   window.__vscode__ = acquireVsCodeApi();
   window.__reload__ = function () {
-    console.log("post message to vscode to reload!");
+    console.log('post message to vscode to reload!');
     window.__vscode__.postMessage({
-      command: "reload",
-      text: "from web view",
+      command: 'reload',
+      text: 'from web view',
     });
   };
 }

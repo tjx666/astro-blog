@@ -1,135 +1,131 @@
 ---
-import { getCollection } from "astro:content";
-import Layout from "@layouts/Layout.astro";
-import Header from "@components/Header.astro";
-import Footer from "@components/Footer.astro";
-import LinkButton from "@components/LinkButton.astro";
-import Hr from "@components/Hr.astro";
-import Card from "@components/Card";
-import Socials from "@components/Socials.astro";
-import getSortedPosts from "@utils/getSortedPosts";
-import { SOCIALS } from "@config";
+import { getCollection } from 'astro:content';
+import Layout from '@layouts/Layout.astro';
+import Header from '@components/Header.astro';
+import Footer from '@components/Footer.astro';
+import LinkButton from '@components/LinkButton.astro';
+import Hr from '@components/Hr.astro';
+import Card from '@components/Card';
+import Socials from '@components/Socials.astro';
+import getSortedPosts from '@utils/getSortedPosts';
+import { SOCIALS } from '@config';
 
-const posts = await getCollection("blog");
+const posts = await getCollection('blog');
 
 const sortedPosts = getSortedPosts(posts);
 const recentPosts = sortedPosts.slice(0, 4);
 const featuredPosts = sortedPosts.filter(
-  post => post.data.featured && !recentPosts.includes(post)
+    (post) => post.data.featured && !recentPosts.includes(post),
 );
 
-const socialCount = SOCIALS.filter(social => social.active).length;
+const socialCount = SOCIALS.filter((social) => social.active).length;
 ---
 
 <Layout>
-  <Header />
-  <main id="main-content">
-    <section id="hero">
-      <p>98 年前端程序员，找工作中...</p>
-      {
-        // only display if at least one social link is enabled
-        socialCount > 0 && (
-          <div class="social-wrapper">
-            <div class="social-links">社交圈:</div>
-            <Socials />
-          </div>
-        )
-      }
-    </section>
-
-    <Hr />
-
-    {
-      recentPosts.length > 0 && (
-        <section id="recent-posts">
-          <h2>最近发布</h2>
-          <ul>
-            {recentPosts.map(({ data, slug }) => (
-              <Card
-                href={`/posts/${slug}/`}
-                frontmatter={data}
-                secHeading={false}
-              />
-            ))}
-          </ul>
+    <Header />
+    <main id="main-content">
+        <section id="hero">
+            <p>98 年前端程序员，找工作中...</p>
+            {
+                // only display if at least one social link is enabled
+                socialCount > 0 && (
+                    <div class="social-wrapper">
+                        <div class="social-links">社交圈:</div>
+                        <Socials />
+                    </div>
+                )
+            }
         </section>
-      )
-    }
 
-    {
-      featuredPosts.length > 0 && (
-        <>
-          <section id="featured">
-            <h2>热门文章</h2>
-            <ul>
-              {featuredPosts.map(({ data, slug }) => (
-                <Card
-                  href={`/posts/${slug}/`}
-                  frontmatter={data}
-                  secHeading={false}
-                />
-              ))}
-            </ul>
-          </section>
-          {recentPosts.length > 0 && <Hr />}
-        </>
-      )
-    }
+        <Hr />
 
-    <div class="all-posts-btn-wrapper">
-      <LinkButton href="/posts/">
-        所有文章
-        <svg xmlns="http://www.w3.org/2000/svg"
-          ><path
-            d="m11.293 17.293 1.414 1.414L19.414 12l-6.707-6.707-1.414 1.414L15.586 11H6v2h9.586z"
-          ></path>
-        </svg>
-      </LinkButton>
-    </div>
-  </main>
+        {
+            recentPosts.length > 0 && (
+                <section id="recent-posts">
+                    <h2>最近发布</h2>
+                    <ul>
+                        {recentPosts.map(({ data, slug }) => (
+                            <Card href={`/posts/${slug}/`} frontmatter={data} secHeading={false} />
+                        ))}
+                    </ul>
+                </section>
+            )
+        }
 
-  <Footer />
+        {
+            featuredPosts.length > 0 && (
+                <>
+                    <section id="featured">
+                        <h2>热门文章</h2>
+                        <ul>
+                            {featuredPosts.map(({ data, slug }) => (
+                                <Card
+                                    href={`/posts/${slug}/`}
+                                    frontmatter={data}
+                                    secHeading={false}
+                                />
+                            ))}
+                        </ul>
+                    </section>
+                    {recentPosts.length > 0 && <Hr />}
+                </>
+            )
+        }
+
+        <div class="all-posts-btn-wrapper">
+            <LinkButton href="/posts/">
+                所有文章
+                <svg xmlns="http://www.w3.org/2000/svg"
+                    ><path
+                        d="m11.293 17.293 1.414 1.414L19.414 12l-6.707-6.707-1.414 1.414L15.586 11H6v2h9.586z"
+                    ></path>
+                </svg>
+            </LinkButton>
+        </div>
+    </main>
+
+    <Footer />
 </Layout>
 
 <style>
-  /* ===== Hero Section ===== */
-  #hero {
-    @apply pb-6 pt-8;
-  }
-  #hero h1 {
-    @apply my-4 inline-block text-3xl font-bold sm:my-8 sm:text-5xl;
-  }
-  #hero .rss-link {
-    @apply mb-6;
-  }
-  #hero .rss-icon {
-    @apply mb-2 h-6 w-6 scale-110 fill-skin-accent sm:mb-3 sm:scale-125;
-  }
-  #hero p {
-    @apply my-2;
-  }
-  .social-wrapper {
-    @apply mt-4 flex flex-col sm:flex-row sm:items-center;
-  }
-  .social-links {
-    @apply mb-1 mr-2 whitespace-nowrap sm:mb-0;
-  }
+    /* ===== Hero Section ===== */
+    #hero {
+        @apply pb-6 pt-8;
+    }
+    #hero h1 {
+        @apply my-4 inline-block text-3xl font-bold sm:my-8 sm:text-5xl;
+    }
+    #hero .rss-link {
+        @apply mb-6;
+    }
+    #hero .rss-icon {
+        @apply mb-2 h-6 w-6 scale-110 fill-skin-accent sm:mb-3 sm:scale-125;
+    }
+    #hero p {
+        @apply my-2;
+    }
+    .social-wrapper {
+        @apply mt-4 flex flex-col sm:flex-row sm:items-center;
+    }
+    .social-links {
+        @apply mb-1 mr-2 whitespace-nowrap sm:mb-0;
+    }
 
-  /* ===== Featured & Recent Posts Sections ===== */
-  #featured,
-  #recent-posts {
-    @apply pb-4;
-  }
+    /* ===== Featured & Recent Posts Sections ===== */
+    #featured,
+    #recent-posts {
+        @apply pb-4;
+    }
 
-  #recent-posts {
-    @apply pt-8;
-  }
+    #recent-posts {
+        @apply pt-8;
+    }
 
-  #featured h2,
-  #recent-posts h2 {
-    @apply text-2xl font-semibold tracking-wide;
-  }
-  .all-posts-btn-wrapper {
-    @apply my-8 text-center;
-  }
+    #featured h2,
+    #recent-posts h2 {
+        @apply text-2xl font-semibold tracking-wide;
+    }
+    .all-posts-btn-wrapper {
+        @apply my-8 text-center;
+    }
 </style>

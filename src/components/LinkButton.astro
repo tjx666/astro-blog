@@ -1,42 +1,35 @@
 ---
 export interface Props {
-  href: string;
-  className?: string;
-  ariaLabel?: string;
-  title?: string;
-  disabled?: boolean;
-  openInNewTab?: boolean;
+    href: string;
+    className?: string;
+    ariaLabel?: string;
+    title?: string;
+    disabled?: boolean;
+    openInNewTab?: boolean;
 }
 
-const {
-  href,
-  className,
-  ariaLabel,
-  title,
-  disabled = false,
-  openInNewTab = false,
-} = Astro.props;
+const { href, className, ariaLabel, title, disabled = false, openInNewTab = false } = Astro.props;
 ---
 
 {
-  disabled ? (
-    <span
-      class={`group inline-block ${className}`}
-      aria-label={ariaLabel}
-      title={title}
-      aria-disabled={disabled}
-    >
-      <slot />
-    </span>
-  ) : (
-    <a
-      {href}
-      class={`group inline-block hover:text-skin-accent ${className}`}
-      aria-label={ariaLabel}
-      title={title}
-      target={openInNewTab ? "_blank" : "_self"}
-    >
-      <slot />
-    </a>
-  )
+    disabled ? (
+        <span
+            class={`group inline-block ${className}`}
+            aria-label={ariaLabel}
+            title={title}
+            aria-disabled={disabled}
+        >
+            <slot />
+        </span>
+    ) : (
+        <a
+            {href}
+            class={`group inline-block hover:text-skin-accent ${className}`}
+            aria-label={ariaLabel}
+            title={title}
+            target={openInNewTab ? '_blank' : '_self'}
+        >
+            <slot />
+        </a>
+    )
 }

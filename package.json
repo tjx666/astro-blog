@@ -1,61 +1,63 @@
 {
-  "name": "astro-blog",
-  "private": true,
-  "version": "4.2.0",
-  "lint-staged": {
-    "*.{js,jsx,ts,tsx,md,mdx,json,astro}": [
-      "prettier --write"
-    ]
-  },
-  "simple-git-hooks": {
-    "pre-commit": "npx lint-staged"
-  },
-  "scripts": {
-    "prepare": "simple-git-hooks",
-    "dev": "astro dev",
-    "start": "astro dev",
-    "build": "astro check && astro build && jampack ./dist",
-    "preview": "astro preview",
-    "sync": "astro sync",
-    "astro": "astro",
-    "format:check": "prettier --check . --plugin=prettier-plugin-astro",
-    "format": "prettier --write . --plugin=prettier-plugin-astro",
-    "lint": "eslint ."
-  },
-  "dependencies": {
-    "@astrojs/check": "^0.5.3",
-    "@astrojs/rss": "^4.0.5",
-    "@resvg/resvg-js": "^2.6.0",
-    "astro": "^4.3.5",
-    "fuse.js": "^7.0.0",
-    "github-slugger": "^2.0.0",
-    "remark-collapse": "^0.1.2",
-    "remark-toc": "^9.0.0",
-    "satori": "^0.10.13",
-    "tailwindcss": "^3.4.1",
-    "typescript": "^5.3.3"
-  },
-  "devDependencies": {
-    "@astrojs/react": "^3.0.10",
-    "@astrojs/sitemap": "^3.0.5",
-    "@astrojs/tailwind": "^5.1.0",
-    "@divriots/jampack": "^0.23.3",
-    "@tailwindcss/typography": "^0.5.10",
-    "@types/react": "^18.2.55",
-    "@typescript-eslint/eslint-plugin": "^6.21.0",
-    "@typescript-eslint/parser": "^6.21.0",
-    "astro-eslint-parser": "^0.16.3",
-    "commitizen": "^4.3.0",
-    "cz-conventional-changelog": "^3.3.0",
-    "eslint": "^8.56.0",
-    "eslint-define-config": "^2.1.0",
-    "eslint-plugin-astro": "^0.31.4",
-    "lint-staged": "^15.2.2",
-    "prettier": "^3.2.5",
-    "prettier-plugin-astro": "^0.13.0",
-    "prettier-plugin-tailwindcss": "^0.5.11",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "simple-git-hooks": "^2.9.0"
-  }
+    "name": "astro-blog",
+    "private": true,
+    "version": "4.2.0",
+    "prettier": "@yutengjing/prettier-config",
+    "lint-staged": {
+        "*.{js,jsx,ts,tsx,md,mdx,json,astro}": [
+            "prettier --write"
+        ]
+    },
+    "simple-git-hooks": {
+        "pre-commit": "npx lint-staged"
+    },
+    "scripts": {
+        "prepare": "simple-git-hooks",
+        "dev": "astro dev",
+        "start": "astro dev",
+        "build": "astro check && astro build && jampack ./dist",
+        "preview": "astro preview",
+        "sync": "astro sync",
+        "astro": "astro",
+        "format:check": "prettier --check .",
+        "format": "prettier --write .",
+        "lint": "eslint ."
+    },
+    "dependencies": {
+        "@astrojs/check": "^0.5.3",
+        "@astrojs/rss": "^4.0.5",
+        "@resvg/resvg-js": "^2.6.0",
+        "astro": "^4.3.5",
+        "fuse.js": "^7.0.0",
+        "github-slugger": "^2.0.0",
+        "remark-collapse": "^0.1.2",
+        "remark-toc": "^9.0.0",
+        "satori": "^0.10.13",
+        "tailwindcss": "^3.4.1",
+        "typescript": "^5.3.3"
+    },
+    "devDependencies": {
+        "@astrojs/react": "^3.0.10",
+        "@astrojs/sitemap": "^3.0.5",
+        "@astrojs/tailwind": "^5.1.0",
+        "@divriots/jampack": "^0.23.3",
+        "@tailwindcss/typography": "^0.5.10",
+        "@types/react": "^18.2.55",
+        "@typescript-eslint/eslint-plugin": "^6.21.0",
+        "@typescript-eslint/parser": "^6.21.0",
+        "@yutengjing/prettier-config": "^1.1.0",
+        "astro-eslint-parser": "^0.16.3",
+        "commitizen": "^4.3.0",
+        "cz-conventional-changelog": "^3.3.0",
+        "eslint": "^8.56.0",
+        "eslint-define-config": "^2.1.0",
+        "eslint-plugin-astro": "^0.31.4",
+        "lint-staged": "^15.2.2",
+        "prettier": "^3.2.5",
+        "prettier-plugin-astro": "^0.13.0",
+        "prettier-plugin-tailwindcss": "^0.5.11",
+        "react": "^18.2.0",
+        "react-dom": "^18.2.0",
+        "simple-git-hooks": "^2.9.0"
+    }
 }

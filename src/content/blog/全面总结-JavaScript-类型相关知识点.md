@@ -36,7 +36,7 @@ JavaScript 中类型主要分两大类：**基本类型** 和 **对象类型**�
 在 js 里面表示一个字符串字面量有三种方式，单引号，双引号，或者反引号，反引号表示法又叫模板字符串，是 ES6 的新语法：
 
 ```javascript
-"使用单引号表示字符串";
+'使用单引号表示字符串';
 // prettier-ignore
 "使用双引号表示字符串";
 `使用模板字符串表示字符串`;
@@ -63,7 +63,7 @@ console.log(` a
 另一个问题是当模板字符串插入对象时并不会被转换成 JSON 字符串，下面两条语句输出的结果是不一样的：
 
 ```javascript
-const obj = { author: "YuTengjing" };
+const obj = { author: 'YuTengjing' };
 console.log(obj); // => { author: 'YuTengjing' }
 console.log(`${obj}`); // => [object Object]
 
@@ -80,7 +80,7 @@ console.log(String.raw`aaa\n\\`); // => aaa\n\\
 带标签的模板字符串本质上就是函数调用，看 MDN 上的一个例子就懂了：
 
 ```javascript
-var person = "Mike";
+var person = 'Mike';
 var age = 28;
 
 function myTag(strings, personExp, ageExp) {
@@ -94,9 +94,9 @@ function myTag(strings, personExp, ageExp) {
 
   var ageStr;
   if (ageExp > 99) {
-    ageStr = "centenarian";
+    ageStr = 'centenarian';
   } else {
-    ageStr = "youngster";
+    ageStr = 'youngster';
   }
 
   return str0 + personExp + str1 + ageStr;
@@ -111,11 +111,11 @@ console.log(output);
 其实有一些开源的模板引擎就利用到了标签模板字符串的，例如 [hyperx](https://github.com/choojs/hyperx)：
 
 ```javascript
-var vdom = require("virtual-dom");
-var hyperx = require("hyperx");
+var vdom = require('virtual-dom');
+var hyperx = require('hyperx');
 var hx = hyperx(vdom.h);
 
-var title = "world";
+var title = 'world';
 var wow = [1, 2, 3];
 var tree = hx`<div>
   <h1 y="ab${1 + 2}cd">hello ${title}!</h1>
@@ -182,7 +182,7 @@ console.log(isEqual); // => true
 使用等号判断是不行滴：
 
 ```javascript
-const value = 1 / "a";
+const value = 1 / 'a';
 console.log(value); // => NaN
 console.log(value === NaN); // => false
 ```
@@ -192,8 +192,8 @@ console.log(value === NaN); // => false
 ```javascript
 console.log(isNaN(NaN)); // => true
 console.log(isNaN(true)); // => false
-console.log(isNaN("123")); // => false
-console.log(isNaN("aaa")); // => true
+console.log(isNaN('123')); // => false
+console.log(isNaN('aaa')); // => true
 ```
 
 注意最后这个判断，这个结果其实有点反直觉的：'aaa' 并不是 NaN，应该返回 false 啊。其实 isNaN 也就是 window.isNaN 在判断传入的值是不是 NaN 是会先将其转换成数字，再判断结果是不是 NaN，也就是说 isNaN('aaa') 等价于 isNaN(Number('aaa'));
@@ -201,7 +201,7 @@ console.log(isNaN("aaa")); // => true
 除了使用 window.isNaN，ES6 在数字类型构造函数 Number 上新增了一个方法 Number.isNaN，它和 window.isNaN 的区别在于： Number.isNaN 只有在传递的值就是 NaN 时才返回 true，不会先转换成数字再比较，也就是说这个 API 就是用来计算一个值是不是就是 NaN。拿一个非数字符串一比较区别就很明显了：
 
 ```javascript
-const value = "aaa";
+const value = 'aaa';
 
 console.log(isNaN(value)); // => true
 // 等同于
@@ -291,7 +291,7 @@ console.log(new Intl.NumberFormat('en-US').format(123456.123456)); // => 123,456
 // 先行断言
 function formatRegExp1(number) {
   var pattern = /(?=(\B\d{3})+\.)/g;
-  return number.toFixed(2).toString().replace(pattern, ",");
+  return number.toFixed(2).toString().replace(pattern, ',');
 }
 ```
 
@@ -369,8 +369,8 @@ console.log(Boolean(NaN)); // false
 console.log(Boolean([])); // true
 console.log(Boolean({})); // true
 console.log(Boolean()); // false
-console.log(Boolean("")); // false
-console.log(Boolean(" ")); // true
+console.log(Boolean('')); // false
+console.log(Boolean(' ')); // true
 console.log(Boolean(undefined)); // false
 console.log(Boolean(null)); // false
 ```
@@ -444,11 +444,11 @@ console.log(![]); // false
 console.log(Boolean({})); // true
 console.log(!{}); // false
 
-console.log(Boolean("")); // false
-console.log(!""); // true
+console.log(Boolean('')); // false
+console.log(!''); // true
 
-console.log(Boolean(" ")); // true
-console.log(!" "); // false
+console.log(Boolean(' ')); // true
+console.log(!' '); // false
 
 console.log(Boolean(undefined)); // false
 console.log(!undefined); // true
@@ -481,12 +481,12 @@ symbol 我感觉平时写项目可能不太用得上，但是在写库或者设�
 symbol 和后面要说的 bigInt 一样，**不能使用 new 来构造值**。获取一个 symbol 值只能通过 Symbol(description) 或者 Symbol.for(key)：
 
 ```javascript
-const s1 = Symbol("mark");
-const s2 = Symbol("mark");
+const s1 = Symbol('mark');
+const s2 = Symbol('mark');
 console.log(typeof s1); // => symbol
 console.log(s1); // => Symbol(mark)
 console.log(s1 === s2); // => false
-console.log(Symbol.for("key") === Symbol.for("key")); // => true
+console.log(Symbol.for('key') === Symbol.for('key')); // => true
 ```
 
 symbol 最大的特点便是唯一性，每次通过 Symbol 返回的都是 js 内部计算好的一个 唯一的 symbol 值。除了唯一性，symbol 类型的值还能作为对象的键，这在 ES5 时代是只有字符串类型。有些人可能认为 number 也能作为对象的键，一个显而易见的例子便是数组，事实真的是这样吗？
@@ -508,12 +508,12 @@ console.log(typeof Object.keys(arr)[0]); // => string
 let obj = {
   [Symbol.toPrimitive](hint) {
     switch (hint) {
-      case "number":
+      case 'number':
         return 123;
-      case "string":
-        return "str";
-      case "default":
-        return "default";
+      case 'string':
+        return 'str';
+      case 'default':
+        return 'default';
       default:
         throw new Error();
     }
@@ -522,7 +522,7 @@ let obj = {
 
 2 * obj; // 246
 3 + obj; // '3default'
-obj == "default"; // true
+obj == 'default'; // true
 String(obj); // 'str'
 ```
 
@@ -532,10 +532,10 @@ String(obj); // 'str'
 // 枚举的特点：不能重复，不能被修改
 // 这个版本更好理解
 const Season = Object.freeze({
-  SPRING: Symbol("season-spring"),
-  SUMMER: Symbol("season-summer"),
-  AUTUMN: Symbol("season-autumn"),
-  WINTER: Symbol("season-winter"),
+  SPRING: Symbol('season-spring'),
+  SUMMER: Symbol('season-summer'),
+  AUTUMN: Symbol('season-autumn'),
+  WINTER: Symbol('season-winter'),
 });
 
 Season.SPRING = 666;
@@ -546,16 +546,16 @@ console.log(Season.SPRING === Season.SUMMER); // => false
 // 更完善的实现，枚举应该是不能被修改的，这里使用了 ES6 的 proxy
 const Season = new Proxy(
   {
-    SPRING: Symbol("season-spring"),
-    SUMMER: Symbol("season-summer"),
-    AUTUMN: Symbol("season-autumn"),
-    WINTER: Symbol("season-winter"),
+    SPRING: Symbol('season-spring'),
+    SUMMER: Symbol('season-summer'),
+    AUTUMN: Symbol('season-autumn'),
+    WINTER: Symbol('season-winter'),
   },
   {
     set() {
       throw new Error(`can't modify enumeration Season`);
     },
-  }
+  },
 );
 
 // Season.SPRING = 666; // => can't modify enumeration Season
@@ -574,10 +574,10 @@ console.log(Season.SPRING === Season.SUMMER); // => false
 ```javascript
 /**
  * @param {number[]} digits
- * @return {number[]}
+ * @returns {number[]}
  */
 function plusOne(digits) {
-  return `${Number(digits.join("")) + 1}`.split("");
+  return `${Number(digits.join('')) + 1}`.split('');
 }
 ```
 
@@ -588,9 +588,7 @@ function plusOne(digits) {
 出错的原因很简单，因为测试的数据大于 js 最大安全整数了，出现了精度丢失：
 
 ```javascript
-const num = Number(
-  [6, 1, 4, 5, 3, 9, 0, 1, 9, 5, 1, 8, 6, 7, 0, 5, 5, 4, 3].join("")
-);
+const num = Number([6, 1, 4, 5, 3, 9, 0, 1, 9, 5, 1, 8, 6, 7, 0, 5, 5, 4, 3].join(''));
 console.log(num); // => 614 5390 1951 8670 5000
 console.log(num > Number.MAX_SAFE_INTEGER); // => true
 console.log(Number.MAX_SAFE_INTEGER); // => 9007 1992 5474 0991
@@ -601,10 +599,10 @@ console.log(Number.MAX_SAFE_INTEGER); // => 9007 1992 5474 0991
 ```javascript
 /**
  * @param {number[]} digits
- * @return {number[]}
+ * @returns {number[]}
  */
 function plusOne(digits) {
-  return `${BigInt(digits.join("")) + 1n}`.split("");
+  return `${BigInt(digits.join('')) + 1n}`.split('');
 }
 ```
 
@@ -663,25 +661,25 @@ function removeDuplicates(nums) {
 我拿最能发挥双指针优势的情况，也即是大量重复元素的情况来测试测试：
 
 ```javascript
-const { Suite } = require("benchmark");
+const { Suite } = require('benchmark');
 
-const removeDuplicates1 = require("../src/0026-Remove Duplicates from Sorted Array/removeDuplicates1");
-const removeDuplicates2 = require("../src/0026-Remove Duplicates from Sorted Array/removeDuplicates2");
+const removeDuplicates1 = require('../src/0026-Remove Duplicates from Sorted Array/removeDuplicates1');
+const removeDuplicates2 = require('../src/0026-Remove Duplicates from Sorted Array/removeDuplicates2');
 
 const testArr = [...Array(1e5)].map(() => 6);
 
 new Suite()
-  .add("removeDuplicates1", function () {
+  .add('removeDuplicates1', function () {
     removeDuplicates1(testArr);
   })
-  .add("removeDuplicates2", function () {
+  .add('removeDuplicates2', function () {
     removeDuplicates2(testArr);
   })
-  .on("cycle", function (event) {
+  .on('cycle', function (event) {
     console.log(String(event.target));
   })
-  .on("complete", function () {
-    console.log(`Fastest is ${this.filter("fastest").map("name")}`);
+  .on('complete', function () {
+    console.log(`Fastest is ${this.filter('fastest').map('name')}`);
   })
   .run({ async: true });
 ```
@@ -699,7 +697,7 @@ Fastest is removeDuplicates1
 所以我觉得吧，在写 JS 的时候，我们一般情况都不需要去考虑算法效率，去重我用 Set 难道不香吗？虽然这个解法不符合 leetcode 的题目要求。
 
 ```javascript
-const removeDuplicates = nums => [...new Set(nums)];
+const removeDuplicates = (nums) => [...new Set(nums)];
 ```
 
 其是也就是常说的不要过早的优化，即便是真需要算法进行优化的时候，我们也应该需要对实际效果测试之后再决定是否优化，理论和实际还是有很大区别的，现实情况往往想像的要复杂的多。
@@ -744,10 +742,10 @@ test();
 
 ```javascript
 console.log(typeof 6); // => number
-console.log(typeof "6"); // => string
+console.log(typeof '6'); // => string
 console.log(typeof true); // => boolean
 console.log(typeof undefined); // => undefined
-console.log(typeof Symbol("6")); // => symbol
+console.log(typeof Symbol('6')); // => symbol
 console.log(typeof BigInt(6)); // => bigint
 console.log(typeof {}); // => object
 console.log(typeof []); // => object
@@ -770,7 +768,7 @@ console.log(typeof new Boolean(false)); // => object
 
 ```javascript
 function isNumber(val) {
-  return typeof val === "number";
+  return typeof val === 'number';
 }
 ```
 
@@ -790,12 +788,12 @@ console.log(isNumber(new Number(6))); // => false
 instanceof 的原理很简单：
 
 ```javascript
-const isObject = require("../is/isObject");
+const isObject = require('../is/isObject');
 
 function instanceOf(obj, constructor) {
   if (!isObject(constructor)) {
     throw new TypeError(`Right-hand side of 'instanceof' is not an object`);
-  } else if (typeof constructor !== "function") {
+  } else if (typeof constructor !== 'function') {
     throw new TypeError(`Right-hand side of 'instanceof' is not callable`);
   }
 
@@ -817,10 +815,10 @@ console.log(BigInt(5) instanceof BigInt); // => false
 
 ```javascript
 function isNumber(val) {
-  return typeof val === "number" || val instanceof Number;
+  return typeof val === 'number' || val instanceof Number;
 }
 
-console.log(isNumber("123")); // => false
+console.log(isNumber('123')); // => false
 console.log(isNumber(true)); // => false
 console.log(isNumber(null)); // => false
 console.log(isNumber({})); // => false
@@ -838,10 +836,7 @@ console.log(isNumber(new Number(555))); // => true
 
 ```javascript
 function isNumber(value) {
-  return (
-    typeof value === "number" ||
-    (isObjectLike(value) && getTag(value) == "[object Number]")
-  );
+  return typeof value === 'number' || (isObjectLike(value) && getTag(value) == '[object Number]');
 }
 ```
 
@@ -849,7 +844,7 @@ function isNumber(value) {
 
 ```javascript
 function isObjectLike(value) {
-  return typeof value === "object" && value !== null;
+  return typeof value === 'object' && value !== null;
 }
 ```
 
@@ -858,7 +853,7 @@ const toString = Object.prototype.toString;
 
 function getTag(value) {
   if (value == null) {
-    return value === undefined ? "[object Undefined]" : "[object Null]";
+    return value === undefined ? '[object Undefined]' : '[object Null]';
   }
   return toString.call(value);
 }
@@ -883,7 +878,7 @@ function Foo() {}
 console.log(toString.call(new Foo())); // => [object Object]
 
 function Bar() {
-  this[Symbol.toStringTag] = "自定义的 tag";
+  this[Symbol.toStringTag] = '自定义的 tag';
 }
 console.log(toString.call(new Bar())); // => [object 自定义的 tag]
 ```
@@ -923,16 +918,13 @@ function isObject(val) {
 
 ```javascript
 function isGenerator(obj) {
-  return "function" == typeof obj.next && "function" == typeof obj.throw;
+  return 'function' == typeof obj.next && 'function' == typeof obj.throw;
 }
 
 function isGeneratorFunction(obj) {
   var constructor = obj.constructor;
   if (!constructor) return false;
-  if (
-    "GeneratorFunction" === constructor.name ||
-    "GeneratorFunction" === constructor.displayName
-  )
+  if ('GeneratorFunction' === constructor.name || 'GeneratorFunction' === constructor.displayName)
     return true;
   return isGenerator(constructor.prototype);
 }
@@ -953,7 +945,7 @@ console.log(typeof genObj.throw); // => function
 
 ```javascript
 function isPromise(obj) {
-  return "function" == typeof obj.then;
+  return 'function' == typeof obj.then;
 }
 ```
 
@@ -1004,7 +996,7 @@ console.log(types.isRegExp(/exp/));
 ```javascript
 function isObject(value) {
   const type = typeof value;
-  return value != null && (type === "object" || type === "function");
+  return value != null && (type === 'object' || type === 'function');
 }
 ```
 

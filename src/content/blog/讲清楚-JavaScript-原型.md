@@ -39,7 +39,7 @@ function Student(name, grade) {
   this.grade = grade;
 }
 
-const stu = new Student("xiaoMing", 6);
+const stu = new Student('xiaoMing', 6);
 // Student 类型实例的原型，默认也是一个空对象
 console.log(stu.__proto__); // => Student {}
 ```
@@ -53,7 +53,7 @@ console.log({}.__proto__ === Object.getPrototypeOf({})); // => true
 我们可以通过对 `__proto__` 属性直接赋值的方式修改对象的原型，更推荐的做法是使用使用 ES6 的 `Reflect.setPrototypeOf` 或 `Object.setPrototypeOf`。不论哪一种方式，被设置的值的类型只能是对象或者 null，其它类型不起作用：
 
 ```javascript
-const obj = { name: "xiaoMing" };
+const obj = { name: 'xiaoMing' };
 // 原型为空对象
 console.log(obj.__proto__); // => {}
 
@@ -79,7 +79,7 @@ frozenObj.__proto__ = null; // => TypeError: #<Object> is not extensible
 如果一个对象的 `__proto__` 被赋值为 null，这种情况比较复杂，看下面的测试，你可能会觉得很匪夷所思:
 
 ```javascript
-const obj = { name: "xiaoming" };
+const obj = { name: 'xiaoming' };
 
 obj.__proto__ = null;
 // !: 为什么不是 null, 就好像 __proto__ 被 delete 了
@@ -111,24 +111,21 @@ console.log(Reflect.getPrototypeOf(obj)); // => { b: 2 }
 const weakMap = new WeakMap();
 Object.prototype = {
   get __proto__() {
-    return this["[[prototype]]"] === null
-      ? weakMap.get(this)
-      : this["[[prototype]]"];
+    return this['[[prototype]]'] === null ? weakMap.get(this) : this['[[prototype]]'];
   },
   set __proto__(newPrototype) {
     if (!Object.isExtensible(newPrototype))
       throw new TypeError(`${newPrototype} is not extensible`);
 
-    const isObject =
-      typeof newPrototype === "object" || typeof newPrototype === "function";
+    const isObject = typeof newPrototype === 'object' || typeof newPrototype === 'function';
     if (newPrototype === null || isObject) {
       // 如果之前通过 __proto__ 设置成 null
       // 此时再通过给 __proto__ 赋值的方式修改原型都是徒劳
       /// 表现就是 obj.__proto__ = { a: 1 } 就像一个普通属性 obj.xxx = { a: 1 }
-      if (this["[[prototype]]"] === null) {
+      if (this['[[prototype]]'] === null) {
         weakMap.set(this, newPrototype);
       } else {
-        this["[[prototype]]"] = newPrototype;
+        this['[[prototype]]'] = newPrototype;
       }
     }
   },
@@ -173,7 +170,7 @@ console.log(Apple.prototype.constructor === Apple); // => true
 这个 `constructor` 属性是不可遍历的，可以理解为内部是这样定义该属性的：
 
 ```javascript
-Object.defineProperty(Apple.prototype, "constructor", {
+Object.defineProperty(Apple.prototype, 'constructor', {
   value: Student,
   writable: true,
   // 不可枚举，无法通过 Object.keys() 获取到
@@ -316,7 +313,7 @@ class Circle {
 `babel + babel-preset-es2015-loose` 编译出的结果：
 
 ```javascript
-"use strict";
+'use strict';
 
 // Circle class 可以理解为就是一个构造器函数
 var Circle = (function () {
@@ -331,13 +328,13 @@ var Circle = (function () {
   // class 方法定义在 prototype 上
   _proto.draw = function draw() {
     console.log(
-      "\u753B\u4E2A\u5750\u6807\u4E3A (" +
+      '\u753B\u4E2A\u5750\u6807\u4E3A (' +
         this.x +
-        ", " +
+        ', ' +
         this.y +
-        ")\uFF0C\u534A\u5F84\u4E3A " +
+        ')\uFF0C\u534A\u5F84\u4E3A ' +
         this.r +
-        " \u7684\u5706"
+        ' \u7684\u5706',
     );
   };
 
@@ -376,7 +373,7 @@ class Circle extends Shape {
 `babel + babel-preset-es2015-loose` 编译出的结果：
 
 ```javascript
-"use strict";
+'use strict';
 
 // 原型继承
 function _inheritsLoose(subClass, superClass) {
@@ -408,13 +405,13 @@ var Circle = (function (_Shape) {
 
   _proto.draw = function draw() {
     console.log(
-      "\u753B\u4E2A\u5750\u6807\u4E3A (" +
+      '\u753B\u4E2A\u5750\u6807\u4E3A (' +
         this.x +
-        ", " +
+        ', ' +
         this.y +
-        ")\uFF0C\u534A\u5F84\u4E3A " +
+        ')\uFF0C\u534A\u5F84\u4E3A ' +
         this.r +
-        " \u7684\u5706"
+        ' \u7684\u5706',
     );
   };
 
@@ -454,7 +451,7 @@ _this = _Shape.call(this, x, y) || this;
 ```javascript
 function A() {}
 function B() {
-  this.xxx = "污染 A 的原型";
+  this.xxx = '污染 A 的原型';
 }
 
 A.prototype = new B();
@@ -470,7 +467,7 @@ function A(p) {
 }
 
 function B() {
-  this.xxx = "污染原型";
+  this.xxx = '污染原型';
 }
 
 // 空函数
@@ -484,7 +481,7 @@ A.prototype.constructor = A;
 // 满足原型继承的定义
 console.log(A.prototype.__proto__ === B.prototype); // => true
 
-const a = new A("p");
+const a = new A('p');
 console.log(a instanceof A); // => true
 
 const b = new B();
@@ -524,17 +521,15 @@ function _inheritsLoose(subClass, superClass) {
 ```javascript
 function isObject(value) {
   const type = typeof value;
-  return value !== null && (type === "object" || type === "function");
+  return value !== null && (type === 'object' || type === 'function');
 }
 
 /**
- * constructor 表示 new 的构造器
- * args 表示传给构造器的参数
+ * Constructor 表示 new 的构造器 args 表示传给构造器的参数
  */
 function New(constructor, ...args) {
   // new 的对象不是函数就抛 TypeError
-  if (typeof constructor !== "function")
-    throw new TypeError(`${constructor} is not a constructor`);
+  if (typeof constructor !== 'function') throw new TypeError(`${constructor} is not a constructor`);
 
   // 创建一个原型为构造器的 prototype 的空对象 target
   const target = Object.create(constructor.prototype);
@@ -553,7 +548,7 @@ function Computer(brand) {
   this.brand = brand;
 }
 
-const c = New(Computer, "Apple");
+const c = New(Computer, 'Apple');
 console.log(c); // => Computer { brand: 'Apple' }
 ```
 
@@ -569,7 +564,7 @@ instanceof 用于判断对象是否是某个类的实例，如果 obj instance A
 function instanceOf(obj, constructor) {
   if (!isObject(constructor)) {
     throw new TypeError(`Right-hand side of 'instanceof' is not an object`);
-  } else if (typeof constructor !== "function") {
+  } else if (typeof constructor !== 'function') {
     throw new TypeError(`Right-hand side of 'instanceof' is not callable`);
   }
 
@@ -605,8 +600,8 @@ console.log(instanceOf(a, A)); // => true
 举个最简单的例子：
 
 ```javascript
-Object.prototype.hack = "污染原型的属性";
-const obj = { name: "xiaoHong", age: 18 };
+Object.prototype.hack = '污染原型的属性';
+const obj = { name: 'xiaoHong', age: 18 };
 for (const key in obj) {
   if (obj.hasOwnProperty(key)) {
     console.log(obj[key]);
@@ -626,14 +621,14 @@ xiaoHong
 看一个具体的 node 安全漏洞案例：
 
 ```javascript
-"use strict";
+'use strict';
 
-const express = require("express");
-const bodyParser = require("body-parser");
-const cookieParser = require("cookie-parser");
-const path = require("path");
+const express = require('express');
+const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
+const path = require('path');
 
-const isObject = obj => obj && obj.constructor && obj.constructor === Object;
+const isObject = (obj) => obj && obj.constructor && obj.constructor === Object;
 
 function merge(a, b) {
   for (var attr in b) {
@@ -652,7 +647,7 @@ function clone(a) {
 
 // Constants
 const PORT = 8080;
-const HOST = "127.0.0.1";
+const HOST = '127.0.0.1';
 const admin = {};
 
 // App
@@ -660,26 +655,26 @@ const app = express();
 app.use(bodyParser.json());
 app.use(cookieParser());
 
-app.use("/", express.static(path.join(__dirname, "views")));
-app.post("/signup", (req, res) => {
+app.use('/', express.static(path.join(__dirname, 'views')));
+app.post('/signup', (req, res) => {
   var body = JSON.parse(JSON.stringify(req.body));
   var copybody = clone(body);
   if (copybody.name) {
-    res.cookie("name", copybody.name).json({
-      done: "cookie set",
+    res.cookie('name', copybody.name).json({
+      done: 'cookie set',
     });
   } else {
     res.json({
-      error: "cookie not set",
+      error: 'cookie not set',
     });
   }
 });
-app.get("/getFlag", (req, res) => {
+app.get('/getFlag', (req, res) => {
   var аdmin = JSON.parse(JSON.stringify(req.cookies));
   if (admin.аdmin == 1) {
-    res.send("hackim19{}");
+    res.send('hackim19{}');
   } else {
-    res.send("You are not authorized");
+    res.send('You are not authorized');
   }
 });
 app.listen(PORT, HOST);
@@ -708,7 +703,7 @@ curl -vv 'http://127.0.0.1/getFlag'
 
 ```javascript
 const obj = Object.create(null);
-obj.__proto__ = { hack: "污染原型的属性" };
+obj.__proto__ = { hack: '污染原型的属性' };
 const obj1 = {};
 console.log(obj1.__proto__); // => {}
 ```
@@ -718,7 +713,7 @@ console.log(obj1.__proto__); // => {}
 可以通过 Object.freeze(obj) 冻结对象 obj，被冻结的对象不能被修改属性，成为不可扩展对象。前面也说过不能修改不可扩展对象的原型，会抛 TypeError：
 
 ```javascript
-const obj = Object.freeze({ name: "xiaoHong" });
+const obj = Object.freeze({ name: 'xiaoHong' });
 obj.xxx = 666;
 console.log(obj); // => { name: 'xiaoHong' }
 console.log(Object.isExtensible(obj)); // => false
@@ -735,8 +730,8 @@ obj.__proto__ = null; // => TypeError: #<Object> is not extensible
 function Page() {
   return this.hosts;
 }
-Page.hosts = ["h1"];
-Page.prototype.hosts = ["h2"];
+Page.hosts = ['h1'];
+Page.prototype.hosts = ['h2'];
 
 const p1 = new Page();
 const p2 = Page();

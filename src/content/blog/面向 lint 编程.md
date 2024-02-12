@@ -50,20 +50,20 @@ module.exports = {
   overrides: [
     // https://github.com/tjx666/eslint-config/blob/main/packages/basic/index.js#L59
     {
-      files: ["*.{json,jsonc}"],
-      parser: "jsonc-eslint-parser",
+      files: ['*.{json,jsonc}'],
+      parser: 'jsonc-eslint-parser',
       // json 特定的规则
       rules: {},
     },
     // https://github.com/tjx666/eslint-config/blob/main/packages/vue/index.js#L11
     {
-      files: ["*.vue"],
-      parser: "vue-eslint-parser",
+      files: ['*.vue'],
+      parser: 'vue-eslint-parser',
       env: {
-        "vue/setup-compiler-macros": true,
+        'vue/setup-compiler-macros': true,
       },
       parserOptions: {
-        parser: "@typescript-eslint/parser",
+        parser: '@typescript-eslint/parser',
       },
       rules: {},
     },
@@ -109,7 +109,7 @@ module.exports = {
 ```js
 module.exports = {
   // 包名为 @yutengjing/eslint-config-react
-  extends: "@yutengjing/eslint-config-react",
+  extends: '@yutengjing/eslint-config-react',
   rules: {},
 };
 ```
@@ -154,9 +154,9 @@ export = {
 module.exports = {
   root: true,
   // 插件提供的配置以 plugin: 开头
-  extends: ["plugin:@typescript-eslint/base"],
+  extends: ['plugin:@typescript-eslint/base'],
   // 将会覆盖 plugin:@typescript-eslint/base 的 sourceType: 'module'
-  parserOptions: { sourceType: "script" },
+  parserOptions: { sourceType: 'script' },
 };
 ```
 
@@ -166,13 +166,13 @@ ESLint 有很多[内置的规则](https://eslint.org/docs/latest/rules)，你也
 
 ```js
 module.exports = {
-  plugins: ["unicorn"],
+  plugins: ['unicorn'],
   rules: {
     // 内置的规则没有 scope
-    "no-undef": 2,
+    'no-undef': 2,
     // 外部插件都有 scope
     // eslint-plugin-unicorn 的规则都以 unicorn 这个 scope 开头
-    "unicorn/filename-case": ["error"],
+    'unicorn/filename-case': ['error'],
   },
 };
 ```
@@ -181,18 +181,13 @@ module.exports = {
 
 ```typescript
 type Severity = 0 | 1 | 2;
-type StringSeverity = "off" | "warn" | "error";
+type StringSeverity = 'off' | 'warn' | 'error';
 
 type RuleLevel = Severity | StringSeverity;
 // 例如 'unicorn/xxx': ['error', option1, option2, ...option999]
-type RuleLevelAndOptions<Options extends any[] = any[]> = Prepend<
-  Partial<Options>,
-  RuleLevel
->;
+type RuleLevelAndOptions<Options extends any[] = any[]> = Prepend<Partial<Options>, RuleLevel>;
 
-type RuleEntry<Options extends any[] = any[]> =
-  | RuleLevel
-  | RuleLevelAndOptions<Options>;
+type RuleEntry<Options extends any[] = any[]> = RuleLevel | RuleLevelAndOptions<Options>;
 
 interface RulesRecord {
   [rule: string]: RuleEntry;
@@ -212,11 +207,11 @@ ESLint 规则众多，我们怎样查看一个规则对应的文档呢？Google 
 这样方便统一设置规则的文档：
 
 ```javascript
-const fs = require("node:fs");
-const path = require("node:path");
+const fs = require('node:fs');
+const path = require('node:path');
 
 function getDocumentationUrl(filename) {
-  const ruleName = path.basename(filename, ".js");
+  const ruleName = path.basename(filename, '.js');
   return `https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/${ruleName}.md`;
 }
 
@@ -238,12 +233,12 @@ function loadRule(ruleId) {
 function loadRules() {
   return Object.fromEntries(
     fs
-      .readdirSync(path.resolve(__dirname, "../rules"), { withFileTypes: true })
-      .filter(file => file.name !== "index.js" && file.isFile())
-      .map(file => {
-        const ruleId = path.basename(file.name, ".js");
+      .readdirSync(path.resolve(__dirname, '../rules'), { withFileTypes: true })
+      .filter((file) => file.name !== 'index.js' && file.isFile())
+      .map((file) => {
+        const ruleId = path.basename(file.name, '.js');
         return [ruleId, loadRule(ruleId)];
-      })
+      }),
   );
 }
 ```
@@ -280,7 +275,7 @@ ESLint 的错误提示并不总是准确的，例如不支持自动修复的规�
 
 ```javascript
 // eslint-disable-next-line unicorn/prefer-dom-node-text-content
-this.$refs.cell.innerText = content ?? "";
+this.$refs.cell.innerText = content ?? '';
 ```
 
 如果一个 ESLint 规则每次 ESLint 报错都是需要禁用的情况，那其实它对我们没啥用，建议直接关了。例如：[no-new](https://eslint.org/docs/latest/rules/no-new)。多数情况我们使用 `new Constructor()` 没有对它赋值其实是故意的，例如：
@@ -366,101 +361,94 @@ git config core.hooksPath .git/hooks/
 通过自己实现了一个脚本读取 lint-staged 配置文件来实现 lint changed，优化代码：
 
 ```typescript
-import { createRequire } from "node:module";
+import { createRequire } from 'node:module';
 
-import boxen from "boxen";
-import consola from "consola";
-import type { ExecaError } from "execa";
-import { execa } from "execa";
-import micromatch from "micromatch";
-import c from "picocolors";
+import boxen from 'boxen';
+import consola from 'consola';
+import type { ExecaError } from 'execa';
+import { execa } from 'execa';
+import micromatch from 'micromatch';
+import c from 'picocolors';
 
-import { execaWithOutput } from "./utils";
+import { execaWithOutput } from './utils';
 
-const changeTarget = process.env.CHANGE_TARGET || "master";
+const changeTarget = process.env.CHANGE_TARGET || 'master';
 
 const require = createRequire(import.meta.url);
-const lintStagedConfig = require("../lint-staged.config") as Record<
+const lintStagedConfig = require('../lint-staged.config') as Record<
   string,
   (files: string[]) => string
 >;
 
 async function getChangedFiles() {
-  const { stdout } = await execa("git", [
-    "diff",
-    "--name-only",
+  const { stdout } = await execa('git', [
+    'diff',
+    '--name-only',
     // 排除删除了的文件
-    "--diff-filter=d",
+    '--diff-filter=d',
     changeTarget,
-    "HEAD",
+    'HEAD',
   ]);
   return stdout.trim().split(/\r?\n/);
 }
 
 const changedFiles = await getChangedFiles();
 
-const lintTasks = Object.entries(lintStagedConfig).map(
-  async ([pattern, taskCreator]) => {
-    const expandedPattern = `**/${pattern}`;
-    const matchedFiles = micromatch(changedFiles, expandedPattern, {});
-    const command = taskCreator(matchedFiles).trim();
+const lintTasks = Object.entries(lintStagedConfig).map(async ([pattern, taskCreator]) => {
+  const expandedPattern = `**/${pattern}`;
+  const matchedFiles = micromatch(changedFiles, expandedPattern, {});
+  const command = taskCreator(matchedFiles).trim();
 
-    if (command === (globalThis as any).__lintStagedSkipMessage__) {
-      consola.info(c.cyan(`skip lint for pattern: ${c.green(pattern)}`));
-      return;
-    }
-
-    const doubleQuoteIndex = command.indexOf('"');
-    const [exe, ...args] = command
-      .slice(0, doubleQuoteIndex)
-      .trim()
-      .split(/\s+/);
-    const pathList = command
-      .slice(doubleQuoteIndex)
-      .split(/(?<=")\s+(?=")/)
-      // 去除引号
-      .map(pathWithQuote => pathWithQuote.slice(1, -1));
-    const filesTooMany = pathList.length > 10;
-    const pathListStr = filesTooMany
-      ? `<...${pathList.length}files>`
-      : pathList.join(" ");
-    const commandStr = `${[exe, ...args, pathListStr].join(" ")}`;
-    console.log(c.dim(`$ ${commandStr}\n`));
-    try {
-      await execaWithOutput(exe, [...args, ...pathList], {
-        outputCommand: false,
-      });
-    } catch (_error) {
-      const error = _error as unknown as ExecaError;
-      let { message, command, exitCode } = error;
-      if (filesTooMany) {
-        message = message.replace(command, c.red(commandStr));
-      }
-      consola.error(message);
-
-      const fixCommand = `pnpm lint:fix ${changeTarget}`;
-      // 第二行需要留一个空格来实现换行
-      const fixMessage = `${c.red("Lint 失败，请尝试在本地运行下面的修复命令！")}\n
-${c.magenta(fixCommand)}`;
-      console.log(
-        boxen(fixMessage, {
-          padding: 1,
-          margin: 1,
-          align: "center",
-          borderColor: "yellow",
-          borderStyle: "round",
-        })
-      );
-
-      process.exit(exitCode);
-    }
+  if (command === (globalThis as any).__lintStagedSkipMessage__) {
+    consola.info(c.cyan(`skip lint for pattern: ${c.green(pattern)}`));
+    return;
   }
-);
+
+  const doubleQuoteIndex = command.indexOf('"');
+  const [exe, ...args] = command.slice(0, doubleQuoteIndex).trim().split(/\s+/);
+  const pathList = command
+    .slice(doubleQuoteIndex)
+    .split(/(?<=")\s+(?=")/)
+    // 去除引号
+    .map((pathWithQuote) => pathWithQuote.slice(1, -1));
+  const filesTooMany = pathList.length > 10;
+  const pathListStr = filesTooMany ? `<...${pathList.length}files>` : pathList.join(' ');
+  const commandStr = `${[exe, ...args, pathListStr].join(' ')}`;
+  console.log(c.dim(`$ ${commandStr}\n`));
+  try {
+    await execaWithOutput(exe, [...args, ...pathList], {
+      outputCommand: false,
+    });
+  } catch (_error) {
+    const error = _error as unknown as ExecaError;
+    let { message, command, exitCode } = error;
+    if (filesTooMany) {
+      message = message.replace(command, c.red(commandStr));
+    }
+    consola.error(message);
+
+    const fixCommand = `pnpm lint:fix ${changeTarget}`;
+    // 第二行需要留一个空格来实现换行
+    const fixMessage = `${c.red('Lint 失败，请尝试在本地运行下面的修复命令！')}\n
+${c.magenta(fixCommand)}`;
+    console.log(
+      boxen(fixMessage, {
+        padding: 1,
+        margin: 1,
+        align: 'center',
+        borderColor: 'yellow',
+        borderStyle: 'round',
+      }),
+    );
+
+    process.exit(exitCode);
+  }
+});
 
 // 只 lint 不修复，也就是只读不写不会有并发问题
 await Promise.all(lintTasks);
 
-consola.success("Lint 通过");
+consola.success('Lint 通过');
 ```
 
 预计不就后我会开源一个 npm 包用来放一些我编写的非常实用的前端工程化脚本。
@@ -580,9 +568,9 @@ if (xxx) {
 module.exports = {
   overrides: [
     {
-      files: ["*.{ts,tsx,vue}"],
+      files: ['*.{ts,tsx,vue}'],
       rules: {
-        "no-restricted-syntax": [
+        'no-restricted-syntax': [
           error,
           // 禁止隐式声明类型为 any 的变量
           // tsconfig 的 "noImplicitAny": true 不会处理这种情况
@@ -590,7 +578,7 @@ module.exports = {
           {
             selector:
               "VariableDeclaration[kind = 'let'] > VariableDeclarator[init = null]:not([id.typeAnnotation])",
-            message: "Provide a type annotation.",
+            message: 'Provide a type annotation.',
           },
         ],
       },

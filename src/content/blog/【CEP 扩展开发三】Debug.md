@@ -186,12 +186,12 @@ $.level = isProduction ? 0 : 2;
 // index.ts
 class Test {
   hello() {
-    console.log("hello");
+    console.log('hello');
   }
 }
 
 for (const num1 of [1, 2, 3]) {
-  for (const num2 of ["a", "b", "c"]) {
+  for (const num2 of ['a', 'b', 'c']) {
     console.log(num1 + num2);
   }
 }
@@ -203,13 +203,13 @@ for (const num1 of [1, 2, 3]) {
 var Test = /** @class */ (function () {
   function Test() {}
   Test.prototype.hello = function () {
-    console.log("hello");
+    console.log('hello');
   };
   return Test;
 })();
 for (var _i = 0, _a = [1, 2, 3]; _i < _a.length; _i++) {
   var num1 = _a[_i];
-  for (var _b = 0, _c = ["a", "b", "c"]; _b < _c.length; _b++) {
+  for (var _b = 0, _c = ['a', 'b', 'c']; _b < _c.length; _b++) {
     var num2 = _c[_b];
     console.log(num1 + num2);
   }

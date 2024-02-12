@@ -51,9 +51,7 @@ type X = IsNumber<2>; // false
 
 ```typescript
 type Equals<A, B> =
-  (<T>() => T extends A ? 0 : 1) extends <T>() => T extends B ? 0 : 1
-    ? true
-    : false;
+  (<T>() => T extends A ? 0 : 1) extends <T>() => T extends B ? 0 : 1 ? true : false;
 ```
 
 多数人都会想到使用双向 `extends` 的方法，它能处理 **子类 extends 父类** 的情况，用元组包一下还能处理 `never`，但是处理不了 `any`：
@@ -61,7 +59,7 @@ type Equals<A, B> =
 ```typescript
 type Equals<A, B> = [A] extends [B] ? ([B] extends [A] ? true : false) : false;
 
-type A = Equals<any, "1">; // => true
+type A = Equals<any, '1'>; // => true
 ```
 
 更多细节建议移步：[typescript 怎么判断两个类型相等？](https://www.zhihu.com/question/479585640/answer/2705083460)
@@ -83,7 +81,7 @@ type TupleToObject<T extends [any, any]> = {
   [K in T[0]]: T[1];
 };
 
-type X = TupleToObject<["name", "ly"]>; // => { name: "ly" }
+type X = TupleToObject<['name', 'ly']>; // => { name: "ly" }
 ```
 
 可以直接用 `Record`：
@@ -100,7 +98,7 @@ type TupleToObject<T extends [any, any]> = Record<T[0], T[1]>;
 type IntersectionToInterface<I> = {
   [K in keyof I]: I[K];
 };
-type X = IntersectionToInterface<{ name: "ly" } & { age: 27 }>; // => { name: "ly"; age: 27; }
+type X = IntersectionToInterface<{ name: 'ly' } & { age: 27 }>; // => { name: "ly"; age: 27; }
 ```
 
 简写：
@@ -116,12 +114,12 @@ type IntersectionToInterface<I> = Omit<I, never>;
 type Merge<A, B> = IntersectionToInterface<Omit<A, keyof B> & B>;
 
 type A = {
-  name: "ly";
+  name: 'ly';
   age: 27;
 };
 
 type B = {
-  name: "YuTengjing";
+  name: 'YuTengjing';
   height: 170;
 };
 
@@ -145,7 +143,7 @@ type MyOmit<T, L extends keyof T> = {
   [K in keyof T as K extends L ? never : K]: T[K];
 };
 
-type X = MyOmit<{ name: "ly"; age: 27 }, "name">;
+type X = MyOmit<{ name: 'ly'; age: 27 }, 'name'>;
 /*
 type X = {
     age: 27;
@@ -192,8 +190,8 @@ declare function SimpleVue<D, C extends Record<string, any>, M>(options: {
 SimpleVue({
   data() {
     return {
-      firstname: "Type",
-      lastname: "Challenges",
+      firstname: 'Type',
+      lastname: 'Challenges',
       amount: 10,
     };
   },
@@ -220,12 +218,10 @@ SimpleVue({
 
 ```typescript
 // TS 没有 NaN 字面量类型
-type StringToNumber<S extends string> = S extends `${infer Num extends number}`
-  ? Num
-  : never;
-type A = StringToNumber<"">; // => never
-type B = StringToNumber<"1">; // => 1
-type C = StringToNumber<"1.2">; // => 1.2
+type StringToNumber<S extends string> = S extends `${infer Num extends number}` ? Num : never;
+type A = StringToNumber<''>; // => never
+type B = StringToNumber<'1'>; // => 1
+type C = StringToNumber<'1.2'>; // => 1.2
 ```
 
 ### 在对元组使用模式匹配时能正确识别成员类型
@@ -239,7 +235,7 @@ type Count<
   ? First extends Num
     ? Count<Rest, Num, [...Result, unknown]>
     : Count<Rest, Num, Result>
-  : Result["length"];
+  : Result['length'];
 
 type X = Count<[1, 2, 2, 3], 2>; // => type X = 2;
 ```
@@ -251,14 +247,9 @@ type X = Count<[1, 2, 2, 3], 2>; // => type X = 2;
 场景：我们要实现 `Promise.all` 方法的返回值推断
 
 ```typescript
-declare function PromiseAll<T extends readonly any[]>(
-  values: T
-): Promise<GetReturn<T>>;
+declare function PromiseAll<T extends readonly any[]>(values: T): Promise<GetReturn<T>>;
 
-type GetReturn<T extends readonly any[]> = T extends readonly [
-  infer First,
-  ...infer Rest,
-]
+type GetReturn<T extends readonly any[]> = T extends readonly [infer First, ...infer Rest]
   ? [Awaited<First>, ...GetReturn<Rest>]
   : T extends []
     ? []
@@ -274,7 +265,7 @@ const R = PromiseAll([1, 2, 3]); // const R: Promise<number[]>
 
 ```typescript
 declare function PromiseAll<T extends readonly any[]>(
-  values: readonly [...T]
+  values: readonly [...T],
 ): Promise<GetReturn<T>>;
 // => const R: Promise<[number, number, number]>
 ```
@@ -286,9 +277,7 @@ declare function PromiseAll<T extends readonly any[]>(
 TS 5.0 引进的一个新语法：[const Type Parameters](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-0.html#const-type-parameters)，允许你对泛型参数标记为 `const`，这样 TS 在对函数参数推断时会直接将参数推断为字面类型：
 
 ```typescript
-declare function PromiseAll<const T extends readonly any[]>(
-  values: T
-): Promise<GetReturn<T>>;
+declare function PromiseAll<const T extends readonly any[]>(values: T): Promise<GetReturn<T>>;
 const R = PromiseAll([1, 2, 3]);
 // => const R: Promise<[1, 2, 3]>
 ```
@@ -300,20 +289,18 @@ const R = PromiseAll([1, 2, 3]);
 充分利用了 `union` 有多个成员的特性，非 `union` 可以理解为只有一个成员的 `union`。
 
 ```typescript
-type IsUnion<U, E = U> = [E extends U ? Exclude<U, E> : never] extends [never]
-  ? false
-  : true;
+type IsUnion<U, E = U> = [E extends U ? Exclude<U, E> : never] extends [never] ? false : true;
 ```
 
 ## Union 转 Intersection
 
 ```typescript
-type UnionToIntersection<U> = (
-  U extends unknown ? (arg: U) => void : never
-) extends (arg: infer I) => void
+type UnionToIntersection<U> = (U extends unknown ? (arg: U) => void : never) extends (
+  arg: infer I,
+) => void
   ? I
   : never;
-type X = UnionToIntersection<{ name: "ly" } | { age: 18 }>; // => { name: 'ly' } & { age: 18 }
+type X = UnionToIntersection<{ name: 'ly' } | { age: 18 }>; // => { name: 'ly' } & { age: 18 }
 ```
 
 1. `U extends unknown ? (arg: U) => void : never` 将 `U` 映射为一个`函数 union`：`(arg: { name: 'ly' }) => void | (arg: { age: 18 }) => void`
@@ -323,12 +310,13 @@ type X = UnionToIntersection<{ name: "ly" } | { age: 18 }>; // => { name: 'ly' }
 ## 取 Union 最后一项
 
 ```typescript
-type LastOfUnion<
-  U,
-  FU = UnionToIntersection<U extends unknown ? () => U : never>,
-> = F extends (...args: any[]) => any ? ReturnType<FU> : never;
+type LastOfUnion<U, FU = UnionToIntersection<U extends unknown ? () => U : never>> = F extends (
+  ...args: any[]
+) => any
+  ? ReturnType<FU>
+  : never;
 
-type X = LastOfUnion<"a" | "b" | "c">; // c
+type X = LastOfUnion<'a' | 'b' | 'c'>; // c
 ```
 
 1. 首先将 `U` 转为`函数 union`，通过 `U extends unknown ? () => U : never` 得到 `() => 'a' | () => 'b'`
@@ -349,7 +337,7 @@ type P = Parameters<typeof foo>; // =type P = [x: string | number]
 type UnionToTuple<U, Last = LastOfUnion<U>> = [U] extends [never]
   ? []
   : [...UnionToTuple<Exclude<U, Last>>, Last];
-type TP = UnionToTuple<"a" | "b">;
+type TP = UnionToTuple<'a' | 'b'>;
 // => ['a', 'b]
 ```
 
@@ -367,21 +355,18 @@ TS 类型空间没有正儿八经的循环工具，但是我们可以通过递�
 type Join<
   Strs extends readonly string[],
   Index extends unknown[] = [],
-  Result extends string = "",
-> = Index["length"] extends Strs["length"]
+  Result extends string = '',
+> = Index['length'] extends Strs['length']
   ? Result
-  : Join<Strs, [...Index, unknown], `${Result}${Strs[Index["length"]]}`>;
+  : Join<Strs, [...Index, unknown], `${Result}${Strs[Index['length']]}`>;
 
-type X = Join<["a", "b", "c"]>; // => 'abc'
+type X = Join<['a', 'b', 'c']>; // => 'abc'
 ```
 
 `递归` + `模式匹配` 来循环：
 
 ```typescript
-type Join<
-  Strs extends readonly string[],
-  Result extends string = "",
-> = Strs extends [
+type Join<Strs extends readonly string[], Result extends string = ''> = Strs extends [
   infer First extends string,
   ...infer Rest extends readonly string[],
 ]
@@ -401,7 +386,7 @@ type Join<Strs extends readonly string[]> = Strs extends [
   ...infer Rest extends readonly string[],
 ]
   ? `${First}${Join<Rest>}`
-  : "";
+  : '';
 ```
 
 ## 排列组合问题
@@ -422,7 +407,7 @@ type X = NumberToString<1 | 2 | 3>; // => type X = "1" | "2" | "3"
 type Members = [1, 2, 3, 4][number]; // => type Members = 4 | 1 | 2 | 3
 
 // 3
-type S = `${"a" | "b"}${"c" | "d"}`; // type S = "ac" | "ad" | "bc" | "bd"
+type S = `${'a' | 'b'}${'c' | 'd'}`; // type S = "ac" | "ad" | "bc" | "bd"
 
 // 4
 type Arr = [1, ...([2] | [3])]; // type Arr = [1, 2] | [1, 3]
@@ -449,7 +434,7 @@ type Permutation<U, E = U> = [U] extends [never]
     ? [E, ...Permutation<Exclude<U, E>>]
     : never;
 
-type X = Permutation<"A" | "B" | "C">;
+type X = Permutation<'A' | 'B' | 'C'>;
 // type X = ["A", "B", "C"] | ["A", "C", "B"] | ["B", "A", "C"] | ["B", "C", "A"] | ["C", "A", "B"] | ["C", "B", "A"]
 ```
 
@@ -462,11 +447,9 @@ type X = Permutation<"A" | "B" | "C">;
 利用了手段 1, 2 和 3。
 
 ```typescript
-type Comb<U extends string, E = U> = E extends U
-  ? `${E}${` ${Comb<Exclude<U, E>>}` | ""}`
-  : "";
+type Comb<U extends string, E = U> = E extends U ? `${E}${` ${Comb<Exclude<U, E>>}` | ''}` : '';
 type Combination<T extends readonly string[]> = Comb<T[number]>;
-type X = Combination<["foo", "bar", "baz"]>;
+type X = Combination<['foo', 'bar', 'baz']>;
 // => type X = "foo" | "bar" | "baz" | "bar baz" | "baz bar" | "foo bar" | "foo baz" | "foo bar baz" | "foo baz bar" | "baz foo" | "bar foo" | "bar foo baz" | "bar baz foo" | "baz foo bar" | "baz bar foo"
 ```
 
@@ -499,10 +482,7 @@ type Insert<T extends readonly any[], U, E = T> = E extends T
     : [U]
   : never;
 
-type PermutationsOfTuple<T extends unknown[]> = T extends [
-  ...infer Front,
-  infer L,
-]
+type PermutationsOfTuple<T extends unknown[]> = T extends [...infer Front, infer L]
   ? Insert<PermutationsOfTuple<Front>, L>
   : [];
 ```
@@ -519,12 +499,7 @@ type cases = [
   Expect<Equal<Transpose<[[1, 2], [3, 4]]>, [[1, 3], [2, 4]]>>,
   Expect<Equal<Transpose<[[1, 2, 3], [4, 5, 6]]>, [[1, 4], [2, 5], [3, 6]]>>,
   Expect<Equal<Transpose<[[1, 4], [2, 5], [3, 6]]>, [[1, 2, 3], [4, 5, 6]]>>,
-  Expect<
-    Equal<
-      Transpose<[[1, 2, 3], [4, 5, 6], [7, 8, 9]]>,
-      [[1, 4, 7], [2, 5, 8], [3, 6, 9]]
-    >
-  >,
+  Expect<Equal<Transpose<[[1, 2, 3], [4, 5, 6], [7, 8, 9]]>, [[1, 4, 7], [2, 5, 8], [3, 6, 9]]>>,
 ];
 ```
 
@@ -539,15 +514,12 @@ type Insert<
   Arr extends ReadonlyArray<ReadonlyArray<number>>,
   Row extends readonly number[],
   Result extends ReadonlyArray<ReadonlyArray<number>> = [],
-> = Result["length"] extends Row["length"]
+> = Result['length'] extends Row['length']
   ? Result
   : Insert<
       Arr,
       Row,
-      [
-        ...Result,
-        [...FallbackTo<Arr[Result["length"]], []>, Row[Result["length"]]],
-      ]
+      [...Result, [...FallbackTo<Arr[Result['length']], []>, Row[Result['length']]]]
     >;
 
 type Transpose<M extends number[][]> = M extends [
@@ -583,10 +555,7 @@ type Transpose<M extends number[][]> = M extends [
 type TrimStart<S extends string> = any;
 type JoinUnion<U> = any;
 type StrsToNums<Strs extends readonly string[]> = any;
-type GetLast<Arr extends readonly unknown[]> = Arr extends [
-  ...infer Front,
-  infer Last,
-]
+type GetLast<Arr extends readonly unknown[]> = Arr extends [...infer Front, infer Last]
   ? Last
   : never;
 ```
@@ -608,7 +577,7 @@ type NumsToStrs<U extends number, E = U> = E extends U ? `${E}` : never;
 声明数组的时候尽量声明为**只读**的，因为声明为**可写**的数组那就不能接受**只读**的数组：
 
 ```typescript
-type Length<Arr extends unknown[]> = Arr["length"];
+type Length<Arr extends unknown[]> = Arr['length'];
 
 const array = [1, 2] as const;
 
@@ -657,12 +626,12 @@ type NumsToStrs<U extends number> = __NumsToStrs<U>;
 这道题就是说给定两个元组 `A` 和 `B`，返回一个元组 `C`， 满足：`C[index] = [A[index], B[index]]`
 
 ```typescript
-import type { Equal, Expect } from "@type-challenges/utils";
+import type { Equal, Expect } from '@type-challenges/utils';
 
 type cases = [
   Expect<Equal<Zip<[], []>, []>>,
   Expect<Equal<Zip<[1, 2], [true, false]>, [[1, true], [2, false]]>>,
-  Expect<Equal<Zip<[1, 2, 3], ["1", "2"]>, [[1, "1"], [2, "2"]]>>,
+  Expect<Equal<Zip<[1, 2, 3], ['1', '2']>, [[1, '1'], [2, '2']]>>,
   Expect<Equal<Zip<[], [1, 2, 3]>, []>>,
   Expect<Equal<Zip<[[1, 2]], [3]>, [[[1, 2], 3]]>>,
 ];
@@ -675,10 +644,8 @@ type Zip<
   A extends readonly any[],
   B extends readonly any[],
   R extends readonly any[] = [],
-  RL extends number = R["length"],
-> = R["length"] extends A["length"] | B["length"]
-  ? R
-  : Zip<A, B, [...R, [A[RL], B[RL]]]>;
+  RL extends number = R['length'],
+> = R['length'] extends A['length'] | B['length'] ? R : Zip<A, B, [...R, [A[RL], B[RL]]]>;
 ```
 
 牛逼的解法，将模式匹配发挥到极致：
@@ -716,12 +683,11 @@ type cases1 = [
 正常人的解法
 
 ```typescript
-type Integer<T extends number> =
-  `${T}` extends `${infer Int extends number}.${string}`
+type Integer<T extends number> = `${T}` extends `${infer Int extends number}.${string}`
+  ? never
+  : number extends T
     ? never
-    : number extends T
-      ? never
-      : T;
+    : T;
 ```
 
 神的解法：

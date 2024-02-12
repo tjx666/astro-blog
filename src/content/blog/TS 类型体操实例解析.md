@@ -55,8 +55,8 @@ SimpleVue({
     this.data();
 
     return {
-      firstname: "Type",
-      lastname: "Challenges",
+      firstname: 'Type',
+      lastname: 'Challenges',
       amount: 10,
     };
   },
@@ -97,8 +97,8 @@ SimpleVue({
     this.data();
 
     return {
-      firstname: "Type",
-      lastname: "Challenges",
+      firstname: 'Type',
+      lastname: 'Challenges',
       amount: 10,
     };
   },
@@ -147,8 +147,7 @@ obj.moveBy(5, 5);
 PromiseValue 类型算是一个常用而且实现上也非常简单的模式匹配的应用。
 
 ```ts
-type PromiseValue<P extends Promise<unknown>> =
-  P extends Promise<infer V> ? V : never;
+type PromiseValue<P extends Promise<unknown>> = P extends Promise<infer V> ? V : never;
 type V = PromiseValue<Promise<number>>; // => number
 ```
 
@@ -223,8 +222,8 @@ SimpleVue({
     this.data();
 
     return {
-      firstname: "Type",
-      lastname: "Challenges",
+      firstname: 'Type',
+      lastname: 'Challenges',
       amount: 10,
     };
   },
@@ -253,7 +252,7 @@ SimpleVue({
 ```ts
 const p1 = Promise.resolve(1);
 const p2 = Promise.resolve(true);
-const p3 = Promise.resolve("good!");
+const p3 = Promise.resolve('good!');
 const r = promiseAll([p1, p2, p3]);
 // r 类型是：Promise<readonly [number, boolean, string]>
 ```
@@ -261,20 +260,17 @@ const r = promiseAll([p1, p2, p3]);
 第一版实现：
 
 ```ts
-type PromiseValue<P extends Promise<unknown>> =
-  P extends Promise<infer V> ? V : never;
+type PromiseValue<P extends Promise<unknown>> = P extends Promise<infer V> ? V : never;
 
 declare function promiseAll<T extends readonly Promise<unknown>[]>(
-  promises: T
+  promises: T,
 ): Promise<{
-  readonly [P in keyof T]: T[P] extends Promise<unknown>
-    ? PromiseValue<T[P]>
-    : never;
+  readonly [P in keyof T]: T[P] extends Promise<unknown> ? PromiseValue<T[P]> : never;
 }>;
 
 const p1 = Promise.resolve(1);
 const p2 = Promise.resolve(true);
-const p3 = Promise.resolve("good!");
+const p3 = Promise.resolve('good!');
 const r = promiseAll([p1, p2, p3]);
 // const r: Promise<readonly (string | number | boolean)[]>
 ```
@@ -291,7 +287,7 @@ const r = promiseAll([p1, p2, p3]);
 
 ```ts
 const obj = {
-  name: "ly",
+  name: 'ly',
 } as const;
 
 /**
@@ -306,11 +302,9 @@ const obj = {
 ```ts
 declare function promiseAll<T extends readonly Promise<unknown>[]>(
   // 写成数组解构的形式，这样编译器就会将 T 识别为元组
-  promises: [...T]
+  promises: [...T],
 ): Promise<{
-  readonly [P in keyof T]: T[P] extends Promise<unknown>
-    ? PromiseValue<T[P]>
-    : never;
+  readonly [P in keyof T]: T[P] extends Promise<unknown> ? PromiseValue<T[P]> : never;
 }>;
 ```
 
@@ -319,11 +313,9 @@ declare function promiseAll<T extends readonly Promise<unknown>[]>(
 ```ts
 // T extends (readonly Promise<unknown>[]) | []
 declare function promiseAll<T extends readonly Promise<unknown>[] | []>(
-  promises: T
+  promises: T,
 ): Promise<{
-  readonly [P in keyof T]: T[P] extends Promise<unknown>
-    ? PromiseValue<T[P]>
-    : never;
+  readonly [P in keyof T]: T[P] extends Promise<unknown> ? PromiseValue<T[P]> : never;
 }>;
 ```
 
@@ -334,11 +326,11 @@ declare function promiseAll<T extends readonly Promise<unknown>[] | []>(
 我们要实现的效果：
 
 ```ts
-type R1 = Permutation<"A" | "B" | "C">;
+type R1 = Permutation<'A' | 'B' | 'C'>;
 // 3 x 2 x 1 种
 // => "ABC" | "ACB" | "BAC" | "BCA" | "CAB" | "CBA"
 
-type R2 = Permutation<"A" | "B" | "C" | "D">;
+type R2 = Permutation<'A' | 'B' | 'C' | 'D'>;
 /*
 // 应该是 4 x 3 x 2 x 1 = 24 种
 "ABCD" | "ABDC" | "ACBD" | "ACDB" |
@@ -371,28 +363,28 @@ string extends '666' ? true : false; // => false
 
 ```ts
 function dateFormat(pubDatetime: Date, formatStr: string, isUtc: boolean) {
-  const getPrefix = isUtc ? "getUTC" : "get";
+  const getPrefix = isUtc ? 'getUTC' : 'get';
   // eslint-disable-next-line unicorn/better-regex
   return formatStr.replace(/%[YmdHMS]/g, (m: string) => {
     let replaceStrNum: number;
     switch (m) {
-      case "%Y":
+      case '%Y':
         // Element implicitly has an 'any' type because expression of type 'string' can't be used to index type 'Date'.
         //No index signature with a parameter of type 'string' was found on type 'Date'
         return String(date[`${getPrefix}FullYear`]()); // no leading zeros required
-      case "%m":
+      case '%m':
         replaceStrNum = 1 + date[`${getPrefix}Month`]();
         break;
-      case "%d":
+      case '%d':
         replaceStrNum = date[`${getPrefix}Date`]();
         break;
-      case "%H":
+      case '%H':
         replaceStrNum = date[`${getPrefix}Hours`]();
         break;
-      case "%M":
+      case '%M':
         replaceStrNum = date[`${getPrefix}Minutes`]();
         break;
-      case "%S":
+      case '%S':
         replaceStrNum = date[`${getPrefix}Seconds`]();
         break;
       default:
@@ -409,7 +401,7 @@ function dateFormat(pubDatetime: Date, formatStr: string, isUtc: boolean) {
 使用插值语法，你可以将已有的字符串字面量类型，数字字面量类型插进一个字符串中得到一个新的字符串字面量类型
 
 ```ts
-type World = "world";
+type World = 'world';
 type Greeting = `hello ${World}`; // => type Greeting = "hello world"
 ```
 
@@ -422,15 +414,15 @@ type N = `I ${never} give up`; // => never
 当插值本身是 union 类型时，结果也是 union 类型：
 
 ```ts
-type Feeling = "like" | "hate";
+type Feeling = 'like' | 'hate';
 type R = `I ${Feeling} you`; // => "I like you" | "I hate you"
 ```
 
 如果插入了多个 union，那么结果就是所有的组合构成的 union。
 
 ```ts
-type AB = "A" | "B";
-type CD = "C" | "D";
+type AB = 'A' | 'B';
+type CD = 'C' | 'D';
 type Combination = `${AB}${CD}`; // => "AC" | "AD" | "BC" | "BD"
 ```
 
@@ -439,48 +431,47 @@ type Combination = `${AB}${CD}`; // => "AC" | "AD" | "BC" | "BD"
 例如我们要实现一个将传入的字符串语句首字母大写：
 
 ```ts
-type R1 = CapitalFirstLetter<"a little story">; // => "A little story"
-type R2 = CapitalFirstLetter<"">; // => ""
+type R1 = CapitalFirstLetter<'a little story'>; // => "A little story"
+type R2 = CapitalFirstLetter<''>; // => ""
 ```
 
 我们可以这样实现：
 
 ```ts
 type LetterMapper = {
-  a: "A";
-  b: "B";
-  c: "C";
-  d: "D";
-  e: "E";
-  f: "F";
-  g: "G";
-  h: "H";
-  i: "I";
-  j: "J";
-  k: "K";
-  l: "L";
-  m: "M";
-  n: "N";
-  o: "O";
-  p: "P";
-  q: "Q";
-  r: "R";
-  s: "S";
-  t: "T";
-  u: "U";
-  v: "V";
-  w: "W";
-  x: "X";
-  y: "Y";
-  z: "Z";
+  a: 'A';
+  b: 'B';
+  c: 'C';
+  d: 'D';
+  e: 'E';
+  f: 'F';
+  g: 'G';
+  h: 'H';
+  i: 'I';
+  j: 'J';
+  k: 'K';
+  l: 'L';
+  m: 'M';
+  n: 'N';
+  o: 'O';
+  p: 'P';
+  q: 'Q';
+  r: 'R';
+  s: 'S';
+  t: 'T';
+  u: 'U';
+  v: 'V';
+  w: 'W';
+  x: 'X';
+  y: 'Y';
+  z: 'Z';
 };
 
-type CapitalFirstLetter<S extends string> =
-  S extends `${infer First}${infer Rest}`
-    ? First extends keyof LetterMapper
-      ? `${LetterMapper[First]}${Rest}`
-      : S
-    : S;
+type CapitalFirstLetter<S extends string> = S extends `${infer First}${infer Rest}`
+  ? First extends keyof LetterMapper
+    ? `${LetterMapper[First]}${Rest}`
+    : S
+  : S;
 ```
 
 ### 类型递归
@@ -488,8 +479,8 @@ type CapitalFirstLetter<S extends string> =
 例如我们要实现所有给一个字符串，返回所有字符都被大写的字符串：
 
 ```ts
-type R1 = UpperCase<"a little story">; // => "A LITTLE STORY"
-type R2 = UpperCase<"nb">; // => "NB"
+type R1 = UpperCase<'a little story'>; // => "A LITTLE STORY"
+type R2 = UpperCase<'nb'>; // => "NB"
 ```
 
 递归的套路就是：
@@ -524,7 +515,7 @@ type R1 = (1 extends 1 ? 1 : 2) | (2 extends 1 ? 1 : 2);
 // 声明一个额外的泛型 E 来标识循环的元素
 type AppendDot<U, E = U> = E extends U ? `${E & string}.` : never;
 // 使用 Union 来映射
-type R1 = AppendDot<"a" | "b">; // => "a." | "b."
+type R1 = AppendDot<'a' | 'b'>; // => "a." | "b."
 
 // 配合 as 来过滤 keys
 type Getter<T> = {
@@ -534,10 +525,10 @@ type Getter<T> = {
 const obj = {
   age: 18,
   getName() {
-    return "ly";
+    return 'ly';
   },
   hello() {
-    console.log("hello");
+    console.log('hello');
   },
 };
 
@@ -605,7 +596,7 @@ function permutation(list) {
   return result;
 }
 
-console.log(permutation(["a", "b", "c"]));
+console.log(permutation(['a', 'b', 'c']));
 /*
   [ 'a', 'b', 'c' ],
   [ 'a', 'c', 'b' ],
@@ -620,10 +611,10 @@ console.log(permutation(["a", "b", "c"]));
 
 ```ts
 type Permutation<U, E = U> = [U] extends [never]
-  ? ""
+  ? ''
   : E extends U
     ? `${E & string}${Permutation<Exclude<U, E>>}`
-    : "";
+    : '';
 ```
 
 **作业：**
@@ -645,8 +636,8 @@ type Fibonacci<
   ? 1
   : T extends 2
     ? 1
-    : TArray["length"] extends T // 表示已经循环了 T 次
-      ? [...Pre, ...PrePre]["length"] // 前两项相加
+    : TArray['length'] extends T // 表示已经循环了 T 次
+      ? [...Pre, ...PrePre]['length'] // 前两项相加
       : Fibonacci<T, [...TArray, unknown], Pre, [...Pre, ...PrePre]>; // 使用递归来循环
 ```
 

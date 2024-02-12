@@ -144,7 +144,7 @@ UXP 的优势：
 ```html
 <script>
   // 直接使用宿主模块
-  const app = require("photoshop").app;
+  const app = require('photoshop').app;
   const doc = app.activeDocument;
   console.log(doc.name);
 </script>

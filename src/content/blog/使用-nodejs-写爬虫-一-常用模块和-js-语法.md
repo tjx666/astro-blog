@@ -1,5 +1,5 @@
 ---
-title: "使用 nodejs 写爬虫(一): 常用模块和 js 语法"
+title: '使用 nodejs 写爬虫(一): 常用模块和 js 语法'
 tags:
   - node
   - spider
@@ -33,7 +33,7 @@ pubDatetime: 2019-04-01 12:14:00
 使用 async/await 的前提是必须将接口封装成 promise, 看一个简单的例子:
 
 ```javascript
-const sleep = milliseconds => {
+const sleep = (milliseconds) => {
   return new Promise((resolve, reject) => {
     setTimeout(() => resolve(), milliseconds);
   });
@@ -41,7 +41,7 @@ const sleep = milliseconds => {
 
 const main = async () => {
   await sleep(5000);
-  console.log("5秒后...");
+  console.log('5秒后...');
 };
 
 main();
@@ -52,19 +52,19 @@ main();
 在 node 中， fs 模块是一个很常用的操作文件的 native 模块，fs (file system) 模块提供了和文件系统相关的一些同步和异步的 api, 有时候使用同步 api 非常有必要，比如你要在一个自己写的模块中的在访问文件后导出一些接口时，这个时候用同步的 api 就很实用。看个例子：
 
 ```javascript
-const path = require("path");
-const fs = require("fs-extra");
-const { log4js } = require("../../config/log4jsConfig");
-const log = log4js.getLogger("qupingce");
+const path = require('path');
+const fs = require('fs-extra');
+const { log4js } = require('../../config/log4jsConfig');
+const log = log4js.getLogger('qupingce');
 
 const createModels = () => {
   const models = {};
-  const fileNames = fs.readdirSync(path.resolve(__dirname, "."));
+  const fileNames = fs.readdirSync(path.resolve(__dirname, '.'));
 
   fileNames
-    .filter(fileName => fileName !== "index.js")
-    .map(fileName => fileName.slice(0, -3))
-    .forEach(modelName => {
+    .filter((fileName) => fileName !== 'index.js')
+    .map((fileName) => fileName.slice(0, -3))
+    .forEach((modelName) => {
       log.info(`Sequelize define model ${modelName}!`);
       models[modelName] = require(path.resolve(__dirname, `./${modelName}.js`));
     });
@@ -97,12 +97,12 @@ superagent 是一个 node 的 http client, 可以类比 java 中的 httpclient �
 ```javascript
 // 官方文档的一个调用示例
 request
-  .post("/api/pet")
-  .send({ name: "Manny", species: "cat" })
-  .set("X-API-Key", "foobar")
-  .set("Accept", "application/json")
-  .then(res => {
-    alert("yay got " + JSON.stringify(res.body));
+  .post('/api/pet')
+  .send({ name: 'Manny', species: 'cat' })
+  .set('X-API-Key', 'foobar')
+  .set('Accept', 'application/json')
+  .then((res) => {
+    alert('yay got ' + JSON.stringify(res.body));
   });
 ```
 
@@ -113,11 +113,11 @@ request
 cheerio 是为服务器端设计的，给你近乎完整的 jquery 体验。使用 cheerio 来解析 html 获取元素，调用方式和 jquery 操作 dom 元素用法完全一致。而且还提供了一些方便的接口, 比如获取 html, 看一个例子:
 
 ```javascript
-const cheerio = require("cheerio");
+const cheerio = require('cheerio');
 const $ = cheerio.load('<h2 class="title">Hello world</h2>');
 
-$("h2.title").text("Hello there!");
-$("h2").addClass("welcome");
+$('h2.title').text('Hello there!');
+$('h2').addClass('welcome');
 
 $.html();
 //=> <h2 class="title welcome">Hello there!</h2>
@@ -139,49 +139,49 @@ log4js 模块看名字有点向 java 中很有名的日志库 log4j 看齐的节
 下面通过我最近一个爬虫项目的配置文件来感受以下这个库的特点:
 
 ```javascript
-const log4js = require("log4js");
-const path = require("path");
-const fs = require("fs-extra");
+const log4js = require('log4js');
+const path = require('path');
+const fs = require('fs-extra');
 
-const infoFilePath = path.resolve(__dirname, "../out/log/info.log");
-const errorFilePath = path.resolve(__dirname, "../out/log/error.log");
+const infoFilePath = path.resolve(__dirname, '../out/log/info.log');
+const errorFilePath = path.resolve(__dirname, '../out/log/error.log');
 log4js.configure({
   appenders: {
     dateFile: {
-      type: "dateFile",
+      type: 'dateFile',
       filename: infoFilePath,
-      pattern: "yyyy-MM-dd",
+      pattern: 'yyyy-MM-dd',
       compress: false,
     },
     errorDateFile: {
-      type: "dateFile",
+      type: 'dateFile',
       filename: errorFilePath,
-      pattern: "yyyy-MM-dd",
+      pattern: 'yyyy-MM-dd',
       compress: false,
     },
     justErrorsToFile: {
-      type: "logLevelFilter",
-      appender: "errorDateFile",
-      level: "error",
+      type: 'logLevelFilter',
+      appender: 'errorDateFile',
+      level: 'error',
     },
     out: {
-      type: "console",
+      type: 'console',
     },
   },
   categories: {
     default: {
-      appenders: ["out"],
-      level: "trace",
+      appenders: ['out'],
+      level: 'trace',
     },
     qupingce: {
-      appenders: ["out", "dateFile", "justErrorsToFile"],
-      level: "trace",
+      appenders: ['out', 'dateFile', 'justErrorsToFile'],
+      level: 'trace',
     },
   },
 });
 
 const clear = async () => {
-  const files = await fs.readdir(path.resolve(__dirname, "../out/log"));
+  const files = await fs.readdir(path.resolve(__dirname, '../out/log'));
   for (const fileName of files) {
     fs.remove(path.resolve(__dirname, `../out/log/${fileName}`));
   }
@@ -239,7 +239,7 @@ const logRequest = (response, isDetailed = false) => {
 来看一段测试代码:
 
 ```javascript
-const sleep = milliseconds => {
+const sleep = (milliseconds) => {
   return new Promise((resolve, reject) => {
     setTimeout(() => resolve(), milliseconds);
   });
@@ -258,13 +258,13 @@ const test2 = async () => {
 };
 
 const main = async () => {
-  console.time("测试 for 循环使用 await");
+  console.time('测试 for 循环使用 await');
   await test1();
-  console.timeEnd("测试 for 循环使用 await");
+  console.timeEnd('测试 for 循环使用 await');
 
-  console.time("测试 forEach 调用 async 函数");
+  console.time('测试 forEach 调用 async 函数');
   await test2();
-  console.timeEnd("测试 forEach 调用 async 函数");
+  console.timeEnd('测试 forEach 调用 async 函数');
 };
 
 main();
@@ -298,7 +298,7 @@ const test2 = async () => {
 上面的代码还有一个问题，那就是测试 2 中并没有等待三个任务都执行完就直接结束了，有时候我们需要等待多个并发任务结束之后再执行后续任务。其实很简单，利用下 Promise 提供的几个工具函数就可以了。
 
 ```javascript
-const sleep = (milliseconds, id = "") => {
+const sleep = (milliseconds, id = '') => {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       console.log(`任务${id}执行结束`);
@@ -308,18 +308,16 @@ const sleep = (milliseconds, id = "") => {
 };
 
 const test2 = async () => {
-  const tasks = Array.from({ length: 3 }).map((ele, index) =>
-    sleep(1000, index)
-  );
+  const tasks = Array.from({ length: 3 }).map((ele, index) => sleep(1000, index));
   const resultArray = await Promise.all(tasks);
   console.log({ resultArray });
-  console.log("所有任务执行结束");
+  console.log('所有任务执行结束');
 };
 
 const main = async () => {
-  console.time("使用 Promise.all 处理多个并发任务");
+  console.time('使用 Promise.all 处理多个并发任务');
   await test2();
-  console.timeEnd("使用 Promise.all 处理多个并发任务");
+  console.timeEnd('使用 Promise.all 处理多个并发任务');
 };
 
 main();
@@ -347,8 +345,7 @@ main();
 ```javascript
 // 服务器返回的 img url 是: /GetFile/getUploadImg?fileName=9b1cc22c74bc44c8af78b46e0ca4c352.png
 // 现在我只想提取文件名，后缀名也不要
-const imgUrl =
-  "/GetFile/getUploadImg?fileName=9b1cc22c74bc44c8af78b46e0ca4c352.png";
+const imgUrl = '/GetFile/getUploadImg?fileName=9b1cc22c74bc44c8af78b46e0ca4c352.png';
 const imgReg = /\/GetFile\/getUploadImg\?fileName=(.+)\..+/;
 const imgName = imgUrl.match(imgReg)[1];
 console.log(imgName); // => 9b1cc22c74bc44c8af78b46e0ca4c352

@@ -125,37 +125,37 @@ cd src && npx tsc --init && cd ..
 启用 `isolatedModules` 选项会在 babel 编译代码时提供一些额外的检查，`esModuleInterop` 这个选项是用来为了让没有 default 属性的模块也可以使用默认导入，举个简单的例子，如果这个选项没开启，那你导入 fs 模块只能像下面这样导入：
 
 ```javascript
-import * as fs from "fs";
+import * as fs from 'fs';
 ```
 
 开启了以后，可以直接使用默认导入：
 
 ```javascript
-import fs from "fs";
+import fs from 'fs';
 ```
 
 本质上 ESM 默认导入是导入模块的 default 属性：
 
 ```javascript
-import fs from "fs";
+import fs from 'fs';
 // 等同于
-import * as __module__ from "fs";
+import * as __module__ from 'fs';
 let fs = __module__.default;
 ```
 
 但是 node 内建模块 fs 是没有 default 属性的，开启 `isolatedModules` 选项就会在没有 default 属性的情况下自动转换：
 
 ```javascript
-import fs, { resolve } from "fs";
+import fs, { resolve } from 'fs';
 // 转换成
-import * as fs from "fs";
+import * as fs from 'fs';
 let { resolve } = fs;
 ```
 
 我们添加一个入口文件 `src/index.tsx`，内容很简单：
 
 ```javascript
-import plus from "./plus";
+import plus from './plus';
 
 console.log(plus(404, 404, 404, 404, 404)); // => 2020
 ```
@@ -252,7 +252,7 @@ yarn add babel-loader @babel/core @babel/preset-typescript -D
 module.exports = function (api) {
   api.cache(true);
 
-  const presets = ["@babel/preset-typescript"];
+  const presets = ['@babel/preset-typescript'];
   const plugins = [];
 
   return {
@@ -564,9 +564,7 @@ new webpack.ProgressPlugin(handler);
 这个插件其实还是挺简洁实用的，但是有个 bug ，如果在打印进度条的时候输出了其它语句，进度条就会错位，我们的 devServer 会在启动后会输出地址：
 
 ```javascript
-console.log(
-  `DevServer is running at ${chalk.magenta.underline(address)} ${logSymbols.success}`
-);
+console.log(`DevServer is running at ${chalk.magenta.underline(address)} ${logSymbols.success}`);
 ```
 
 使用这个进度条插件就会出问题下面的问题，遂放弃。
@@ -862,15 +860,15 @@ yarn add fork-ts-checker-webpack-plugin -D
 添加到 `webpack.dev.ts`，限制使用的内存为 1G：
 
 ```javascript
-import ForkTsCheckerWebpackPlugin from "fork-ts-checker-webpack-plugin";
+import ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin';
 
 const devConfig = merge(commonConfig, {
-  mode: "development",
+  mode: 'development',
   plugins: [
     new ForkTsCheckerWebpackPlugin({
       memoryLimit: 1024,
       // babel 转换的是我们前端代码，所以是指向前端代码的 tsconfig.json
-      tsconfig: resolvePath(projectRoot, "./src/tsconfig.json"),
+      tsconfig: resolvePath(projectRoot, './src/tsconfig.json'),
     }),
   ],
 });
@@ -881,11 +879,11 @@ const devConfig = merge(commonConfig, {
 ```javascript
 // webpack.prod.ts
 const prodConfig = merge(commonConfig, {
-  mode: "production",
+  mode: 'production',
   plugins: [
     new ForkTsCheckerWebpackPlugin({
       memoryLimit: 1024 * 2,
-      tsconfig: resolvePath(projectRoot, "./src/tsconfig.json"),
+      tsconfig: resolvePath(projectRoot, './src/tsconfig.json'),
     }),
   ],
 });
@@ -938,7 +936,7 @@ module.exports = {
       {
         // i 后缀忽略大小写
         test: /\.css$/i,
-        use: ["style-loader", "css-loader"],
+        use: ['style-loader', 'css-loader'],
       },
     ],
   },
@@ -1076,18 +1074,18 @@ yarn add postcss-loader postcss-flexbugs-fixes postcss-preset-env autoprefixer p
 module.exports = {
   plugins: [
     // 修复一些和 flex 布局相关的 bug
-    require("postcss-flexbugs-fixes"),
+    require('postcss-flexbugs-fixes'),
     // 参考 browserslist 的浏览器兼容表自动对那些还不支持的现代 CSS 特性做转换
-    require("postcss-preset-env")({
+    require('postcss-preset-env')({
       // 自动添加浏览器头
       autoprefixer: {
         // will add prefixes only for final and IE versions of specification
-        flexbox: "no-2009",
+        flexbox: 'no-2009',
       },
       stage: 3,
     }),
     // 根据 browserslist 自动导入需要的 normalize.css 内容
-    require("postcss-normalize"),
+    require('postcss-normalize'),
   ],
 };
 ```
@@ -1241,10 +1239,10 @@ sourcemap 是现在前端界很多工具必不可缺的一个功能，webpack，
 
 ```javascript
 // webpack.dev.ts
-import commonConfig from "./webpack.common";
+import commonConfig from './webpack.common';
 
 const devConfig = merge(commonConfig, {
-  devtool: "eval-source-map",
+  devtool: 'eval-source-map',
 });
 ```
 
@@ -1260,7 +1258,7 @@ const devConfig = merge(commonConfig, {
 
 ```javascript
 // webpack.dev.ts
-import { HotModuleReplacementPlugin, NamedModulesPlugin } from "webpack";
+import { HotModuleReplacementPlugin, NamedModulesPlugin } from 'webpack';
 
 const devConfig = merge(commonConfig, {
   plugins: [new HotModuleReplacementPlugin()],
@@ -1355,10 +1353,10 @@ yarn add @types/react @types/react-dom @types/react-router-dom -D
 
 ```javascript
 // App.ts
-import React from "react";
-import { hot } from "react-hot-loader/root";
+import React from 'react';
+import { hot } from 'react-hot-loader/root';
 
-import "./App.scss";
+import './App.scss';
 
 const App = () => {
   return (
@@ -1386,7 +1384,7 @@ const commonConfig: Configuration = {
 module.exports = {
   resolve: {
     alias: {
-      "react-dom": "@hot-loader/react-dom",
+      'react-dom': '@hot-loader/react-dom',
     },
   },
 };
@@ -1396,10 +1394,10 @@ module.exports = {
 
 ```javascript
 const envPreset = [
-  "@babel/preset-env",
+  '@babel/preset-env',
   {
     // 只导入需要的 polyfill
-    useBuiltIns: "usage",
+    useBuiltIns: 'usage',
     // 指定 corjs 版本
     corejs: 3,
     // 禁用模块化方案转换
@@ -1410,20 +1408,20 @@ const envPreset = [
 module.exports = function (api) {
   api.cache(true);
   return {
-    presets: ["@babel/preset-typescript", envPreset],
-    plugins: ["@babel/plugin-transform-runtime"],
+    presets: ['@babel/preset-typescript', envPreset],
+    plugins: ['@babel/plugin-transform-runtime'],
     env: {
       // 开发环境配置
       development: {
-        presets: [["@babel/preset-react", { development: true }]],
-        plugins: ["react-hot-loader/babel"],
+        presets: [['@babel/preset-react', { development: true }]],
+        plugins: ['react-hot-loader/babel'],
       },
       // 生产环境配置
       production: {
-        presets: ["@babel/preset-react"],
+        presets: ['@babel/preset-react'],
         plugins: [
-          "@babel/plugin-transform-react-constant-elements",
-          "@babel/plugin-transform-react-inline-elements",
+          '@babel/plugin-transform-react-constant-elements',
+          '@babel/plugin-transform-react-inline-elements',
         ],
       },
     },
@@ -1462,10 +1460,10 @@ const Hr = () => {
 这个直接用 webpack 内置的 `BannerPlugin` 即可:
 
 ```javascript
-import { BannerPlugin } from "webpack";
+import { BannerPlugin } from 'webpack';
 
 const mergedConfig = merge(commonConfig, {
-  mode: "production",
+  mode: 'production',
   plugins: [
     new BannerPlugin({
       raw: true,
@@ -1491,15 +1489,15 @@ yarn add mini-css-extract-plugin -D
 
 ```javascript
 // webpack.prod.ts
-import MiniCssExtractPlugin from "mini-css-extract-plugin";
+import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 
 const prodConfig = merge(commonConfig, {
-  mode: "production",
+  mode: 'production',
   plugins: [
     new MiniCssExtractPlugin({
       // 文件名中插入文件内容的 hash 值
-      filename: "css/[name].[contenthash].css",
-      chunkFilename: "css/[id].[contenthash].css",
+      filename: 'css/[name].[contenthash].css',
+      chunkFilename: 'css/[id].[contenthash].css',
       ignoreOrder: false,
     }),
   ],
@@ -1554,19 +1552,16 @@ yarn add optimize-css-assets-webpack-plugin @types/optimize-css-assets-webpack-p
 修改 `webpack.prod.ts`：
 
 ```javascript
-import TerserPlugin from "terser-webpack-plugin";
-import OptimizeCSSAssetsPlugin from "optimize-css-assets-webpack-plugin";
+import TerserPlugin from 'terser-webpack-plugin';
+import OptimizeCSSAssetsPlugin from 'optimize-css-assets-webpack-plugin';
 
 const prodConfig = merge(commonConfig, {
-  mode: "production",
+  mode: 'production',
   optimization: {
     // 使用 minimizer 而不是默认的 uglifyJS
     minimize: true,
     // 两个 minimizer：TerserPlugin 和 OptimizeCSSAssetsPlugin
-    minimizer: [
-      new TerserPlugin({ extractComments: false }),
-      new OptimizeCSSAssetsPlugin(),
-    ],
+    minimizer: [new TerserPlugin({ extractComments: false }), new OptimizeCSSAssetsPlugin()],
   },
 });
 ```
@@ -1615,7 +1610,7 @@ declare module 'speed-measure-webpack-plugin' {
 修改 `webpack.prod.ts`：
 
 ```javascript
-import SpeedMeasurePlugin from "speed-measure-webpack-plugin";
+import SpeedMeasurePlugin from 'speed-measure-webpack-plugin';
 
 const mergedConfig = merge(commonConfig, {
   // ...
@@ -1719,10 +1714,10 @@ const mergedConfig = merge(commonConfig, {
 
 ```javascript
 // scripts/build.ts
-import webpack from "webpack";
+import webpack from 'webpack';
 
-import prodConfig from "./configs/webpack.prod";
-import { isAnalyze } from "./env";
+import prodConfig from './configs/webpack.prod';
+import { isAnalyze } from './env';
 
 const compiler = webpack(prodConfig);
 
@@ -1733,7 +1728,7 @@ compiler.run((error, stats) => {
   }
 
   const prodStatsOpts = {
-    preset: "normal",
+    preset: 'normal',
     modules: isAnalyze,
     colors: true,
   };

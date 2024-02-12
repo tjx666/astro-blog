@@ -52,26 +52,26 @@ module.exports = {
 具体在使用 webpack 将 background，options，popup 页面当作 SPA 开发的时候还会有一些小问题。我们在以开发者模式加载测试的扩展时是要加载磁盘上的文件，所以我们需要配置 webpack devServer 将 bundle 写到磁盘上。除此之外，我们还要配置 CORS 跨域，因为我们访问的 chrome 扩展页面协议时是： `chrome://` 和我们 devServer `HTTP` 协议不同，会有跨域问题：
 
 ```typescript
-import { Express } from "express";
-import { Compiler } from "webpack";
-import webpackDevMiddleware from "webpack-dev-middleware";
-import webpackHotMiddleware from "webpack-hot-middleware";
-import devConfig from "../configs/webpack.dev";
+import { Express } from 'express';
+import { Compiler } from 'webpack';
+import webpackDevMiddleware from 'webpack-dev-middleware';
+import webpackHotMiddleware from 'webpack-hot-middleware';
+import devConfig from '../configs/webpack.dev';
 
 export default (app: Express, compiler: Compiler): void => {
   const devMiddlewareOptions: webpackDevMiddleware.Options = {
     publicPath: devConfig!.output!.publicPath!,
     headers: {
       // 配置 cors 跨域
-      "Access-Control-Allow-Origin": "*",
+      'Access-Control-Allow-Origin': '*',
     },
     lazy: false,
-    stats: "minimal",
+    stats: 'minimal',
     // 将 bundle 写到磁盘而不是内存
     writeToDisk: true,
   };
   app.use(webpackDevMiddleware(compiler, devMiddlewareOptions));
-  app.use(webpackHotMiddleware(compiler, { path: "/__webpack_HMR__" }));
+  app.use(webpackHotMiddleware(compiler, { path: '/__webpack_HMR__' }));
 };
 ```
 
@@ -104,24 +104,20 @@ export default (app: Express, compiler: Compiler): void => {
 
 ```typescript
 // 部分 webpack entry 配置
-import { resolve } from "path";
-import serverConfig from "../configs/server.config";
-import { isProd } from "./env";
+import { resolve } from 'path';
+import serverConfig from '../configs/server.config';
+import { isProd } from './env';
 
-const src = resolve(__dirname, "../../src");
+const src = resolve(__dirname, '../../src');
 const HMRSSEPath = encodeURIComponent(
-  `http://${serverConfig.HOST}:${serverConfig.PORT}/__webpack_HMR__`
+  `http://${serverConfig.HOST}:${serverConfig.PORT}/__webpack_HMR__`,
 );
 // 指定 path 为我们的 devServer 的地址
 const HMRClientScript = `webpack-hot-middleware/client?path=${HMRSSEPath}&reload=true`;
 
 const devEntry: Record<string, string[]> = {
-  background: [HMRClientScript, resolve(src, "./background/index.ts")],
-  options: [
-    HMRClientScript,
-    "react-hot-loader/patch",
-    resolve(src, "./options/index.tsx"),
-  ],
+  background: [HMRClientScript, resolve(src, './background/index.ts')],
+  options: [HMRClientScript, 'react-hot-loader/patch', resolve(src, './options/index.tsx')],
 };
 ```
 
@@ -152,15 +148,13 @@ const devEntry: Record<string, string[]> = {
 
 ```typescript
 // plugin 包含我们的处理编译完成这一事件的逻辑
-compiler.hooks.done.tap("extension-auto-reload-plugin", plugin);
+compiler.hooks.done.tap('extension-auto-reload-plugin', plugin);
 ```
 
 监听到编译成功还不够，我们还需要判断是否编译成功，以及通过此次编译的统计信息 stats 拿到此次编译涉及到的 chunks 来判断是否修改了 content scripts 的 chunks：
 
 ```typescript
-const contentScriptsChunks = fs.readdirSync(
-  resolve(__dirname, "../../src/contents")
-);
+const contentScriptsChunks = fs.readdirSync(resolve(__dirname, '../../src/contents'));
 const plugin = (stats: Stats) => {
   const { modules } = stats.toJson({ all: false, modules: true });
   const shouldReload =
@@ -180,26 +174,24 @@ const plugin = (stats: Stats) => {
 服务器端实时主动推送现在最常用应该是 WebSocket 协议了。不过既然我们已经有了一个 express 服务器，就没必要再启动一个 WebSocket 服务器，利用 SSE（Server Side Event) 的话只需要给 express 加个路由即可。整合上一节内容，我们可以实现一个 express 中间件在监听到修改了 content script 时推送 `compiled-successfully` 事件给 background：
 
 ```typescript
-import fs from "fs";
-import { resolve } from "path";
-import chalk from "chalk";
-import { debounce } from "lodash";
-import { RequestHandler } from "express";
-import { Compiler, Stats } from "webpack";
-import SSEStream from "ssestream";
+import fs from 'fs';
+import { resolve } from 'path';
+import chalk from 'chalk';
+import { debounce } from 'lodash';
+import { RequestHandler } from 'express';
+import { Compiler, Stats } from 'webpack';
+import SSEStream from 'ssestream';
 
 export default function (compiler: Compiler) {
   const extAutoReload: RequestHandler = (req, res, next) => {
-    console.log(chalk.yellow("Received a SSE client connection!"));
+    console.log(chalk.yellow('Received a SSE client connection!'));
 
-    res.header("Access-Control-Allow-Origin", "*");
+    res.header('Access-Control-Allow-Origin', '*');
     const sseStream = new SSEStream(req);
     sseStream.pipe(res);
     let closed = false;
 
-    const contentScriptsModules = fs.readdirSync(
-      resolve(__dirname, "../../src/contents")
-    );
+    const contentScriptsModules = fs.readdirSync(resolve(__dirname, '../../src/contents'));
     const compileDoneHook = debounce((stats: Stats) => {
       const { modules } = stats.toJson({ all: false, modules: true });
       const shouldReload =
@@ -209,32 +201,32 @@ export default function (compiler: Compiler) {
         contentScriptsModules.includes(modules[0].chunks[0] as string);
 
       if (shouldReload) {
-        console.log(chalk.yellow("Send extension reload signal!"));
+        console.log(chalk.yellow('Send extension reload signal!'));
 
         sseStream.write(
           {
-            event: "compiled-successfully",
+            event: 'compiled-successfully',
             data: {
-              action: "reload-extension-and-refresh-current-page",
+              action: 'reload-extension-and-refresh-current-page',
             },
           },
-          "UTF-8",
-          error => {
+          'UTF-8',
+          (error) => {
             if (error) {
               console.error(error);
             }
-          }
+          },
         );
       }
     }, 1000);
 
     // 断开链接后之前的 hook 就不要执行了
     const plugin = (stats: Stats) => !closed && compileDoneHook(stats);
-    compiler.hooks.done.tap("extension-auto-reload-plugin", plugin);
+    compiler.hooks.done.tap('extension-auto-reload-plugin', plugin);
 
-    res.on("close", () => {
+    res.on('close', () => {
       closed = true;
-      console.log(chalk.yellow("SSE connection closed!"));
+      console.log(chalk.yellow('SSE connection closed!'));
       sseStream.unpipe(res);
     });
 
@@ -267,63 +259,54 @@ source.addEventListener('compiled-successfully', (event: EventSourceEvent) => {
 
 ```typescript
 if (!isProd) {
-  entry.background.unshift(resolve(__dirname, "./autoReloadPatch.ts"));
+  entry.background.unshift(resolve(__dirname, './autoReloadPatch.ts'));
 }
 ```
 
 autoReloadPatch.ts 这个脚本在监听到服务器推送的指定消息时会先发送刷新页面的消息给所有 tab 页面，在接收到任意一个来自 content script 的响应后再 reload 扩展（如果我们的扩展都没有 content script 就没必要刷新了）。
 
 ```typescript
-import tiza from "tiza";
+import tiza from 'tiza';
 
-const source = new EventSource(
-  "http://127.0.0.1:3000/__extension_auto_reload__"
-);
+const source = new EventSource('http://127.0.0.1:3000/__extension_auto_reload__');
 
 source.addEventListener(
-  "compiled-successfully",
+  'compiled-successfully',
   (event: EventSourceEvent) => {
     const shouldReload =
-      JSON.parse(event.data).action ===
-      "reload-extension-and-refresh-current-page";
+      JSON.parse(event.data).action === 'reload-extension-and-refresh-current-page';
 
     if (shouldReload) {
       tiza
-        .color("green")
+        .color('green')
         .bold()
-        .text(
-          `Receive the signal to reload chrome extension as modify the content script!`
-        )
+        .text(`Receive the signal to reload chrome extension as modify the content script!`)
         .info();
-      chrome.tabs.query({}, tabs => {
-        tabs.forEach(tab => {
+      chrome.tabs.query({}, (tabs) => {
+        tabs.forEach((tab) => {
           if (tab.id) {
             let received = false;
             chrome.tabs.sendMessage(
               tab.id,
               {
-                from: "background",
-                action: "refresh-current-page",
+                from: 'background',
+                action: 'refresh-current-page',
               },
               ({ from, action }) => {
-                if (
-                  !received &&
-                  from === "content script" &&
-                  action === "reload extension"
-                ) {
+                if (!received && from === 'content script' && action === 'reload extension') {
                   source.close();
-                  tiza.color("green").bold().text(`Reload extension`).info();
+                  tiza.color('green').bold().text(`Reload extension`).info();
                   chrome.runtime.reload();
                   received = true;
                 }
-              }
+              },
             );
           }
         });
       });
     }
   },
-  false
+  false,
 );
 ```
 
@@ -347,26 +330,23 @@ source.addEventListener(
 all.ts 中的代码很简单，就是监听 background 发送的刷新页面的消息刷新当前页面：
 
 ```typescript
-import tiza from "tiza";
+import tiza from 'tiza';
 
 chrome.runtime.onMessage.addListener((request, sender, sendResp) => {
-  const shouldRefresh =
-    request.from === "background" && request.action === "refresh-current-page";
+  const shouldRefresh = request.from === 'background' && request.action === 'refresh-current-page';
 
   if (shouldRefresh) {
     tiza
-      .color("green")
+      .color('green')
       .bold()
-      .text(
-        "Receive signal to refresh current page as modify the content script!"
-      )
+      .text('Receive signal to refresh current page as modify the content script!')
       .info();
     setTimeout(() => {
       window.location.reload();
     }, 500);
     sendResp({
-      from: "content script",
-      action: "reload extension",
+      from: 'content script',
+      action: 'reload extension',
     });
   }
 });

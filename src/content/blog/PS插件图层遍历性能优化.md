@@ -26,7 +26,7 @@ function traverse(layerSet) {
       var layer = layerSet.layers[i];
       ids.push(layer.id);
 
-      if (layer.typename === "LayerSet") {
+      if (layer.typename === 'LayerSet') {
         dfs(layer);
       }
     }
@@ -38,11 +38,7 @@ function traverse(layerSet) {
 
 const start = Date.now();
 $.writeln(
-  "图层数：" +
-    traverse(activeDocument).length +
-    "，遍历耗时：" +
-    (Date.now() - start) +
-    "ms"
+  '图层数：' + traverse(activeDocument).length + '，遍历耗时：' + (Date.now() - start) + 'ms',
 );
 ```
 
@@ -75,7 +71,7 @@ const cost1 = Date.now() - start;
 
 // 访问纯 JS 对象
 const layerObj = {
-  name: "xxx",
+  name: 'xxx',
 };
 start = Date.now();
 for (var i = 0; i < traverseCount; i++) {
@@ -84,13 +80,7 @@ for (var i = 0; i < traverseCount; i++) {
 const cost2 = Date.now() - start;
 
 $.writeln(
-  "DOM 对象耗时：" +
-    cost1 +
-    "ms，纯 JS 对象耗时：" +
-    cost2 +
-    "ms，相差：" +
-    cost1 / cost2 +
-    "倍"
+  'DOM 对象耗时：' + cost1 + 'ms，纯 JS 对象耗时：' + cost2 + 'ms，相差：' + cost1 / cost2 + '倍',
 );
 // => DOM 对象耗时：1586ms，纯 JS 对象耗时：12ms，相差：132.166666666667倍
 ```
@@ -107,11 +97,11 @@ $.writeln(
 
 ```javascript
 const layer = activeDocument.activeLayer;
-$.writeln([layer.name, layer.id, layer.typename].join(", "));
-layer.name = "xxx";
+$.writeln([layer.name, layer.id, layer.typename].join(', '));
+layer.name = 'xxx';
 layer.id = 11111;
-layer.typename = "xxx";
-$.writeln([layer.name, layer.id, layer.typename].join(", "));
+layer.typename = 'xxx';
+$.writeln([layer.name, layer.id, layer.typename].join(', '));
 // =>
 // 装饰, 462, ArtLayer
 // xxx, 462, ArtLayer
@@ -139,8 +129,8 @@ const cost1 = Date.now() - start;
 // 访问纯 JS 对象
 const layerObj = {
   id: 666,
-  name: "xxx",
-  typeName: "LayerSet",
+  name: 'xxx',
+  typeName: 'LayerSet',
 };
 start = Date.now();
 for (var i = 0; i < traverseCount; i++) {
@@ -149,13 +139,7 @@ for (var i = 0; i < traverseCount; i++) {
 const cost2 = Date.now() - start;
 
 $.writeln(
-  "DOM 对象耗时：" +
-    cost1 +
-    "ms，纯 JS 对象耗时：" +
-    cost2 +
-    "ms，相差：" +
-    cost1 / cost2 +
-    "倍"
+  'DOM 对象耗时：' + cost1 + 'ms，纯 JS 对象耗时：' + cost2 + 'ms，相差：' + cost1 / cost2 + '倍',
 );
 // => DOM 对象耗时：1522ms，纯 JS 对象耗时：12ms，相差：126.833333333333倍
 ```
@@ -176,8 +160,8 @@ const cost1 = Date.now() - start;
 // 访问纯 JS 对象
 const layerObj = {
   id: 666,
-  name: "xxx",
-  typeName: "LayerSet",
+  name: 'xxx',
+  typeName: 'LayerSet',
 };
 start = Date.now();
 for (var i = 0; i < traverseCount; i++) {
@@ -186,13 +170,7 @@ for (var i = 0; i < traverseCount; i++) {
 const cost2 = Date.now() - start;
 
 $.writeln(
-  "DOM 对象耗时：" +
-    cost1 +
-    "ms，纯 JS 对象耗时：" +
-    cost2 +
-    "ms，相差：" +
-    cost1 / cost2 +
-    "倍"
+  'DOM 对象耗时：' + cost1 + 'ms，纯 JS 对象耗时：' + cost2 + 'ms，相差：' + cost1 / cost2 + '倍',
 );
 
 // => DOM 对象耗时：29ms，纯 JS 对象耗时：16ms，相差：1.8125倍
@@ -224,7 +202,7 @@ function traverse(layerSet) {
       var layer = layers[i];
       ids.push(layer.id);
 
-      if (layer.typename === "LayerSet") {
+      if (layer.typename === 'LayerSet') {
         dfs(layer);
       }
     }
@@ -236,11 +214,7 @@ function traverse(layerSet) {
 
 const start = Date.now();
 $.writeln(
-  "图层数：" +
-    traverse(activeDocument).length +
-    "，遍历耗时：" +
-    (Date.now() - start) +
-    "ms"
+  '图层数：' + traverse(activeDocument).length + '，遍历耗时：' + (Date.now() - start) + 'ms',
 );
 
 // => 图层数：323，遍历耗时：4539ms
@@ -286,30 +260,29 @@ const AMLayerKind = {
  */
 function traverseLayersDesc(visit, property) {
   const docRef = new ActionReference();
-  docRef.putProperty(s2t("property"), s2t("numberOfLayers"));
-  docRef.putIdentifier(s2t("document"), activeDocument.id);
+  docRef.putProperty(s2t('property'), s2t('numberOfLayers'));
+  docRef.putIdentifier(s2t('document'), activeDocument.id);
   const docDesc = executeActionGet(docRef);
-  const layerCount = docDesc.getInteger(s2t("numberOfLayers"));
+  const layerCount = docDesc.getInteger(s2t('numberOfLayers'));
 
   // 索引起始值，会受是否有背景图层影响
-  const startItemIndex = app.activeDocument.layers[
-    app.activeDocument.layers.length - 1
-  ].isBackgroundLayer
+  const startItemIndex = app.activeDocument.layers[app.activeDocument.layers.length - 1]
+    .isBackgroundLayer
     ? 0
     : 1;
 
   for (var i = startItemIndex; i <= layerCount; i++) {
     var layerRef = new ActionReference();
-    layerRef.putProperty(s2t("property"), s2t("layerKind"));
-    layerRef.putIndex(s2t("layer"), i);
+    layerRef.putProperty(s2t('property'), s2t('layerKind'));
+    layerRef.putIndex(s2t('layer'), i);
     var layerDesc = executeActionGet(layerRef);
-    var layerKind = layerDesc.getInteger(s2t("layerKind"));
+    var layerKind = layerDesc.getInteger(s2t('layerKind'));
 
     // 13 是组边界，是一个不可见的辅助图层，大多数情况没有用
     if (layerKind !== AMLayerKind.HiddenSectionBounder) {
       layerRef = new ActionReference();
-      layerRef.putProperty(s2t("property"), s2t(property));
-      layerRef.putIndex(s2t("layer"), i);
+      layerRef.putProperty(s2t('property'), s2t(property));
+      layerRef.putIndex(s2t('layer'), i);
       layerDesc = executeActionGet(layerRef);
       var result = visit(layerDesc);
 
@@ -323,11 +296,9 @@ function traverseLayersDesc(visit, property) {
 const start = Date.now();
 const ids = [];
 traverseLayersDesc(function (layerDesc) {
-  ids.push(layerDesc.getInteger(s2t("layerID")));
-}, "layerID");
-$.writeln(
-  "图层数：" + ids.length + "，遍历耗时：" + (Date.now() - start) + "ms"
-);
+  ids.push(layerDesc.getInteger(s2t('layerID')));
+}, 'layerID');
+$.writeln('图层数：' + ids.length + '，遍历耗时：' + (Date.now() - start) + 'ms');
 // => 图层数：323，遍历耗时：80ms
 ```
 
@@ -363,9 +334,9 @@ traverseLayersDesc(
 ```javascript
 const names = [];
 traverseLayersDesc(function (layerDesc) {
-  names.push(layerDesc.getString(s2t("name")));
-}, "name");
-$.writeln(names.join(", "));
+  names.push(layerDesc.getString(s2t('name')));
+}, 'name');
+$.writeln(names.join(', '));
 // => Background, Layer 3, Layer 1, Group 2, Layer 2, Group 1
 ```
 
@@ -457,14 +428,13 @@ const AMLayerKind = {
  */
 function createLayerTree() {
   const docRef = new ActionReference();
-  docRef.putProperty(s2t("property"), s2t("numberOfLayers"));
-  docRef.putIdentifier(s2t("document"), activeDocument.id);
+  docRef.putProperty(s2t('property'), s2t('numberOfLayers'));
+  docRef.putIdentifier(s2t('document'), activeDocument.id);
   const docDesc = executeActionGet(docRef);
-  const layerCount = docDesc.getInteger(s2t("numberOfLayers"));
+  const layerCount = docDesc.getInteger(s2t('numberOfLayers'));
 
-  const startIndex = app.activeDocument.layers[
-    app.activeDocument.layers.length - 1
-  ].isBackgroundLayer
+  const startIndex = app.activeDocument.layers[app.activeDocument.layers.length - 1]
+    .isBackgroundLayer
     ? 0
     : 1;
   const root = {
@@ -474,7 +444,7 @@ function createLayerTree() {
     itemIndex: -1,
     id: null,
     // 实际上业务开发中 name 并不常用，这里为了演示目的设置了 name
-    name: "root",
+    name: 'root',
     layers: [],
     isRoot: true,
     isLayerSet: false,
@@ -483,13 +453,13 @@ function createLayerTree() {
   function recursive(node) {
     while (currentIndex >= startIndex) {
       var ref = new ActionReference();
-      ref.putIndex(s2t("layer"), currentIndex);
+      ref.putIndex(s2t('layer'), currentIndex);
       currentIndex--;
       // 没有 putProperty，获取的是完整的 ActionDescriptor
       var desc = executeActionGet(ref);
-      var name = desc.getString(s2t("name"));
-      var id = desc.getInteger(s2t("layerID"));
-      var layerKind = desc.getInteger(s2t("layerKind"));
+      var name = desc.getString(s2t('name'));
+      var id = desc.getInteger(s2t('layerID'));
+      var layerKind = desc.getInteger(s2t('layerKind'));
       var isGroup = layerKind === AMLayerKind.LayerGroupSheet;
       var isGroupEnd = layerKind === AMLayerKind.HiddenSectionBounder;
       if (!isGroup && !isGroupEnd) {
@@ -630,11 +600,7 @@ function traverse(layerTree) {
 
 const start = Date.now();
 $.writeln(
-  "图层数：" +
-    traverse(createLayerTree()).length +
-    "，遍历耗时：" +
-    (Date.now() - start) +
-    "ms"
+  '图层数：' + traverse(createLayerTree()).length + '，遍历耗时：' + (Date.now() - start) + 'ms',
 );
 // => 图层数：323，遍历耗时：418ms
 ```

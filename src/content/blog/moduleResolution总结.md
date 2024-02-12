@@ -26,7 +26,7 @@ featured: true
 
 ```typescript
 // 文件：/root/src/folder/index.js
-import "pkg";
+import 'pkg';
 ```
 
 会经历下面的步骤来查找 `pkg`:
@@ -69,7 +69,7 @@ console.log(require.resolve('lodash'));
 
 ```javascript
 // 文件 /root/src/index.js
-require("pkg");
+require('pkg');
 ```
 
 会按照下面的步骤来查找 `pkg`：
@@ -136,7 +136,7 @@ NODE_MODULES_PATHS(START)
 tsc 有一个参数 `--traceResolution` 可以用来调试 tsc 查找 ts 文件的步骤。nodejs 没有找到类似的工具，有机会我来自己手动实现一遍 node 的解析策略，并输出每一步它在查找什么。tsc 虽然用的是 node 的解析策略，但是它还是有它自己的一些特殊性的，例如 ts 支持 `node_modules/types` 目录，package.json 支持 `types`, `typings`, `typesVersions` 等字段。
 
 ```typescript
-import { pow } from "math/pow";
+import { pow } from 'math/pow';
 
 console.log(pow(1, 2));
 ```
@@ -182,7 +182,7 @@ Resolving real path for '/Users/yutengjing/code/module-resolution/apps/commonjs-
 那如果模块包含子路径时会怎样处理呢？例如：
 
 ```javascript
-const add = require("lodash/add");
+const add = require('lodash/add');
 ```
 
 ```plaintext
@@ -196,7 +196,7 @@ lodash
 nodejs 会直接查找 `node_modules/lodash/add.js`，也就是说查找模块子路径非常简单粗暴。但如果你的项目不是像 `lodash` 那样把所有源码平铺到 `package.json` 同级，只使用 `main` 字段的情况下就没办法通过 `lodash/add` 来引用了。例如你把所有源码都丢到 `src` 目录，那你使用的时候就要写成：
 
 ```javascript
-const add = require("lodash/src/add");
+const add = require('lodash/src/add');
 ```
 
 这也解释了我一直以来的一个困惑：为啥 `lodash` 要把所有源码平铺到 `package.json` 同级，每次打开它的 `github` 主页就要等很长时间，找 `package.json` 也找半天，很不方便。原因我想就是为了处理导入子路径。
@@ -320,7 +320,7 @@ const add = require("lodash/src/add");
 具体来说你导入语句是：
 
 ```javascript
-import add from "lodash/add";
+import add from 'lodash/add';
 ```
 
 就需要存在 `node_modules/@types/lodash/add.d.ts` 这样的文件。如果你是像 `node_modules/@types/lodash/src/add.d.ts` 这样组织，把代码都放到 src 目录下，tsc 肯定是找不到的。
@@ -408,7 +408,7 @@ lodash
 对于下面的导入语句：
 
 ```typescript
-import fs from "node:fs/promises";
+import fs from 'node:fs/promises';
 ```
 
 - 当 ts 版本为 4.7，会找到 `@types/node/ts4.8/fs/promises`
@@ -462,10 +462,10 @@ import fs from "node:fs/promises";
 
 ```javascript
 // Loads ./node_modules/es-module-package/src/submodule.js
-import submodule from "es-module-package/submodule.js";
+import submodule from 'es-module-package/submodule.js';
 
 // Throws ERR_PACKAGE_PATH_NOT_EXPORTED
-import submodule from "es-module-package/private-module.js";
+import submodule from 'es-module-package/private-module.js';
 ```
 
 #### 导出多个子路径
@@ -525,7 +525,7 @@ import submodule from "es-module-package/private-module.js";
 ```
 
 ```javascript
-import "xxx/forbidden";
+import 'xxx/forbidden';
 // 报错：Error [ERR_PACKAGE_PATH_NOT_EXPORTED]: Package subpath './hello' is not defined by "exports"
 ```
 
@@ -636,7 +636,7 @@ package.json:
 ```
 
 ```javascript
-import "xxx/a/b/c";
+import 'xxx/a/b/c';
 ```
 
 对于这个例子 `enhanced-resolve` 的结果是 `undefined`, 但是 nodejs 是可以正确解析到 `./dist/hello.js` 这个 target。可见 nodejs 的模块解析策略之复杂远超常人想象，以至于主流的解析库在处理一些特殊情况都或多或少有些 bug，尤其是在处理优先级的时候。
@@ -908,7 +908,7 @@ typescript 在所有模块解析策略下查找类型时都支持相邻文件扩
 
 ```typescript
 // file: src/index,ts
-import add from "./add";
+import add from './add';
 
 add(1, 2);
 ```
@@ -989,7 +989,7 @@ Relative import paths need explicit file extensions in EcmaScript imports when '
 
 ```typescript
 // vite.config.mts
-import vitePluginVue2 from "@vitejs/plugin-vue2";
+import vitePluginVue2 from '@vitejs/plugin-vue2';
 
 vitePluginVue2();
 
@@ -1011,9 +1011,9 @@ vitePluginVue2();
 实测如果你是使用**命名导出**是没问题的，例如：
 
 ```typescript
-import { parseVueRequest } from "@vitejs/plugin-vue2";
+import { parseVueRequest } from '@vitejs/plugin-vue2';
 
-parseVueRequest("");
+parseVueRequest('');
 ```
 
 如果你想正确配置，需要改成这样：

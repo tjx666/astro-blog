@@ -18,11 +18,11 @@ pubDatetime: 2019-04-03 19:19:00
 
 ```javascript
 const task1 = () => {
-  console.log("执行 task1");
+  console.log('执行 task1');
   return Math.random() >= 0.5;
 };
 
-const task2 = () => console.log("task1 执行成功后执行 task2");
+const task2 = () => console.log('task1 执行成功后执行 task2');
 if (task1()) task2();
 ```
 
@@ -35,7 +35,7 @@ task1() && task2();
 如果还要在 task1 失败(也就是 task1 返回 false)后执行 task3, 可以使用:
 
 ```javascript
-const task3 = () => console.log("task1 执行失败后执行 task3");
+const task3 = () => console.log('task1 执行失败后执行 task3');
 (task1() && task2()) || task3();
 ```
 
@@ -50,7 +50,7 @@ task1() ? task2() : task3();
 下面展示的我最近的一个使用 **react hooks** 开发的项目中的一个代码片段，这里利用了 **render props**:
 
 ```javascript
-const ProfileItem = props => {
+const ProfileItem = (props) => {
   const { name, value, render } = props;
 
   return (
@@ -58,9 +58,7 @@ const ProfileItem = props => {
       <span className="item-name">{name}</span>
       <form action="">
         {/* 根据是否有 render 这个 props 来返回不同的内容 */}
-        {(render && render(props)) || (
-          <SimpleProfileItemContent value={value} />
-        )}
+        {(render && render(props)) || <SimpleProfileItemContent value={value} />}
       </form>
     </div>
   );
@@ -128,7 +126,7 @@ function func() {
   console.log(arguments.slice === undefined); // => true
 }
 
-func("Google", "facebook", "Microsoft");
+func('Google', 'facebook', 'Microsoft');
 // =>
 // Google
 // facebook
@@ -145,7 +143,7 @@ function func() {
   console.log(array.slice(0, 1));
 }
 
-func("Google", "facebook", "Microsoft"); // => [ 'Google' ]
+func('Google', 'facebook', 'Microsoft'); // => [ 'Google' ]
 ```
 
 #### ES6 中的转换方法
@@ -159,7 +157,7 @@ function func() {
   console.log([...arguments]);
 }
 
-func("Google", "facebook", "Microsoft"); // [ 'Google', 'facebook', 'Microsoft' ]
+func('Google', 'facebook', 'Microsoft'); // [ 'Google', 'facebook', 'Microsoft' ]
 ```
 
 使用 Array.from
@@ -169,7 +167,7 @@ function func() {
   console.log(Array.from(arguments));
 }
 
-func("Google", "facebook", "Microsoft"); // [ 'Google', 'facebook', 'Microsoft' ]
+func('Google', 'facebook', 'Microsoft'); // [ 'Google', 'facebook', 'Microsoft' ]
 ```
 
 ### 构造一个连续整数的数组
@@ -195,12 +193,12 @@ const array = [...Array(8).keys()].map((ele, index) => index + 2);
 
 ```javascript
 // 必须给对象参数设置默认值, 不然传参数时因为没有解构对象会报错
-const getUsers = ({ offset = 0, limit = 1, orderBy = "salary" } = {}) => {
+const getUsers = ({ offset = 0, limit = 1, orderBy = 'salary' } = {}) => {
   // 根据条件查询数据库返回用户数据
   console.log({ offset, limit, orderBy });
 };
 
-getUsers({ offset: 10, limit: 20, orderBy: "age" }); // => { offset: 10, limit: 20, orderBy: 'age' }
+getUsers({ offset: 10, limit: 20, orderBy: 'age' }); // => { offset: 10, limit: 20, orderBy: 'age' }
 getUsers(); // => { offset: 0, limit: 1, orderBy: 'salary' }
 ```
 
@@ -229,7 +227,7 @@ const httpGet = (url, retry) => {
 
 ```javascript
 const me = {
-  name: "lyreal666",
+  name: 'lyreal666',
   age: 23,
   speak() {
     console.log(`Hello, I'm ly!`);
@@ -247,18 +245,14 @@ JSON.stringify 的第二个参数是用来对属性值进行处理的，第三�
 
 ```javascript
 const me = {
-  name: "lyreal666",
+  name: 'lyreal666',
   age: 23,
   speak() {
     console.log(`Hello, I'm ly!`);
   },
 };
 
-const jsonStr = JSON.stringify(
-  me,
-  (key, value) => (key === "name" ? "老余" : value),
-  2
-);
+const jsonStr = JSON.stringify(me, (key, value) => (key === 'name' ? '老余' : value), 2);
 
 console.log(jsonStr);
 /* =>
@@ -275,7 +269,7 @@ console.log(jsonStr);
 
 ```javascript
 const me = {
-  name: "lyreal666",
+  name: 'lyreal666',
   age: 23,
   speak() {
     console.log(`Hello, I'm ly!`);
@@ -403,10 +397,10 @@ res.error = 4 == type || 5 == type;
 ### 使用 + 将其它类型转换成 number 类型
 
 ```javascript
-console.log(+"3.14"); // => 3.14
-console.log(typeof +"3.14"); // => number
+console.log(+'3.14'); // => 3.14
+console.log(typeof +'3.14'); // => number
 
-const sleep = milliseconds => {
+const sleep = (milliseconds) => {
   return new Promise((resolve, reject) => {
     setTimeout(() => resolve(), milliseconds);
   });
@@ -424,21 +418,21 @@ const sleep = milliseconds => {
 ### 使用科学计数法表示大数字
 
 ```javascript
-const str1 = "hello";
-const str2 = " world";
+const str1 = 'hello';
+const str2 = ' world';
 
-console.time("测试 + 拼接字符串");
+console.time('测试 + 拼接字符串');
 for (let i = 0; i < 200000000; i++) {
   const joinedStr = str1 + str2;
 }
-console.timeEnd("测试 + 拼接字符串");
+console.timeEnd('测试 + 拼接字符串');
 
-console.time("测试模板字符串拼接字符串");
+console.time('测试模板字符串拼接字符串');
 // 使用科学计数法比打 8 个 0 方便不少
 for (let i = 0; i < 2e8; i++) {
   const joinedStr = `${str1}${str2}`;
 }
-console.timeEnd("测试模板字符串拼接字符串");
+console.timeEnd('测试模板字符串拼接字符串');
 
 /* =>
 测试 + 拼接字符串: 3238.037ms
@@ -475,8 +469,8 @@ const array = [1, [2, [3, 4], 5], 6, 7];
 console.log(
   array
     .toString()
-    .split(",")
-    .map(ele => Number.parseInt(ele))
+    .split(',')
+    .map((ele) => Number.parseInt(ele)),
 ); // => [ 1, 2, 3, 4, 5, 6, 7 ]
 ```
 

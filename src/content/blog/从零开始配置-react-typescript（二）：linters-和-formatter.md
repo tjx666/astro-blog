@@ -104,20 +104,20 @@ module.exports = {
     es6: true,
     node: true,
   },
-  extends: ["plugin:react/recommended", "airbnb"],
+  extends: ['plugin:react/recommended', 'airbnb'],
   globals: {
-    Atomics: "readonly",
-    SharedArrayBuffer: "readonly",
+    Atomics: 'readonly',
+    SharedArrayBuffer: 'readonly',
   },
-  parser: "@typescript-eslint/parser",
+  parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaFeatures: {
       jsx: true,
     },
     ecmaVersion: 2018,
-    sourceType: "module",
+    sourceType: 'module',
   },
-  plugins: ["react", "@typescript-eslint"],
+  plugins: ['react', '@typescript-eslint'],
   rules: {},
 };
 ```
@@ -509,19 +509,7 @@ yarn add @commitlint/cli @commitlint/config-conventional -D
 它默认支持的提交类型为：
 
 ```json
-[
-  "build",
-  "ci",
-  "chore",
-  "docs",
-  "feat",
-  "fix",
-  "perf",
-  "refactor",
-  "revert",
-  "style",
-  "test"
-]
+["build", "ci", "chore", "docs", "feat", "fix", "perf", "refactor", "revert", "style", "test"]
 ```
 
 添加 commlint 的配置到项目根目录的 `.commitlintrc.js`：
@@ -529,25 +517,25 @@ yarn add @commitlint/cli @commitlint/config-conventional -D
 ```javascript
 // .commitlintrc.js
 module.exports = {
-  extends: ["@commitlint/config-conventional"],
+  extends: ['@commitlint/config-conventional'],
   rules: {
-    "type-enum": [
+    'type-enum': [
       2,
-      "always",
+      'always',
       // 比默认值多了个 deps，用于表示依赖升级，降级，新增等提交
       [
-        "build",
-        "ci",
-        "chore",
-        "deps",
-        "docs",
-        "feat",
-        "fix",
-        "perf",
-        "refactor",
-        "revert",
-        "style",
-        "test",
+        'build',
+        'ci',
+        'chore',
+        'deps',
+        'docs',
+        'feat',
+        'fix',
+        'perf',
+        'refactor',
+        'revert',
+        'style',
+        'test',
       ],
     ],
   },

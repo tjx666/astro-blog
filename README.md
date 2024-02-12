@@ -24,12 +24,12 @@ pnpm build
 
 ## TODOS
 
-- [ ] 社交链接图片
+- [x] 社交链接图片
 - [ ] 搜索引擎收录
-- [ ] 升级依赖
+- [x] 升级依赖
 - [ ] eslint
 - [ ] stylelint
-- [ ] prettier
+- [x] prettier
 - [ ] husky -> simple-git-hooks
 - [ ] autocorrect
 - [ ] spellcheck

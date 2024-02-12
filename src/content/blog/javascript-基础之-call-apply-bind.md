@@ -20,12 +20,10 @@ pubDatetime: 2019-06-27 21:29:00
 
 ```javascript
 const person = {
-  name: "YuTengjing",
+  name: 'YuTengjing',
   age: 22,
   introduce() {
-    console.log(
-      `Hello everyone! My name is ${this.name}. I'm ${this.age} years old.`
-    );
+    console.log(`Hello everyone! My name is ${this.name}. I'm ${this.age} years old.`);
   },
 };
 
@@ -39,7 +37,7 @@ console.log(person.introduce()); // => Hello everyone! My name is YuTengjing. I'
 
 ```javascript
 const myFriend = {
-  name: "dongdong",
+  name: 'dongdong',
   age: 21,
 };
 
@@ -56,12 +54,12 @@ apply 和 call 的区别只有一个，就是它只有两个参数，而且第�
 
 ```javascript
 function displayHobbies(...hobbies) {
-  console.log(`${this.name} likes ${hobbies.join(", ")}.`);
+  console.log(`${this.name} likes ${hobbies.join(', ')}.`);
 }
 
 // 下面两个等价
-displayHobbies.call({ name: "Bob" }, "swimming", "basketball", "anime"); // => // => Bob likes swimming, basketball, anime.
-displayHobbies.apply({ name: "Bob" }, ["swimming", "basketball", "anime"]); // => Bob likes swimming, basketball, anime.
+displayHobbies.call({ name: 'Bob' }, 'swimming', 'basketball', 'anime'); // => // => Bob likes swimming, basketball, anime.
+displayHobbies.apply({ name: 'Bob' }, ['swimming', 'basketball', 'anime']); // => Bob likes swimming, basketball, anime.
 ```
 
 有些 API 比如 Math.max 它的参数为多参数，当我们有多参数构成的数组使或者说参数很多时该怎么办呢？
@@ -71,9 +69,7 @@ displayHobbies.apply({ name: "Bob" }, ["swimming", "basketball", "anime"]); // =
 console.log(Math.max(1, 2, 3)); // => 3
 
 // 现在已知一个很大的元素为随机大小的整数数组
-const bigRandomArray = [...Array(10000).keys()].map(num =>
-  Math.trunc(num * Math.random())
-);
+const bigRandomArray = [...Array(10000).keys()].map((num) => Math.trunc(num * Math.random()));
 
 // 怎样使用 Math.max 获取 bigRandomArray 中的最大值呢？Math.max 接受的是多参数而不是数组参数啊!
 // 思考下面的写法
@@ -92,17 +88,15 @@ bind 和上面两个用途差别还是比较大，如同字面意思（绑定）
 
 ```javascript
 const person = {
-  name: "YuTengjing",
+  name: 'YuTengjing',
   age: 22,
 };
 
 function introduce() {
-  console.log(
-    `Hello everyone! My name is ${this.name}. I'm ${this.age} years old.`
-  );
+  console.log(`Hello everyone! My name is ${this.name}. I'm ${this.age} years old.`);
 }
 
-const myFriend = { name: "dongdong", age: 21 };
+const myFriend = { name: 'dongdong', age: 21 };
 person.introduce = introduce.bind(myFriend);
 
 // person.introduce 的 this 已经被绑定到 myFriend 上了
@@ -157,7 +151,7 @@ function testArrayLike() {
   console.log(array); // => [ 'a', 'b', 'c' ]
 }
 
-testArrayLike("a", "b", "c");
+testArrayLike('a', 'b', 'c');
 ```
 
 其实 把 slice 换成 concat，splice 等其它 API 也是可以的。思考：**为什么通过 Array.prototype.slice.call(arrayLike) 可以转换类数组为数组？**
@@ -210,7 +204,7 @@ function Bird(type, color) {
   this.color = color;
 }
 
-const bird = new Bird("bird", "green");
+const bird = new Bird('bird', 'green');
 console.log(bird); // => Bird { type: 'bird', color: 'green' }
 ```
 
@@ -246,7 +240,7 @@ function printName() {
   console.log(this.name);
 }
 
-console.log(printName.myCall({ name: "ly" })); // => ly
+console.log(printName.myCall({ name: 'ly' })); // => ly
 ```
 
 上面的代码中有一些缺陷：
@@ -269,7 +263,7 @@ Function.prototype.myCall = function (thisArg, ...args) {
   // 这里的 this 其实就是 func.myCall(thisArg, ...args) 中的 func，因为 myCall 是通过 func 调用的嘛
   const func = this;
 
-  const tempFunc = Symbol("Temp property");
+  const tempFunc = Symbol('Temp property');
   // 在 thisArg 上临时绑定 func
   thisArg[tempFunc] = func;
 
@@ -285,7 +279,7 @@ function printName() {
   console.log(this.name);
 }
 
-console.log(printName.myCall({ name: "ly" })); // => ly
+console.log(printName.myCall({ name: 'ly' })); // => ly
 ```
 
 #### 方式二
@@ -305,8 +299,8 @@ console.log(printName.myCall({ name: "ly" })); // => ly
 eval 函数可以让我们将一个字符串当作代码来运行：
 
 ```javascript
-const ctx = { name: "Bob" };
-eval("console.log(ctx.name)"); // Bob
+const ctx = { name: 'Bob' };
+eval('console.log(ctx.name)'); // Bob
 ```
 
 ##### 动手实现
@@ -325,7 +319,7 @@ Function.prototype.myCall = function (thisArg, ...args) {
   const funcString = func.toString();
 
   // 替换 this 为 thisArg
-  const tempFuncString = funcString.replace(/this/g, "thisArg");
+  const tempFuncString = funcString.replace(/this/g, 'thisArg');
 
   // 通过 eval 构造一个临时函数并执行
   const tempFunc = eval(`(${tempFuncString})`);
@@ -338,7 +332,7 @@ function printName() {
   console.log(this.name);
 }
 
-console.log(printName.myCall({ name: "ly" })); // => ly
+console.log(printName.myCall({ name: 'ly' })); // => ly
 ```
 
 添加一些打印语句后在 chrome 中的执行情况：
@@ -365,7 +359,7 @@ Function.prototype.myApply = function (thisArg, args) {
     return func(args);
   }
 
-  const tempFunc = Symbol("Temp property");
+  const tempFunc = Symbol('Temp property');
   // 在 thisArg 上临时绑定 func
   thisArg[tempFunc] = func;
 
@@ -381,7 +375,7 @@ function printName() {
   console.log(this.name);
 }
 
-console.log(printName.myCall({ name: "ly" })); // => ly
+console.log(printName.myCall({ name: 'ly' })); // => ly
 ```
 
 第二种方式就不写了，其实也很简单，不写主要时因为第二种实现没什么实用性，介绍它的就是为了扩展一下思路。
@@ -404,12 +398,10 @@ Function.prototype.myBind = function (thisArg, ...args) {
 };
 
 function printThisAndAndArgs() {
-  console.log(
-    `This is ${JSON.stringify(this)}, arguments is ${[...arguments].join(", ")}`
-  );
+  console.log(`This is ${JSON.stringify(this)}, arguments is ${[...arguments].join(', ')}`);
 }
 
-const boundFunc = printThisAndAndArgs.myBind({ name: "Lily" }, 1, 2, 3);
+const boundFunc = printThisAndAndArgs.myBind({ name: 'Lily' }, 1, 2, 3);
 boundFunc(4, 5, 6); // => This is {"name":"Lily"}, arguments is 1, 2, 3, 4, 5, 6
 ```
 
@@ -425,10 +417,10 @@ function Student(name, age) {
   this.age = age;
 }
 
-const BoundStudent1 = Student.bind({ name: "Taylor" }, "ly");
+const BoundStudent1 = Student.bind({ name: 'Taylor' }, 'ly');
 console.log(new BoundStudent1(22)); // => Student { name: 'ly', age: 22 }
 
-const BoundStudent2 = Student.myBind({ name: "Taylor" }, "ly");
+const BoundStudent2 = Student.myBind({ name: 'Taylor' }, 'ly');
 console.log(new BoundStudent2(22)); // => {}
 ```
 
@@ -483,10 +475,10 @@ function Student(name, age) {
   this.age = age;
 }
 
-const BoundStudent1 = Student.bind({ name: "Taylor" }, "ly");
+const BoundStudent1 = Student.bind({ name: 'Taylor' }, 'ly');
 console.log(new BoundStudent1(22)); // => Student { name: 'ly', age: 22 }
 
-const BoundStudent2 = Student.myBind({ name: "Taylor" }, "ly");
+const BoundStudent2 = Student.myBind({ name: 'Taylor' }, 'ly');
 console.log(new BoundStudent2(22)); // => { name: 'ly', age: 22 }
 ```
 
@@ -514,9 +506,9 @@ function Student(name, age) {
   this.age = age;
 }
 
-Student.prototype.type = "student";
+Student.prototype.type = 'student';
 
-const BoundStudent2 = Student.myBind({ name: "Taylor" }, "ly");
+const BoundStudent2 = Student.myBind({ name: 'Taylor' }, 'ly');
 console.log(new BoundStudent2(22).type); // => student
 ```
 
@@ -562,8 +554,8 @@ function Student(name, age) {
   this.age = age;
 }
 
-Student.prototype.type = "student";
-const BoundStudent2 = Student.myBind({ name: "Taylor" }, "ly");
+Student.prototype.type = 'student';
+const BoundStudent2 = Student.myBind({ name: 'Taylor' }, 'ly');
 
 console.log(new BoundStudent2(22).type); // => student
 console.log(BoundStudent2.name); // => bound Student
@@ -580,9 +572,7 @@ defineProperties(FunctionPrototype, {
     var target = this;
     // 2. If IsCallable(Target) is false, throw a TypeError exception.
     if (!isCallable(target)) {
-      throw new TypeError(
-        "Function.prototype.bind called on incompatible " + target
-      );
+      throw new TypeError('Function.prototype.bind called on incompatible ' + target);
     }
     // 3. Let A be a new (possibly empty) internal list of all of the
     //   argument values provided after thisArg (arg1, arg2 etc), in order.
@@ -616,11 +606,7 @@ defineProperties(FunctionPrototype, {
         // 5. Return the result of calling the [[Construct]] internal
         //   method of target providing args as the arguments.
 
-        var result = apply.call(
-          target,
-          this,
-          array_concat.call(args, array_slice.call(arguments))
-        );
+        var result = apply.call(target, this, array_concat.call(args, array_slice.call(arguments)));
         if ($Object(result) === result) {
           return result;
         }
@@ -645,11 +631,7 @@ defineProperties(FunctionPrototype, {
         //   providing args as the arguments.
 
         // equiv: target.call(this, ...boundArgs, ...args)
-        return apply.call(
-          target,
-          that,
-          array_concat.call(args, array_slice.call(arguments))
-        );
+        return apply.call(target, that, array_concat.call(args, array_slice.call(arguments)));
       }
     };
 
@@ -665,7 +647,7 @@ defineProperties(FunctionPrototype, {
     //   specified in 15.3.5.1.
     var boundArgs = [];
     for (var i = 0; i < boundLength; i++) {
-      array_push.call(boundArgs, "$" + i);
+      array_push.call(boundArgs, '$' + i);
     }
 
     // XXX Build a dynamic function with desired amount of arguments is the only
@@ -675,10 +657,10 @@ defineProperties(FunctionPrototype, {
     // However in all of these environments Function.prototype.bind exists
     // and so this code will never be executed.
     bound = $Function(
-      "binder",
-      "return function (" +
-        array_join.call(boundArgs, ",") +
-        "){ return binder.apply(this, arguments); }"
+      'binder',
+      'return function (' +
+        array_join.call(boundArgs, ',') +
+        '){ return binder.apply(this, arguments); }',
     )(binder);
 
     if (target.prototype) {
@@ -731,13 +713,13 @@ function test() {
   console.log(this);
 }
 
-let boundTest = test.bind({ name: "ly" });
+let boundTest = test.bind({ name: 'ly' });
 boundTest(); // => { name: 'ly' }
 
-boundTest = boundTest.bind({ name: "dongdong" });
+boundTest = boundTest.bind({ name: 'dongdong' });
 boundTest(); // => { name: 'ly' }
 
-boundTest.call({ name: "yinyin" }); // => { name: 'ly' }
+boundTest.call({ name: 'yinyin' }); // => { name: 'ly' }
 ```
 
 其实最近看过有些公司前端面试还考了偏函数的知识，其实也用到了 bind。这里我不打算讲偏函数了，偏函数我有空再写一篇文章单独讲。

@@ -1,5 +1,5 @@
 ---
-title: "使用 nodejs 写爬虫(二): 抓取 github 热门项目"
+title: '使用 nodejs 写爬虫(二): 抓取 github 热门项目'
 tags:
   - node
   - spider
@@ -69,32 +69,27 @@ curl "https://github.com/search?p=2&q=stars%3A%3E60000&type=Repositories"
 想要通过 node 获取源代码，我们需要先配置好 url 参数， 再通过 superagent 这个发送 http 请求的模块来访问配置好的 url。
 
 ```javascript
-"use strict";
-const requests = require("superagent");
-const cheerio = require("cheerio");
-const constants = require("../config/constants");
-const logger = require("../config/log4jsConfig").log4js.getLogger(
-  "githubHotProjects"
-);
-const requestUtil = require("./utils/request");
-const models = require("./models");
+'use strict';
+const requests = require('superagent');
+const cheerio = require('cheerio');
+const constants = require('../config/constants');
+const logger = require('../config/log4jsConfig').log4js.getLogger('githubHotProjects');
+const requestUtil = require('./utils/request');
+const models = require('./models');
 
 /**
  * 获取 star 数不低于 starCount k 的项目第 page 页的源代码
- * @param {number} starCount star 数量下限
+ *
+ * @param {number} starCount Star 数量下限
  * @param {number} page 页数
  */
 const crawlSourceCode = async (starCount, page = 1) => {
   // 下限为 starCount k star 数
   starCount = starCount * 1024;
   // 替换 url 中的参数
-  const url = constants.searchUrl
-    .replace("${starCount}", starCount)
-    .replace("${page}", page);
+  const url = constants.searchUrl.replace('${starCount}', starCount).replace('${page}', page);
   // response.text 即为返回的源代码
-  const { text: sourceCode } = await requestUtil.logRequest(
-    requests.get(encodeURI(url))
-  );
+  const { text: sourceCode } = await requestUtil.logRequest(requests.get(encodeURI(url)));
   return sourceCode;
 };
 ```
@@ -103,8 +98,7 @@ const crawlSourceCode = async (starCount, page = 1) => {
 
 ```javascript
 module.exports = {
-  searchUrl:
-    "https://github.com/search?q=stars:>${starCount}&p=${page}&type=Repositories",
+  searchUrl: 'https://github.com/search?q=stars:>${starCount}&p=${page}&type=Repositories',
 };
 ```
 
@@ -113,16 +107,14 @@ module.exports = {
 这里我把项目信息抽象成了一个 Repository 类了。在项目的 models 目录下的 Repository.js 中。
 
 ```javascript
-const fs = require("fs-extra");
-const path = require("path");
+const fs = require('fs-extra');
+const path = require('path');
 
 module.exports = class Repository {
   static async saveToLocal(repositories, indent = 2) {
-    await fs.writeJSON(
-      path.resolve(__dirname, "../../out/repositories.json"),
-      repositories,
-      { spaces: indent }
-    );
+    await fs.writeJSON(path.resolve(__dirname, '../../out/repositories.json'), repositories, {
+      spaces: indent,
+    });
   }
 
   constructor({ name, author, language, digest, starCount, lastUpdate } = {}) {
@@ -148,7 +140,8 @@ module.exports = class Repository {
 ```javascript
 /**
  * 获取 star 数不低于 starCount k 的项目页表
- * @param {number} starCount star 数量下限
+ *
+ * @param {number} starCount Star 数量下限
  * @param {number} page 页数
  */
 const crawlProjectsByPage = async (starCount, page = 1) => {
@@ -157,38 +150,38 @@ const crawlProjectsByPage = async (starCount, page = 1) => {
 
   // 下面 cheerio 如果 jquery 比较熟应该没有障碍, 不熟的话 github 官方仓库可以查看 api, api 并不是很多
   // 查看 elements 面板, 发现每个仓库的信息在一个 li 标签内, 下面的代码时建议打开开发者工具的 elements 面板, 参照着阅读
-  const repositoryLiSelector = ".repo-list-item";
+  const repositoryLiSelector = '.repo-list-item';
   const repositoryLis = $(repositoryLiSelector);
   const repositories = [];
   repositoryLis.each((index, li) => {
     const $li = $(li);
 
     // 获取带有仓库作者和仓库名的 a 链接
-    const nameLink = $li.find("h3 a");
+    const nameLink = $li.find('h3 a');
 
     // 提取出仓库名和作者名
-    const [author, name] = nameLink.text().split("/");
+    const [author, name] = nameLink.text().split('/');
 
     // 获取项目摘要
-    const digestP = $($li.find("p")[0]);
+    const digestP = $($li.find('p')[0]);
     const digest = digestP.text().trim();
 
     // 获取语言
     // 先获取类名为 .repo-language-color 的那个 span, 在获取包含语言文字的父 div
     // 这里要注意有些仓库是没有语言的, 是获取不到那个 span 的, language 为空字符串
-    const languageDiv = $li.find(".repo-language-color").parent();
+    const languageDiv = $li.find('.repo-language-color').parent();
     // 这里注意使用 String.trim() 去除两侧的空白符
     const language = languageDiv.text().trim();
 
     // 获取 star 数量
-    const starCountLinkSelector = ".muted-link";
+    const starCountLinkSelector = '.muted-link';
     const links = $li.find(starCountLinkSelector);
     // 选择器为 .muted-link 还有可能是那个 issues 链接
     const starCountLink = $(links.length === 2 ? links[1] : links[0]);
     const starCount = starCountLink.text().trim();
 
     // 获取最后更新时间
-    const lastUpdateElementSelector = "relative-time";
+    const lastUpdateElementSelector = 'relative-time';
     const lastUpdate = $li.find(lastUpdateElementSelector).text().trim();
     const repository = new models.Repository({
       name,
@@ -222,9 +215,7 @@ const crawlProjectsByPagesCount = async (starCount, pagesCount) => {
 
   // 使用 Promise.all 来并发操作
   const resultRepositoriesArray = await Promise.all(tasks);
-  resultRepositoriesArray.forEach(repositories =>
-    allRepositories.push(...repositories)
-  );
+  resultRepositoriesArray.forEach((repositories) => allRepositories.push(...repositories));
   return allRepositories;
 };
 ```
@@ -234,15 +225,10 @@ const crawlProjectsByPagesCount = async (starCount, pagesCount) => {
 只是写个脚本，在代码里面配置参数然后去爬，这有点太简陋了。这里我使用了一个可以同步获取用户输入的库[readline-sync](https://github.com/anseki/readline-sync)，加了一点用户交互，后续的爬虫教程我可能会考虑使用 electron 来做个简单的界面, 下面是程序的启动代码。
 
 ```javascript
-const readlineSync = require("readline-sync");
-const {
-  crawlProjectsByPage,
-  crawlProjectsByPagesCount,
-} = require("./crawlHotProjects");
-const models = require("./models");
-const logger = require("../config/log4jsConfig").log4js.getLogger(
-  "githubHotProjects"
-);
+const readlineSync = require('readline-sync');
+const { crawlProjectsByPage, crawlProjectsByPagesCount } = require('./crawlHotProjects');
+const models = require('./models');
+const logger = require('../config/log4jsConfig').log4js.getLogger('githubHotProjects');
 
 const main = async () => {
   let isContinue = true;
@@ -250,22 +236,21 @@ const main = async () => {
     const starCount = readlineSync.questionInt(
       `输入你想要抓取的 github 上项目的 star 数量下限, 单位(k): `,
       {
-        encoding: "utf-8",
-      }
+        encoding: 'utf-8',
+      },
     );
-    const crawlModes = ["抓取某一页", "抓取一定数量页数", "抓取所有页"];
-    const index = readlineSync.keyInSelect(crawlModes, "请选择一种抓取模式");
+    const crawlModes = ['抓取某一页', '抓取一定数量页数', '抓取所有页'];
+    const index = readlineSync.keyInSelect(crawlModes, '请选择一种抓取模式');
 
     let repositories = [];
     switch (index) {
       case 0: {
-        const page = readlineSync.questionInt("请输入你要抓取的具体页数: ");
+        const page = readlineSync.questionInt('请输入你要抓取的具体页数: ');
         repositories = await crawlProjectsByPage(starCount, page);
         break;
       }
       case 1: {
-        const pagesCount =
-          readlineSync.questionInt("请输入你要抓取的页面数量: ");
+        const pagesCount = readlineSync.questionInt('请输入你要抓取的页面数量: ');
         repositories = await crawlProjectsByPagesCount(starCount, pagesCount);
         break;
       }
@@ -275,13 +260,13 @@ const main = async () => {
       }
     }
 
-    repositories.forEach(repository => repository.display());
+    repositories.forEach((repository) => repository.display());
 
-    const isSave = readlineSync.keyInYN("请问是否要保存到本地(json 格式) ?");
+    const isSave = readlineSync.keyInYN('请问是否要保存到本地(json 格式) ?');
     isSave && models.Repository.saveToLocal(repositories);
-    isContinue = readlineSync.keyInYN("继续还是退出 ?");
+    isContinue = readlineSync.keyInYN('继续还是退出 ?');
   } while (isContinue);
-  logger.info("程序正常退出...");
+  logger.info('程序正常退出...');
 };
 
 main();

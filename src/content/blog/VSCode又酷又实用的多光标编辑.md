@@ -208,11 +208,11 @@ VSCode 内置的有下面几个，以单词 `letterCase` 举例，转换结果�
 有能力的读者也可以自己编写 VSCode 扩展去实现更多的插入，转换，甚至删除等文本处理命令。需要注意的是实现的时候要处理所有选中，例如笔者的 VSCode 扩展 [VSCode FE Helper](https://github.com/tjx666/vscode-fe-helper) 实现的将选中单词变复数的扩展是下面这样实现的。代码很简单。可以注意到里面遍历了所有选区，所以在多光标编辑时调用这个命令时能够处理所有选中：
 
 ```ts
-import { TextEditor } from "vscode";
+import { TextEditor } from 'vscode';
 
 export default async function plur(editor: TextEditor): Promise<void> {
-  const { default: pluralize } = await import("pluralize");
-  editor.edit(editorBuilder => {
+  const { default: pluralize } = await import('pluralize');
+  editor.edit((editorBuilder) => {
     const { document, selections } = editor;
     for (const selection of selections) {
       const word = document.getText(selection);
@@ -310,40 +310,39 @@ enum RoutePath {
 
 ```ts
 type LetterMapper = {
-  a: "A";
-  b: "B";
-  c: "C";
-  d: "D";
-  e: "E";
-  f: "F";
-  g: "G";
-  h: "H";
-  i: "I";
-  j: "J";
-  k: "K";
-  l: "L";
-  m: "M";
-  n: "N";
-  o: "O";
-  p: "P";
-  q: "Q";
-  r: "R";
-  s: "S";
-  t: "T";
-  u: "U";
-  v: "V";
-  w: "W";
-  x: "X";
-  y: "Y";
-  z: "Z";
+  a: 'A';
+  b: 'B';
+  c: 'C';
+  d: 'D';
+  e: 'E';
+  f: 'F';
+  g: 'G';
+  h: 'H';
+  i: 'I';
+  j: 'J';
+  k: 'K';
+  l: 'L';
+  m: 'M';
+  n: 'N';
+  o: 'O';
+  p: 'P';
+  q: 'Q';
+  r: 'R';
+  s: 'S';
+  t: 'T';
+  u: 'U';
+  v: 'V';
+  w: 'W';
+  x: 'X';
+  y: 'Y';
+  z: 'Z';
 };
 
-type CapitalFirstLetter<S extends string> =
-  S extends `${infer First}${infer Rest}`
-    ? First extends keyof LetterMapper
-      ? `${LetterMapper[First]}${Rest}`
-      : S
-    : S;
+type CapitalFirstLetter<S extends string> = S extends `${infer First}${infer Rest}`
+  ? First extends keyof LetterMapper
+    ? `${LetterMapper[First]}${Rest}`
+    : S
+  : S;
 ```
 
 这个 `LetterMapper` 类型手敲会觉得很浪费光阴，让我们用多光标编辑酷炫的实现它：

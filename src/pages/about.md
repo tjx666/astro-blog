@@ -1,6 +1,6 @@
 ---
 layout: ../layouts/AboutLayout.astro
-title: "关于我"
+title: '关于我'
 ---
 
 ## 基本信息
