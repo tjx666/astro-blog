@@ -25,16 +25,15 @@ pnpm build
 ## TODOS
 
 - [x] 社交链接图片
-- [ ] 搜索引擎收录
 - [x] 升级依赖
-- [ ] eslint
-- [ ] stylelint
+- [x] 删除不需要的文件和代码
+- [x] eslint
 - [x] prettier
-- [ ] husky -> simple-git-hooks
+- [x] husky -> simple-git-hooks
 - [ ] autocorrect
 - [ ] spellcheck
+- [ ] 搜索引擎收录
 - [ ] 失效图片链接修复
-- [ ] 删除不需要的文件和代码
 - [ ] 根据文章内容自动生成摘要
 - [ ] 中文排版优化
 - [ ] 主题色优化
