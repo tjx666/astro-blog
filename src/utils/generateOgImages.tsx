@@ -1,26 +1,27 @@
+import fs from "fs/promises";
+import { resolve } from "path";
+
 import satori, { type SatoriOptions } from "satori";
 import { Resvg } from "@resvg/resvg-js";
 import { type CollectionEntry } from "astro:content";
+
 import postOgImage from "./og-templates/post";
 import siteOgImage from "./og-templates/site";
+import { projectRoot } from "./constants";
 
-const fetchFonts = async () => {
-  // Regular Font
-  const fontFileRegular = await fetch(
-    "https://www.1001fonts.com/download/font/ibm-plex-mono.regular.ttf"
+const fetchFonts = async () =>
+  Promise.all(
+    ["Regular", "Bold"].map(async weight =>
+      fs.readFile(
+        resolve(
+          projectRoot,
+          `public/assets/fonts/lxgw-wenkai/LXGWWenKaiMono-${weight}.ttf`
+        )
+      )
+    )
   );
-  const fontRegular: ArrayBuffer = await fontFileRegular.arrayBuffer();
 
-  // Bold Font
-  const fontFileBold = await fetch(
-    "https://www.1001fonts.com/download/font/ibm-plex-mono.bold.ttf"
-  );
-  const fontBold: ArrayBuffer = await fontFileBold.arrayBuffer();
-
-  return { fontRegular, fontBold };
-};
-
-const { fontRegular, fontBold } = await fetchFonts();
+const [fontRegular, fontBold] = await fetchFonts();
 
 const options: SatoriOptions = {
   width: 1200,
@@ -28,13 +29,13 @@ const options: SatoriOptions = {
   embedFont: true,
   fonts: [
     {
-      name: "IBM Plex Mono",
+      name: "LXGW WenKai Mono",
       data: fontRegular,
       weight: 400,
       style: "normal",
     },
     {
-      name: "IBM Plex Mono",
+      name: "LXGW WenKai Mono",
       data: fontBold,
       weight: 600,
       style: "normal",

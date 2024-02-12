@@ -10,6 +10,7 @@ export default () => {
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
+        fontFamily: '"LXGW WenKai Mono"',
       }}
     >
       <div
