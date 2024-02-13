@@ -5,13 +5,8 @@ on:
     branches: ['**']
 
 jobs:
-  check-type:
-    strategy:
-      matrix:
-        os: [macos-latest]
-      fail-fast: false
-
-    runs-on: ${{ matrix.os }}
+  lint:
+    runs-on: macos-latest
 
     steps:
       - uses: actions/checkout@v4
