@@ -8,7 +8,7 @@ modDatetime: 2022-05-01
 
 Adobe 毫无疑问是设计软件行业的垄断巨头，旗下的 PS，AE 等都是搞设计和自媒体的必装软件。有很多小公司的产品其实本质上是依赖这些设计软件生存的，例如开发 AE 特效插件的公司，例如使用 PS 开发海报模板的我司。
 
-**其实 CEP 扩展的开发生态是相当的恶劣**，中文资料不能说少，简直可以说是没有，质量不错的一只手可以数得过来。国外的资料相对多一点，但还是很少，主要还是以论坛，github 仓库, stackoverflow 提问的形式散落在各处，大多数文章的内容也很浅。
+**其实 CEP 扩展的开发生态是相当的恶劣**，中文资料不能说少，简直可以说是没有，质量不错的一只手可以数得过来。国外的资料相对多一点，但还是很少，主要还是以论坛，github 仓库，stackoverflow 提问的形式散落在各处，大多数文章的内容也很浅。
 
 笔者将近一年时间的主要工作就是为 AE 和 PS 开发 CEP 扩展，各上线了一个扩展。踩过很多坑，也有很多的技术沉淀。我写这一系列教程的主要目的在于：
 
@@ -86,7 +86,7 @@ ExtendScript 可以调用宿主的各种 API，例如在 AE 中可以访问图�
 
 在 AE 中，就像上面 GIF 图中展示的那样，你通过菜单 Window -> Extensions 的下拉列表打开的就是 CEP 扩展了。
 
-CEP([Common Extensibility Platform](https://github.com/Adobe-CEP/CEP-Resources/blob/master/CEP_11.x/Documentation/CEP%2011.1%20HTML%20Extension%20Cookbook.md)) 扩展的界面是使用 Chromium 渲染的，采用的是 CEF（Chromium Embedded Framework） 架构。CEF 简单理解就是将浏览器嵌入到其它应用中让我们可以直接使用前端技术去开发界面，electron, nwjs，tauri 是 CEF 架构的代表框架了。这类框架除了是使用前端技术开发界面，runtime 往往都还搞成混合型的，例如开启了 node 集成的 electron 和 nwjs 的浏览器窗口的运行时都是 web runtime 和 nodejs runtime 的复合 runtime。
+CEP([Common Extensibility Platform](https://github.com/Adobe-CEP/CEP-Resources/blob/master/CEP_11.x/Documentation/CEP%2011.1%20HTML%20Extension%20Cookbook.md)) 扩展的界面是使用 Chromium 渲染的，采用的是 CEF（Chromium Embedded Framework）架构。CEF 简单理解就是将浏览器嵌入到其它应用中让我们可以直接使用前端技术去开发界面，electron, nwjs，tauri 是 CEF 架构的代表框架了。这类框架除了是使用前端技术开发界面，runtime 往往都还搞成混合型的，例如开启了 node 集成的 electron 和 nwjs 的浏览器窗口的运行时都是 web runtime 和 nodejs runtime 的复合 runtime。
 
 > ### Chromium Embedded Framework (CEF)
 >
@@ -108,7 +108,7 @@ CEP([Common Extensibility Platform](https://github.com/Adobe-CEP/CEP-Resources/b
 
 #### UXP 面板插件
 
-[UXP](https://developer.adobe.com/photoshop/uxp/guides/#the-uxp-technology-stack) (**U**nified E**x**tensibility **P**latform)是下一代的面板插件架构，未来 CEP 扩展的结局会和 Flash 插件一样被废弃，并被 UXP 架构取代。
+[UXP](https://developer.adobe.com/photoshop/uxp/guides/#the-uxp-technology-stack) (**U**nified E**x**tensibility **P**latform) 是下一代的面板插件架构，未来 CEP 扩展的结局会和 Flash 插件一样被废弃，并被 UXP 架构取代。
 
 官方文档有提到 UXP 和 CEP 的优劣势对比：[UXP for CEP Developers](https://developer.adobe.com/photoshop/uxp/2022/guides/uxp_for_you/uxp_for_cep_devs/)。我这意译一下：
 
@@ -228,7 +228,7 @@ UXP 扩展还处在发展中，目前只有 PS2021 及其以上的版本支持 U
 
 最好具备**一定的英文阅读能力**，之前就有说了，国内的 CEP 相关资料简直可以说是没有。你可能需要 Google 遇到的问题，通过阅读 stackoverflow 上的问答，官方论坛的讨论等去寻找答案。而且目前我还没发现各种官方文档资料有对应的中文翻译版，全是英文的。
 
-### 怎样 Google ？
+### 怎样 Google？
 
 首先，你别指望百度那个广告阅读器能搜出啥有用的信息。
 

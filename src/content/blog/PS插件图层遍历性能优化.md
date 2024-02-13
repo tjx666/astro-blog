@@ -42,7 +42,7 @@ $.writeln(
 );
 ```
 
-我拿一个公司业务中遇到的一个图层数量相对较多的 psd 来跑上面的代码，就只是遍历整个树，获取遍历到图层的 id，测试三次的结果:
+我拿一个公司业务中遇到的一个图层数量相对较多的 psd 来跑上面的代码，就只是遍历整个树，获取遍历到图层的 id，测试三次的结果：
 
 > 图层数：323，遍历耗时：5894ms
 >
@@ -103,7 +103,7 @@ layer.id = 11111;
 layer.typename = 'xxx';
 $.writeln([layer.name, layer.id, layer.typename].join(', '));
 // =>
-// 装饰, 462, ArtLayer
+// 装饰，462, ArtLayer
 // xxx, 462, ArtLayer
 ```
 
@@ -229,7 +229,7 @@ $.writeln(
 
 ## 使用 ActionManager 遍历
 
-### 线性结构-至底向上遍历
+### 线性结构 - 至底向上遍历
 
 对 AM 不熟的同学可以看小强的 [AM 教程](https://blog.cutterman.cn/2021/12/19/action-manager-part2/)，这里不做过多讲解。使用 AM 遍历图层树：
 
@@ -329,7 +329,7 @@ traverseLayersDesc(
 
 ![PS layers](https://s1.ax1x.com/2022/09/11/vOWpQ0.png)
 
-对于上面的图层结构，看一下遍历的结果就很容易理解什么叫线性结构-至底向上了：
+对于上面的图层结构，看一下遍历的结果就很容易理解什么叫线性结构 - 至底向上了：
 
 ```javascript
 const names = [];
@@ -340,7 +340,7 @@ $.writeln(names.join(', '));
 // => Background, Layer 3, Layer 1, Group 2, Layer 2, Group 1
 ```
 
-### 树结构-自顶向下遍历
+### 树结构 - 自顶向下遍历
 
 实际的业务需求中，上面的那种遍历应用场景很有限。主要有以下缺点：
 

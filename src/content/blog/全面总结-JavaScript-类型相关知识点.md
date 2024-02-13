@@ -25,7 +25,7 @@ pubDatetime: 2020-01-14 15:39:00
 
 JavaScript 中类型主要分两大类：**基本类型** 和 **对象类型**。
 
-基本类型又分 string，number，boolean，undefined，null，symbol，bigInt 七种，ES 以前只有前 5 种基本类型， ES6 往后新增了 symbol 和 bigInt。
+基本类型又分 string，number，boolean，undefined，null，symbol，bigInt 七种，ES 以前只有前 5 种基本类型，ES6 往后新增了 symbol 和 bigInt。
 
 对象类型又叫引用类型，除了基本类型就是对象类型，纯对象，标准对象实例，函数等都是对象类型。
 
@@ -166,7 +166,7 @@ console.log(0.1 + 0.2 === 0.3); // => false
 ```javascript
 const result = 0.1 + 0.2;
 console.log(result); // => 0.30000000000000004
-// 精度要求误差小于1亿分之一
+// 精度要求误差小于 1 亿分之一
 const isEqual = result - 0.3 < 1e-8;
 console.log(isEqual); // => true
 ```
@@ -177,7 +177,7 @@ console.log(isEqual); // => true
 
 #### 如何判断一个数是不是 NaN？可不可以用等于号判断？
 
-其实面试官问你可不可以就是告诉你不可以，面试黑话之一ㄟ( ▔, ▔ )ㄏ。
+其实面试官问你可不可以就是告诉你不可以，面试黑话之一ㄟ ( ▔, ▔ ) ㄏ。
 
 使用等号判断是不行滴：
 
@@ -198,7 +198,7 @@ console.log(isNaN('aaa')); // => true
 
 注意最后这个判断，这个结果其实有点反直觉的：'aaa' 并不是 NaN，应该返回 false 啊。其实 isNaN 也就是 window.isNaN 在判断传入的值是不是 NaN 是会先将其转换成数字，再判断结果是不是 NaN，也就是说 isNaN('aaa') 等价于 isNaN(Number('aaa'));
 
-除了使用 window.isNaN，ES6 在数字类型构造函数 Number 上新增了一个方法 Number.isNaN，它和 window.isNaN 的区别在于： Number.isNaN 只有在传递的值就是 NaN 时才返回 true，不会先转换成数字再比较，也就是说这个 API 就是用来计算一个值是不是就是 NaN。拿一个非数字符串一比较区别就很明显了：
+除了使用 window.isNaN，ES6 在数字类型构造函数 Number 上新增了一个方法 Number.isNaN，它和 window.isNaN 的区别在于：Number.isNaN 只有在传递的值就是 NaN 时才返回 true，不会先转换成数字再比较，也就是说这个 API 就是用来计算一个值是不是就是 NaN。拿一个非数字符串一比较区别就很明显了：
 
 ```javascript
 const value = 'aaa';
@@ -324,7 +324,7 @@ console.log(~-2); // => 1
 console.log(~-3); // => 2
 ```
 
-看完上面的测试我们发现规律就是： 对于 ~num，如果 num 时正整数，结果就是等于 -(num + 1)，也就是把加一后的结果取负。如果是负整数，结果就是 num + 1，也就是加一。并且只有当 num 等于 -1， ~num 结果等于 0。 这是存粹从计算的角度发现的规律。
+看完上面的测试我们发现规律就是：对于 ~num，如果 num 时正整数，结果就是等于 -(num + 1)，也就是把加一后的结果取负。如果是负整数，结果就是 num + 1，也就是加一。并且只有当 num 等于 -1， ~num 结果等于 0。这是存粹从计算的角度发现的规律。
 
 现在我们尝试把它们的结果转换成 boolean 类型再来康康：
 
@@ -338,7 +338,7 @@ console.log(Boolean(~-2)); // => true
 console.log(Boolean(~-3)); // => true
 ```
 
-发现了没，因为只有当 num 等于 -1 的时候， ~num 的值才等于 0，而对于 Boolean(value) 函数而言，只有 value 是 0 才返回 false，其它值即便是负数也返回 true。所以我们可以通过 ~num 表示 num 不等于-1。
+发现了没，因为只有当 num 等于 -1 的时候， ~num 的值才等于 0，而对于 Boolean(value) 函数而言，只有 value 是 0 才返回 false，其它值即便是负数也返回 true。所以我们可以通过 ~num 表示 num 不等于 -1。
 
 至于前面的 `!!` 其实就是两次 boolean 取反也就是取 boolean 值，等同于 Boolean(~methods.indexOf(this.method))。
 
@@ -612,7 +612,7 @@ function plusOne(digits) {
 
 这里来说点题外话，笔者最近在刷 leetcode，因为很多题其实有很多解法，有时我就会拿 [benchmark.js](https://github.com/bestiejs/benchmark.js) 来去测试不同解法的效率。不过，测着测着。我就发现：**使用 JavaScript 测试不同的算法效率很扯淡**。来看一个具体的例子，leetcode 26 题，删除重复元素。
 
-解法一：两层循环，算法复杂度： O(n²)
+解法一：两层循环，算法复杂度：O(n²)
 
 ```javascript
 // removeDuplicates1
@@ -738,7 +738,7 @@ function test() {
 test();
 ```
 
-再给 typeof 适合哪些情况下结论之前我们先来测试一下 typeof 的特性:
+再给 typeof 适合哪些情况下结论之前我们先来测试一下 typeof 的特性：
 
 ```javascript
 console.log(typeof 6); // => number
@@ -811,7 +811,7 @@ console.log(Symbol() instanceof Symbol); // => false
 console.log(BigInt(5) instanceof BigInt); // => false
 ```
 
-现在我们来完善一下之前的 isNumber 函数:
+现在我们来完善一下之前的 isNumber 函数：
 
 ```javascript
 function isNumber(val) {
@@ -859,7 +859,7 @@ function getTag(value) {
 }
 ```
 
-很好理解， isObjectLike 就是判断一个变量是否是非函数对象，getTag 就是封装了一下 Object.prototype.toString，让它也能处理 value 等于 undefined 或者 null 的时候。
+很好理解，isObjectLike 就是判断一个变量是否是非函数对象，getTag 就是封装了一下 Object.prototype.toString，让它也能处理 value 等于 undefined 或者 null 的时候。
 
 那么 Object.prototype.toString 是干嘛用的呢，看几个测试：
 

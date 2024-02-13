@@ -157,7 +157,7 @@ start();
 
 ![VSCode Webview](https://s2.loli.net/2022/03/19/YVFbaPsEcSHXJg4.png)
 
-我们知道，web-dev-server 会在 bundle 中注入 js 代码创建一个 WebSocket 链接用于与 webpack-dev-server 通信，创建 websocket URL 的源码在: `node_modules/webpack-dev-server/client/utils/createSocketURL.js。` 简言之，由于我们没有手动指定 websocket 链接协议，webpack-dev-server 根据当前协议 `vscode-webview`，推测出 `new WebSocket(URL)` 的 URL 协议也是 `vscode-webview`，而 WebSocket 对象是不允许只接收 `ws` 或者 `wss` 协议。
+我们知道，web-dev-server 会在 bundle 中注入 js 代码创建一个 WebSocket 链接用于与 webpack-dev-server 通信，创建 websocket URL 的源码在：`node_modules/webpack-dev-server/client/utils/createSocketURL.js。` 简言之，由于我们没有手动指定 websocket 链接协议，webpack-dev-server 根据当前协议 `vscode-webview`，推测出 `new WebSocket(URL)` 的 URL 协议也是 `vscode-webview`，而 WebSocket 对象是不允许只接收 `ws` 或者 `wss` 协议。
 
 ![WebSocket URL](https://s2.loli.net/2022/03/19/duJyz5UOkYESqHv.png)
 
@@ -201,13 +201,13 @@ module.exports = {
 
 ## 无效的 origin host
 
-解决完 WebSocket URL 的问题后还会碰到 WebSocket 建立链接 origin 请求头中 host 不合法的问题:
+解决完 WebSocket URL 的问题后还会碰到 WebSocket 建立链接 origin 请求头中 host 不合法的问题：
 
 ![无效的 origin host](https://s2.loli.net/2022/03/19/xURSuzbZjB8W5kT.png)
 
-打开 network 面板，查看我们 ws 建立链接时发送的请求头:
+打开 network 面板，查看我们 ws 建立链接时发送的请求头：
 
-![ws请求头](https://s2.loli.net/2022/03/19/XtEhU28SebWpBkM.png)
+![ws 请求头](https://s2.loli.net/2022/03/19/XtEhU28SebWpBkM.png)
 
 可以看到 origin 请求头值为：`vscode-webview://180k16ne6bgriaem9878j8lt8el0qnj9uc9uodq31ah3fdgvvea8`，`vscode-webview` 这个 host 对于 webpack-dev-server 的默认策略来说是不合法的，具体可以查看： [What is the purpose of webpack-dev-server's allowedHosts security mechanism?](https://stackoverflow.com/questions/55939525/what-is-the-purpose-of-webpack-dev-servers-allowedhosts-security-mechanism)
 
@@ -236,9 +236,9 @@ start();
 
 ## 跨域问题
 
-到目前为止，可以说在 VSCode Webview 中的 webpack-dev-server 的 client 终于和 server 端顺利建立了链接:
+到目前为止，可以说在 VSCode Webview 中的 webpack-dev-server 的 client 终于和 server 端顺利建立了链接：
 
-![ws顺利建立链接](https://s2.loli.net/2022/03/19/zTLDSIZvpMhRKwJ.png)
+![ws 顺利建立链接](https://s2.loli.net/2022/03/19/zTLDSIZvpMhRKwJ.png)
 
 但是当我们修改网页代码，例如修改 App 组件中的 `Hello World` 文本内容：
 
@@ -326,7 +326,7 @@ webpack-dev-server 定位是一个使用内存文件系统的静态服务器，�
 
 其实前面已经说了是 webpack 负责提供热更新的接口，那么在无法应用热更新时，webpack 注入 bundle 中的源代码就会触发 reload。
 
-还记得我们前面配置热更新时需要配置额外的 entry 吗?
+还记得我们前面配置热更新时需要配置额外的 entry 吗？
 
 ```javascript
 const devEntries = [

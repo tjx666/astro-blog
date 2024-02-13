@@ -623,7 +623,7 @@ type NumsToStrs<U extends number> = __NumsToStrs<U>;
 
 ### [Zip](https://typehero.dev/challenge/zip)
 
-这道题就是说给定两个元组 `A` 和 `B`，返回一个元组 `C`， 满足：`C[index] = [A[index], B[index]]`
+这道题就是说给定两个元组 `A` 和 `B`，返回一个元组 `C`，满足：`C[index] = [A[index], B[index]]`
 
 ```typescript
 import type { Equal, Expect } from '@type-challenges/utils';

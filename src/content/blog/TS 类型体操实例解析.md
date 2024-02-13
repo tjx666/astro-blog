@@ -498,7 +498,7 @@ type UpperCase<S extends string> = S extends `${infer First}${infer Rest}`
 
 ### Union 的分布式运算
 
-在 TypeScript 中如果条件类型 extends 左侧是一个 Union 便会触发分布式计算规则:
+在 TypeScript 中如果条件类型 extends 左侧是一个 Union 便会触发分布式计算规则：
 
 ```ts
 type Distribute<U> = U extends 1 ? 1 : 2;
@@ -542,7 +542,7 @@ type R = {
 
 ### 判断一个类型是否为 never
 
-实现一个类型 IsNever，达到一下效果:
+实现一个类型 IsNever，达到一下效果：
 
 ```ts
 type R1 = IsNever<number>; // => false

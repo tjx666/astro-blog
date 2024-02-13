@@ -92,7 +92,7 @@ featured: true
 
 这个扩展的功能是支持在导入语句中提供 npm 模块补全，从最后更新时间来推测这个功能应该 3 年前就被内置支持，但是下载量很恐怖啊，github 上还能看到 9 天前提的 issue，人间迷惑行为。
 
-和这个扩展功能相同，下载量同样非常高的另一个扩展是: [Node.js Modules Intellisense](https://marketplace.visualstudio.com/items?itemName=leizongmin.node-module-intellisense)。
+和这个扩展功能相同，下载量同样非常高的另一个扩展是：[Node.js Modules Intellisense](https://marketplace.visualstudio.com/items?itemName=leizongmin.node-module-intellisense)。
 
 ![npm Intellisense](https://i.loli.net/2020/04/06/AG82NgZBfvlRWJ7.gif)
 
@@ -116,7 +116,7 @@ VSCode 已经内置自动生成 `jsdoc` 和注释补全功能。
 >
 > Download: 3.3M
 
-这个扩展的下载量充分说明了有些人安装扩展只看名字，但凡瞅一眼这个扩展的主页也不会安装了:
+这个扩展的下载量充分说明了有些人安装扩展只看名字，但凡瞅一眼这个扩展的主页也不会安装了：
 
 ![HTML Snippets](https://i.loli.net/2020/04/06/rGvmgTkSwdhRJC8.png)
 

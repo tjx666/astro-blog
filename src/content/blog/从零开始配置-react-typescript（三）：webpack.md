@@ -16,7 +16,7 @@ pubDatetime: 2020-02-14 20:15:56
 
 **灵活：** 我在配置 eslint 是选择使用 js 格式而不是 json，就是为了灵活性，使用 js 文件可以让你使用导入其它模块，根据开发环境动态配置，充分发挥 js 语言的能力。
 
-**新潮：** 我觉得时刻保持对新事物的关注和尝试去使用它是一个优秀的素质。当然，追新很容易碰到坑，但是，没关系，我已经帮你们踩过了，踩不过去我也不会写出来 😂。从我 eslint `parserOptions.ecmaVersion` 设置为 2020， 还有经常来一发 `yarn upgrade --latest` 都可以体现出来。
+**新潮：** 我觉得时刻保持对新事物的关注和尝试去使用它是一个优秀的素质。当然，追新很容易碰到坑，但是，没关系，我已经帮你们踩过了，踩不过去我也不会写出来 😂。从我 eslint `parserOptions.ecmaVersion` 设置为 2020，还有经常来一发 `yarn upgrade --latest` 都可以体现出来。
 
 **严格：** 就像我平时判断相等性我大多数情况都是使用严格等 `===`，而不是非严格等 `==`，我觉得越严格，分析起来就越清晰，越早能发现问题。例如我么后面会使用一些 webpack 插件来严格检查模块大小写，检查是否有循环依赖。
 
@@ -47,13 +47,13 @@ pubDatetime: 2020-02-14 20:15:56
 
 TypeScript 作为静态类型语言，相对于 js 而言，在类型提示上带来的提升无疑是巨大的。借助 IDE 的类型提示和代码补全，我们需要知道 webpack 配置对象有哪些字段就不用去查官方文档了，而且还不会敲错，很安逸，所以开发语言就选择 **TypeScript**。
 
-官方文档上有专门一节 [Configuration Languages](https://webpack.js.org/configuration/configuration-languages/) 介绍 webpack 命令行工具怎么使用 ts 格式的配置文件 ，我觉得 `webpack-dev-server` 命令行工具应该是一样的。
+官方文档上有专门一节 [Configuration Languages](https://webpack.js.org/configuration/configuration-languages/) 介绍 webpack 命令行工具怎么使用 ts 格式的配置文件，我觉得 `webpack-dev-server` 命令行工具应该是一样的。
 
 但是我不打算使用官方文档介绍的方式，我压根不打算使用命令行工具，用 node API 才是**最灵活**的配置方式。配置 `webpack devServer` 总结一下有以下方式：
 
 1. `webpack-dev-server`，这是最不灵活的方式，当然使用场景简单的情况下还是很方便的
 2. `webpack-dev-server` node API，在 node 脚本里面调用 `web-dev-server` 包提供的 node API 来启动 devServer
-3. `express` + `webpack devServer 相关中间件`，实际上 `webpack-dev-server` 就是使用 `express` 以及一些 devServer 相关的中间件开发的。在这种方式下， 各种中间件直接暴露出来了，我们可以灵活配置各个中间件的选项。
+3. `express` + `webpack devServer 相关中间件`，实际上 `webpack-dev-server` 就是使用 `express` 以及一些 devServer 相关的中间件开发的。在这种方式下，各种中间件直接暴露出来了，我们可以灵活配置各个中间件的选项。
 4. `koa` + `webpack devServer 相关中间件`，我在 github 上还真的搜到了和 webpack devServer 相关的 webpack 中间件。其实 webpack devServer 就是一个 node server 嘛，用什么框架技术实现不重要，能实现我们需要的功能就行。
 
 我最终采用 `express` + `webpack devServer 相关中间件`的方式，为什么不选择用 `koa` ？因为我觉得官方用的就是 `express`，用 `express` 肯定要比 `koa` 更成熟稳定，坑要少一些。
@@ -170,7 +170,7 @@ export default function plus(...nums: number[]) {
 
 #### 编译 TypeScript
 
-我们知道 webpack 默认的模块化系统只支持 js 文件，对于其它类型的文件如 jsx, ts, tsx, vue 以及图片字体等文件类型，我们需要安装对应的 loader。对于 ts 文件，目前存在比较流行的方案有三种:
+我们知道 webpack 默认的模块化系统只支持 js 文件，对于其它类型的文件如 jsx, ts, tsx, vue 以及图片字体等文件类型，我们需要安装对应的 loader。对于 ts 文件，目前存在比较流行的方案有三种：
 
 1. babel + [@babel/preset-typescript](https://babeljs.io/docs/en/babel-preset-typescript)
 
@@ -280,7 +280,7 @@ const commonConfig: Configuration = {
     hashSalt: projectName || 'react typescript boilerplate',
   },
   resolve: {
-    // 我们导入ts 等模块一般不写后缀名，webpack 会尝试使用这个数组提供的后缀名去导入
+    // 我们导入 ts 等模块一般不写后缀名，webpack 会尝试使用这个数组提供的后缀名去导入
     extensions: ['.ts', '.tsx', '.js', '.json'],
   },
   module: {
@@ -315,9 +315,9 @@ ypes/webpack-dev-middleware @types/webpack-hot-middleware -D
 2. 如果文件被修改了，会延迟服务器的请求直到编译完成
 3. 配合 [webpack-hot-middleware](https://github.com/webpack-contrib/webpack-hot-middleware) 实现热更新功能
 
-[webpack-hot-middleware](https://github.com/webpack-contrib/webpack-hot-middleware) 这个 express 中间件会将自己注册为一个 webpack 插件，监听 webpack 的编译事件。 你哪个 entry 需要实现热更新，就要在那个 entry 中导入这个插件提供的 `webpack-hot-middleware/client.js` 客户端补丁。这个前端代码会获取 devServer 的 [Server Sent Events](http://www.html5rocks.com/en/tutorials/eventsource/basics/) 连接，当有编译事件发生，devServer 会发布通知给这个客户端。客户端接受到通知后，会通过比对 hash 值判断本地代码是不是最新的，如果不是就会向 devServer 拉取更新补丁借助一些其它的工具例如 [react-hot-loader](https://github.com/gaearon/react-hot-loader) 实现热更新。
+[webpack-hot-middleware](https://github.com/webpack-contrib/webpack-hot-middleware) 这个 express 中间件会将自己注册为一个 webpack 插件，监听 webpack 的编译事件。你哪个 entry 需要实现热更新，就要在那个 entry 中导入这个插件提供的 `webpack-hot-middleware/client.js` 客户端补丁。这个前端代码会获取 devServer 的 [Server Sent Events](http://www.html5rocks.com/en/tutorials/eventsource/basics/) 连接，当有编译事件发生，devServer 会发布通知给这个客户端。客户端接受到通知后，会通过比对 hash 值判断本地代码是不是最新的，如果不是就会向 devServer 拉取更新补丁借助一些其它的工具例如 [react-hot-loader](https://github.com/gaearon/react-hot-loader) 实现热更新。
 
-下面是我另外一个还在开发的 electron 项目修改了一行代码后， client 补丁发送的两次请求：
+下面是我另外一个还在开发的 electron 项目修改了一行代码后，client 补丁发送的两次请求：
 
 ![hash](https://i.loli.net/2020/02/16/QS1lFJt7fbIYEcG.png)
 
@@ -393,7 +393,7 @@ function setupMiddlewares(compiler: Compiler, server: Express) {
 
 async function start() {
     const HOST = '127.0.0.1';
-    // 4个备选端口，都被占用会使用随机端口
+    // 4 个备选端口，都被占用会使用随机端口
     const PORT = await getPort({ port: [3000, 4000, 8080, 8888] });
     const address = `http://${HOST}:${PORT}`;
 
@@ -477,7 +477,7 @@ const proxyTable: ProxyTable = {
     '/path_to_be_proxy': { target: 'http://target.domain.com', changeOrigin: true },
 };
 
-// 修饰链接的辅助函数, 修改颜色并添加下划线
+// 修饰链接的辅助函数，修改颜色并添加下划线
 function renderLink(str: string) {
     return chalk.magenta.underline(str);
 }
@@ -561,7 +561,7 @@ new webpack.ProgressPlugin(handler);
 
 ![progress-bar-webpack-plugin](https://camo.githubusercontent.com/cb9c82719765ad966a2771f084175c9ec935124e/687474703a2f2f692e696d6775722e636f6d2f4f495031676e6a2e676966)
 
-这个插件其实还是挺简洁实用的，但是有个 bug ，如果在打印进度条的时候输出了其它语句，进度条就会错位，我们的 devServer 会在启动后会输出地址：
+这个插件其实还是挺简洁实用的，但是有个 bug，如果在打印进度条的时候输出了其它语句，进度条就会错位，我们的 devServer 会在启动后会输出地址：
 
 ```javascript
 console.log(`DevServer is running at ${chalk.magenta.underline(address)} ${logSymbols.success}`);
@@ -571,7 +571,7 @@ console.log(`DevServer is running at ${chalk.magenta.underline(address)} ${logSy
 
 ![progress-bar-webpack-plugin](https://i.loli.net/2020/02/16/MvEgi4sw7WkjbnT.png)
 
-`webpackbar` 是 nuxt project 下的库，背靠 [nuxt](https://github.com/nuxt)，质量绝对有保证。我之前有段时间用的是 `progress-bar-webpack-plugin`，因为我在 npm 官网搜索 `webpack progress`，综合看下来就它比较靠谱，`webpackbar` 都没搜出来。 看了下 `webpackbar` 的 `package.json`，果然 `keywords` 都是空的。`webpackBar` 还是我在研究 `ant design` 的 webpack 配置看到它用了这个插件，才发现了这个宝藏：
+`webpackbar` 是 nuxt project 下的库，背靠 [nuxt](https://github.com/nuxt)，质量绝对有保证。我之前有段时间用的是 `progress-bar-webpack-plugin`，因为我在 npm 官网搜索 `webpack progress`，综合看下来就它比较靠谱，`webpackbar` 都没搜出来。看了下 `webpackbar` 的 `package.json`，果然 `keywords` 都是空的。`webpackBar` 还是我在研究 `ant design` 的 webpack 配置看到它用了这个插件，才发现了这个宝藏：
 
 ![webpackbar](https://i.loli.net/2020/02/19/MGDZLJBcK2yToN6.png)
 
@@ -634,7 +634,7 @@ import WebpackBuildNotifierPlugin from 'webpack-build-notifier';
 
 const commonConfig: Configuration = {
   plugins: [
-    // suppressSuccess: true 设置只在第一次编译成功时输出成功的通知, rebuild 成功的时候不通知
+    // suppressSuccess: true 设置只在第一次编译成功时输出成功的通知，rebuild 成功的时候不通知
     new WebpackBuildNotifierPlugin({ suppressSuccess: true }),
   ],
 };

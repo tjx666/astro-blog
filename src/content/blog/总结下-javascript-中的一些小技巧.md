@@ -8,13 +8,13 @@ author: 余腾靖
 pubDatetime: 2019-04-03 19:19:00
 ---
 
-这篇文章主要记录一下平时自己实践得到的, 博客中学习的以及在一些项目源码中看到的 javascript 技巧。有些东西可以说是奇淫技巧，有些可能是 ES6+ 中一些比较具有实用性的新语法。
+这篇文章主要记录一下平时自己实践得到的，博客中学习的以及在一些项目源码中看到的 javascript 技巧。有些东西可以说是奇淫技巧，有些可能是 ES6+ 中一些比较具有实用性的新语法。
 
 <!-- more -->
 
 ### && 和 || 的妙用
 
-有时候我们需要在某个函数或变量为 true 时执行另外一个函数。例如:
+有时候我们需要在某个函数或变量为 true 时执行另外一个函数。例如：
 
 ```javascript
 const task1 = () => {
@@ -26,13 +26,13 @@ const task2 = () => console.log('task1 执行成功后执行 task2');
 if (task1()) task2();
 ```
 
-上面的 if 语句可以使用 `&&` 直接简写为:
+上面的 if 语句可以使用 `&&` 直接简写为：
 
 ```javascript
 task1() && task2();
 ```
 
-如果还要在 task1 失败(也就是 task1 返回 false)后执行 task3, 可以使用:
+如果还要在 task1 失败 (也就是 task1 返回 false) 后执行 task3, 可以使用：
 
 ```javascript
 const task3 = () => console.log('task1 执行失败后执行 task3');
@@ -41,7 +41,7 @@ const task3 = () => console.log('task1 执行失败后执行 task3');
 
 本质上还是利用了 `&&` 和 `||` 的短路特性。
 
-其实这里使用条件运算符也是可以的:
+其实这里使用条件运算符也是可以的：
 
 ```javascript
 task1() ? task2() : task3();
@@ -86,7 +86,7 @@ const pow = (x, y) => {
 console.log(pow(2)); // => 4
 console.log(pow(2, 3)); // => 8
 
-// 当 y 传值为 0 时, y 取值 2
+// 当 y 传值为 0 时，y 取值 2
 console.log(pow(2, 0)); // => 4
 ```
 
@@ -175,11 +175,11 @@ func('Google', 'facebook', 'Microsoft'); // [ 'Google', 'facebook', 'Microsoft' 
 这里就直接给出我觉得最好的方法了
 
 ```javascript
-// 输出 2 开始连续的8个整数
+// 输出 2 开始连续的 8 个整数
 const array = Array.from({ length: 8 }).map((ele, index) => index + 2);
 console.log(array); // => [ 2, 3, 4, 5, 6, 7, 8, 9 ]
 
-// 评论区指出有更简洁的版本, Array.from 自带的映射函数
+// 评论区指出有更简洁的版本，Array.from 自带的映射函数
 const array = Array.from({ length: 8 }, (ele, index) => index + 2);
 console.log(array); // => [ 2, 3, 4, 5, 6, 7, 8, 9 ]
 
@@ -192,7 +192,7 @@ const array = [...Array(8).keys()].map((ele, index) => index + 2);
 函数参数比较多的时候我们往往会让参数直接接受一个配置对象。但是使用对象参数我们无法设置默认值，在函数体中使用对象参数时还需要使用通过对象参数来访问，当访问次数比较多或者嵌套比较深就会觉得不方便。在函数参数中使用解构赋值就解决了上面的问题。
 
 ```javascript
-// 必须给对象参数设置默认值, 不然传参数时因为没有解构对象会报错
+// 必须给对象参数设置默认值，不然传参数时因为没有解构对象会报错
 const getUsers = ({ offset = 0, limit = 1, orderBy = 'salary' } = {}) => {
   // 根据条件查询数据库返回用户数据
   console.log({ offset, limit, orderBy });
@@ -291,7 +291,7 @@ speak: speak() {
 
 ### 清空数组的最快方法
 
-评论区有人说这种直接修改 `length` 的做法是有问题的, 我之前也看过关于清空数组的方法的讨论, 但是我觉得一般情况下这样用是没什么问题的, 既简单, 又不用重新分配内存给新数组。
+评论区有人说这种直接修改 `length` 的做法是有问题的，我之前也看过关于清空数组的方法的讨论，但是我觉得一般情况下这样用是没什么问题的，既简单，又不用重新分配内存给新数组。
 
 ```javascript
 const array = [1, 2, 3, 4];
@@ -462,7 +462,7 @@ console.log(Math.random().toString(36).substring(2)); // 11位 => zwcx1yewjvj
 
 ### 扁平化数组
 
-ES 2019 新增了 Array.prototype.flat，目前 chrome 最新正式版 73.0.3683.103 已经支持了, node 最新的 LTS 10.15.3 还不支持, node 最新开发版 11.13.0 是支持的。这里贴一个在掘金一个兄弟面经里面看到的比较 hack 的方法，这里要注意根据情况做类型转换。
+ES 2019 新增了 Array.prototype.flat，目前 chrome 最新正式版 73.0.3683.103 已经支持了，node 最新的 LTS 10.15.3 还不支持，node 最新开发版 11.13.0 是支持的。这里贴一个在掘金一个兄弟面经里面看到的比较 hack 的方法，这里要注意根据情况做类型转换。
 
 ```javascript
 const array = [1, [2, [3, 4], 5], 6, 7];

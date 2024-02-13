@@ -129,8 +129,8 @@ VSCode 提供的命令很多时候是满足对称性的，例如 <kbd>⌘</kbd>+
 
 - <kbd>→</kbd> 是向右移动一个字符，<kbd>⇧</kbd>+<kbd>→</kbd> 可以向右选中下一个字符
 - <kbd>↑</kbd> 是向上移动一行，<kbd>⇧</kbd>+<kbd>↑</kbd> 就是向上选中一行
-- <kbd>⌥</kbd>+<kbd>→</kbd> 是向右移动到词尾, <kbd>⇧</kbd>+<kbd>⌥</kbd>+<kbd>→</kbd> 就是选中光标当前位置到下一个词尾
-- <kbd>^</kbd>+<kbd>⌥</kbd>+<kbd>→</kbd> 是向右移动到单词的下一部分, <kbd>⇧</kbd>+<kbd>^</kbd>+<kbd>⌥</kbd>+<kbd>→</kbd> 就是向右选中单词的一部分
+- <kbd>⌥</kbd>+<kbd>→</kbd> 是向右移动到词尾，<kbd>⇧</kbd>+<kbd>⌥</kbd>+<kbd>→</kbd> 就是选中光标当前位置到下一个词尾
+- <kbd>^</kbd>+<kbd>⌥</kbd>+<kbd>→</kbd> 是向右移动到单词的下一部分，<kbd>⇧</kbd>+<kbd>^</kbd>+<kbd>⌥</kbd>+<kbd>→</kbd> 就是向右选中单词的一部分
 
 ![向右选中一个单词](https://s1.ax1x.com/2022/03/27/qB89BD.gif)
 
@@ -168,7 +168,7 @@ Mac 上 <kbd>⌘</kbd>+<kbd>→</kbd> 表示 `End` 键，<kbd>⌘</kbd>+<kbd>←
 
 - cmd + k 用于组合复杂的快捷键，例如 cmd + k, cmd + s 是快捷键表
 
-- 和面板相关的快捷键都是 cmd + shift + xxx，例如 cmd + shift + e 是打开文件列表面板， cmd + shift + d 是 debug 面板的，cmd + shift + f 是打开搜索搜索面板的，cmd + shift + j 是新建 terminal 的， cmd + shift + m 是打开问题面板的，cmd + shift + u 是打开 output 面板的，cmd + shift + y 是打开 debug output 面板的
+- 和面板相关的快捷键都是 cmd + shift + xxx，例如 cmd + shift + e 是打开文件列表面板，cmd + shift + d 是 debug 面板的，cmd + shift + f 是打开搜索搜索面板的，cmd + shift + j 是新建 terminal 的，cmd + shift + m 是打开问题面板的，cmd + shift + u 是打开 output 面板的，cmd + shift + y 是打开 debug output 面板的
 
 有没有想过为什么 cmd + k, cmd + s 是打开快捷键表的快捷键？k 就是 key，s 就是 shortcut。
 
@@ -186,10 +186,10 @@ d 就是 debug，f 就是 find，这也是为什么英文软件尽量不用汉�
 
 VSCode 内置的有下面几个，以单词 `letterCase` 举例，转换结果分别为：
 
-- Transform to Uppercase：`LETTERCASE`
-- Transform to Lowercase：`lettercase`
-- Transform to Title Case：`LetterCase`
-- Transform to Snake Case：`letter_case`
+- Transform to Uppercase:`LETTERCASE`
+- Transform to Lowercase:`lettercase`
+- Transform to Title Case:`LetterCase`
+- Transform to Snake Case:`letter_case`
 
 搜索 `transform to` 就可以找到所有文本转换命令了
 
@@ -356,7 +356,7 @@ VSCode 作为编辑器界的新生代王者，集百家之众长，除了多光�
 - F2 重命名符号，批量替换变量名可以的话就不要用多光标编辑，重命名符号更安全
 - 替换所有，有跨文件的和 tab 内的，如果你只是想要替换文本，也许直接用 VSCode 替换文本功能会简单和安全，对于复杂的文本你可以使用正则搜索
 - Snippets，曾经在 twitter 看到有人发帖说写了一下午的 react 组件，结果人家一个 snippet 就整完了
-- Code Actions On Save，在保存文件的时候自动添加缺失的 imports，格式化， lint 的 auto fix 等
+- Code Actions On Save，在保存文件的时候自动添加缺失的 imports，格式化，lint 的 auto fix 等
 - auto fix 和 fix all，如果你用了自动保存就不能用 Code Actions On Save 了，不过你可以手动调用 lsp 或者 lint 扩展提供的自动修复和修复所有命令
 - 各种格式化扩展，例如使用 prettier 格式化代码风格，[JS/TS Import/Export Sorter](https://marketplace.visualstudio.com/items?itemName=dozerg.tsimportsorter) 格式化 imports
 

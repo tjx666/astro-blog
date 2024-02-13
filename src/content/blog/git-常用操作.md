@@ -86,7 +86,7 @@ $ ssh-keygen -b 2048 -t rsa -C 'ytj2713151713@gmail.com'
 git init
 ```
 
-初始化仓库后会在当前文件夹生成一个 `.git` 文件夹，这个文件夹就是用来存放了整个仓库的版本信息。`.git` 文件夹就是本地仓库(local repository)，项目根目录叫工作目录(working directory)
+初始化仓库后会在当前文件夹生成一个 `.git` 文件夹，这个文件夹就是用来存放了整个仓库的版本信息。`.git` 文件夹就是本地仓库 (local repository)，项目根目录叫工作目录 (working directory)
 
 ### 添加修改到暂存区
 

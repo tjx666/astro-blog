@@ -138,7 +138,7 @@ modDatetime: 2023-10-22
 - [QQ](https://im.qq.com/macqq/index.shtml) 某些人只有 QQ 联系方式
 - [Silicon](https://github.com/DigiDNA/Silicon) 查看已经安装的软件哪些是 intel 芯片的哪些是 arm 的
 - [ScreenFlow](https://www.macw.com/mac/3537.html) 录屏工具
-- [Sourcetree](https://www.sourcetreeapp.com/) 其实 VSCode 内置的 Source Control + Gitlens（我是付费用户） 对我来说已经完全够用。
+- [Sourcetree](https://www.sourcetreeapp.com/) 其实 VSCode 内置的 Source Control + Gitlens（我是付费用户）对我来说已经完全够用。
 - [stats](https://github.com/exelban/stats) 有些系统参数还是得用它来看
 - [Telegram](https://macos.telegram.org/) 一些隐私要求比较高的场景需要用它
 - [Unarchiver](https://theunarchiver.com/) 解压工具
@@ -152,7 +152,7 @@ modDatetime: 2023-10-22
 ## 安装字体
 
 - [Fira Code](https://github.com/tonsky/FiraCode) 代码字体
-- [Meslo Nerd Font](https://github.com/romkatv/powerlevel10k#meslo-nerd-font-patched-for-powerlevel10k) 终端字体, 支持显示各种图标，这个后面配置 powerlevel10k 的时候就会自动安装
+- [Meslo Nerd Font](https://github.com/romkatv/powerlevel10k#meslo-nerd-font-patched-for-powerlevel10k) 终端字体，支持显示各种图标，这个后面配置 powerlevel10k 的时候就会自动安装
 - [霞鹜文楷](https://github.com/lxgw/LxgwWenKai)
 
 ## 开发环境配置
@@ -423,7 +423,7 @@ clash-speedtest  github-compare   go-global-update
 
 ### 按键速率
 
-系统设置 -> 键盘:
+系统设置 -> 键盘：
 
 - 键重复速率 拉到最右边，最快
 - 重复前的延迟 拉到右边第二个，第二短

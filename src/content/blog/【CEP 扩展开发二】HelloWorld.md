@@ -366,7 +366,7 @@ CEP 插件的代码按照职责可以分为两部分：
   function getCurrentLayerName() {
     // 没有打开的文档返回 null
     if (app.documents.length === 0) return null;
-    // activeDocument 为当前打开的文档， activeLayer 为当前选中的图层
+    // activeDocument 为当前打开的文档，activeLayer 为当前选中的图层
     var currentLayer = activeDocument.activeLayer;
     return currentLayer ? currentLayer.name : null;
   }

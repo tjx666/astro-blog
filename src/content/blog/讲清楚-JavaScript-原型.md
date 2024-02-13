@@ -4,7 +4,7 @@ author: 余腾靖
 pubDatetime: 2020-01-28
 ---
 
-记得以前知乎上看到过一个问题：[面试一个 5 年的前端，却连**原型链**也搞不清楚，满口都是 Vue，React 之类的实现，这样的人该用吗？](https://www.zhihu.com/question/60165921) 。写文章的时候又回去看了下这个问题，300 多个回答，有很多大佬都回答了这个问题，说明这个问题还是挺受关注的。最近几年，随着 ES6 ，TypeScript 及类似的中间语言的流行，我们平时做业务开发很少能接触到原型，基本上都是用 ES6 class 来去更简单的，更直观的实现以前构造器加原型做的事情。
+记得以前知乎上看到过一个问题：[面试一个 5 年的前端，却连**原型链**也搞不清楚，满口都是 Vue，React 之类的实现，这样的人该用吗？](https://www.zhihu.com/question/60165921) 。写文章的时候又回去看了下这个问题，300 多个回答，有很多大佬都回答了这个问题，说明这个问题还是挺受关注的。最近几年，随着 ES6，TypeScript 及类似的中间语言的流行，我们平时做业务开发很少能接触到原型，基本上都是用 ES6 class 来去更简单的，更直观的实现以前构造器加原型做的事情。
 
 其实在我看来，我觉得原型链是一个非常重要的基础知识。如果一个人说他 C 语言很精通，但是他汇编不熟，你信吗？我觉得 winter 说的挺简洁到位的：
 
@@ -76,7 +76,7 @@ console.log(Object.isExtensible(frozenObj)); // => false
 frozenObj.__proto__ = null; // => TypeError: #<Object> is not extensible
 ```
 
-如果一个对象的 `__proto__` 被赋值为 null，这种情况比较复杂，看下面的测试，你可能会觉得很匪夷所思:
+如果一个对象的 `__proto__` 被赋值为 null，这种情况比较复杂，看下面的测试，你可能会觉得很匪夷所思：
 
 ```javascript
 const obj = { name: 'xiaoming' };
@@ -105,7 +105,7 @@ console.log(obj.__proto__); // => { a: 1 }
 console.log(Reflect.getPrototypeOf(obj)); // => { b: 2 }
 ```
 
-其实 `__proto__` 是个定义在 `Object.prototype` 上的访问器属性, 也就是使用`getter` 和 `setter` 定义的属性，通过 `__proto__` 的 `getter` 我们可以获取到对象的`[[Prototype]]`，也就是原型。下面是我模拟的 `__proto__` 行为的代码，注意看下面代码中被设置为 null 的情况：
+其实 `__proto__` 是个定义在 `Object.prototype` 上的访问器属性，也就是使用`getter` 和 `setter` 定义的属性，通过 `__proto__` 的 `getter` 我们可以获取到对象的`[[Prototype]]`，也就是原型。下面是我模拟的 `__proto__` 行为的代码，注意看下面代码中被设置为 null 的情况：
 
 ```javascript
 const weakMap = new WeakMap();
@@ -245,12 +245,12 @@ function Engineer(workingYears) {
 // 不能使用箭头函数，箭头函数的 this 在声明的时候就根据上下文确定了
 Engineer.prototype.built = function () {
   // this 这里就是执行函数调用者
-  console.log(`我已经工作 ${this.workingYears} 年了, 我的工作是拧螺丝...`);
+  console.log(`我已经工作 ${this.workingYears} 年了，我的工作是拧螺丝...`);
 };
 
 const engineer = new Engineer(5);
 // this 会正确指向实例，所以 this.workingYears 是 5
-engineer.built(); // => 我已经工作 5 年了, 我的工作是拧螺丝...
+engineer.built(); // => 我已经工作 5 年了，我的工作是拧螺丝...
 console.log(Object.keys(engineer)); // => [ 'workingYears' ]
 ```
 
@@ -276,7 +276,7 @@ console.log(Object.keys(new Func())); // => []
 function Engineer(workingYears) {
   this.workingYears = workingYears;
   this.built = function () {
-    console.log(`我已经工作 ${this.workingYears} 年了, 我的工作是拧螺丝...`);
+    console.log(`我已经工作 ${this.workingYears} 年了，我的工作是拧螺丝...`);
   };
 }
 
@@ -292,7 +292,7 @@ console.log(Object.keys(engineer)); // => [ 'workingYears', 'built' ]
 
 ### ES6 class
 
-其实，**ES6 class 就是构造器的语法糖**。 我们来看一下 babel 将 ES6 class 编译成了啥：
+其实，**ES6 class 就是构造器的语法糖**。我们来看一下 babel 将 ES6 class 编译成了啥：
 
 原代码：
 
@@ -342,13 +342,13 @@ var Circle = (function () {
 })();
 ```
 
-一看就明白了， ES6 的 class 就是构造器，class 上的方法定义在构造器的 prototype 上。
+一看就明白了，ES6 的 class 就是构造器，class 上的方法定义在构造器的 prototype 上。
 
 ### extends 继承
 
 我们再来看一下使用 `extends` 继承时是怎样转换的。
 
-原代码:
+原代码：
 
 ```javascript
 class Shape {
@@ -585,7 +585,7 @@ console.log(instanceOf(a, A)); // => true
 
 ## 原型污染
 
-在去年 2019 年秋天我还在国内某大厂实习的时候，lodash 爆出了一个严重的安全漏洞：[Lodash 库爆出严重安全漏洞，波及 400 万+项目](https://mp.weixin.qq.com/s/tfZq2PZylGfMjOp8h8eeTw)。这个安全漏洞就是由于**原型污染**导致的。
+在去年 2019 年秋天我还在国内某大厂实习的时候，lodash 爆出了一个严重的安全漏洞：[Lodash 库爆出严重安全漏洞，波及 400 万 + 项目](https://mp.weixin.qq.com/s/tfZq2PZylGfMjOp8h8eeTw)。这个安全漏洞就是由于**原型污染**导致的。
 
 原型污染指的是：
 
@@ -689,7 +689,7 @@ curl -vv --header 'Content-type: application/json' -d '{"__proto__": {"admin": 1
 curl -vv 'http://127.0.0.1/getFlag'
 ```
 
-首先请求 `/signup` 接口，在 NodeJS 服务中，我们调用了有漏洞的 `merge` 方法，并通过 `__proto__` 为 `Object.prototype`（因为 `{}.__proto__ === Object.prototype`） 添加上一个新的属性 `admin`，且值为 1。
+首先请求 `/signup` 接口，在 NodeJS 服务中，我们调用了有漏洞的 `merge` 方法，并通过 `__proto__` 为 `Object.prototype`（因为 `{}.__proto__ === Object.prototype`）添加上一个新的属性 `admin`，且值为 1。
 
 再次请求 `getFlag` 接口，访问了 Object 原型上的`admin`，条件语句 `admin.аdmin == 1` 为 `true`，服务被攻击。
 

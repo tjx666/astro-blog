@@ -14,7 +14,7 @@ featured: true
 - commonjs 使用 require 来导入，exports.xxx 来导出
 - esm 使用 import/export，使用 import('xxx') 来动态导入模块
 
-而**模块解析策略**（ moduleResolution）更多描述的是一个模块包括相对路径以及非相对路径（也就是第三方库，亦或者说 npm 包）是按照怎样的规则去查找的。相对路径没什么复杂的，不做讨论，本文主要聊聊第三方库的解析。
+而**模块解析策略**（moduleResolution）更多描述的是一个模块包括相对路径以及非相对路径（也就是第三方库，亦或者说 npm 包）是按照怎样的规则去查找的。相对路径没什么复杂的，不做讨论，本文主要聊聊第三方库的解析。
 
 我们最熟悉的模块解析策略其实是 nodejs 的模块解析策略。第一次了解到还有别的模块解析策略还是在我刚学习 `typescript` 的时候。模块解析策略可以使用 `tsconfig.json` 的 `moduleResolution` 选项来配置，最早只支持两个值：`classic` 和 `node`。`node` 策略在 `typescript` 中又称之为`node10` 的解析策略。
 
@@ -223,7 +223,7 @@ const add = require('lodash/src/add');
   - 首先 `types` 和另一个字段`type` 很接近，容易拼错。
   - 另外，我们 ts 项目里面的 .d.ts 一般也放 `typings` 文件夹
   - `ts-node` 查找 .d.ts 默认也只找 `typings` 目录。
-- `unpkg`： 和 `jsdeliver`, `cdn`, `browser` 字段一样都是给 cdn 厂家用的，细节可以参考这个 issue: [[What about `cdn` entry?](https://github.com/stereobooster/package.json/issues/14#top)](https://github.com/stereobooster/package.json/issues/14)
+- `unpkg`：和 `jsdeliver`, `cdn`, `browser` 字段一样都是给 cdn 厂家用的，细节可以参考这个 issue: [[What about `cdn` entry?](https://github.com/stereobooster/package.json/issues/14#top)](https://github.com/stereobooster/package.json/issues/14)
 
 ### vite 如何选择模块入口
 
@@ -580,7 +580,7 @@ import 'xxx/forbidden';
 
 #### 优先级
 
-如果 `exports` 映射左侧的多个 pattern 都能匹配当前导入模块，最终会选择哪个呢?
+如果 `exports` 映射左侧的多个 pattern 都能匹配当前导入模块，最终会选择哪个呢？
 
 当 package.json 为：
 

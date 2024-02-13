@@ -14,7 +14,7 @@ modDatetime: 2022-08-14
 
 在开启了 CEP 的 debug 模式后，我们便可以在不签名的情况下加载 CEP 插件。如果需要 debug 浏览器环境的代码或者查看网页的 DOM 元素，首先要做的便是配置 .debug 文件。
 
-在 CEP 项目的根路径增加 .debug 文件。这是一个 xml 格式的文件，需要注意的是虽然是 xml 格式，但是**不能使用注释语法**。之前我就踩过这个坑，查了半天才发现之所以没法 debug 居然是因为我在 xml 文件里用了注释语法...。 在添加完 .debug 文件后记得先关闭面板再重新打开面板让 ps 加载 .debug 文件。
+在 CEP 项目的根路径增加 .debug 文件。这是一个 xml 格式的文件，需要注意的是虽然是 xml 格式，但是**不能使用注释语法**。之前我就踩过这个坑，查了半天才发现之所以没法 debug 居然是因为我在 xml 文件里用了注释语法...。在添加完 .debug 文件后记得先关闭面板再重新打开面板让 ps 加载 .debug 文件。
 
 ```xml
 <!-- !!! 拷贝这段代码去用的时候记得删掉所有注释 -->
@@ -120,7 +120,7 @@ $.level = isProduction ? 0 : 2;
       // 指定执行的入口文件为当前打开的文件
       // 查看所有的 VSCode 变量：https://code.visualstudio.com/docs/editor/variables-reference#_predefined-variables
       "script": "${file}",
-      // 在 debug variables panel 中隐藏函数属性(包括操作符重载)，内建属性（包括 arguments）
+      // 在 debug variables panel 中隐藏函数属性 (包括操作符重载)，内建属性（包括 arguments）
       "hiddenTypes": ["Function", "builtin"]
     },
     {

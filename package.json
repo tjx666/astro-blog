@@ -4,6 +4,9 @@
     "version": "4.2.0",
     "prettier": "@yutengjing/prettier-config",
     "lint-staged": {
+        "*.md": [
+            "autocorrect --lint"
+        ],
         "*.{js,jsx,ts,tsx,md,mdx,json,astro}": [
             "prettier --write"
         ]
@@ -20,7 +23,9 @@
         "sync": "astro sync",
         "astro": "astro",
         "lint:eslint": "eslint .",
-        "lint:prettier": "prettier . --check",
+        "lint:typo": "autocorrect --lint src/content/blog/*.md",
+        "lint:format": "prettier . --check",
+        "autocorrect": "autocorrect --fix src/content/blog/*.md",
         "format": "prettier --write ."
     },
     "dependencies": {
@@ -46,6 +51,7 @@
         "@yutengjing/eslint-config-typescript": "^0.5.2",
         "@yutengjing/prettier-config": "^1.1.0",
         "astro-eslint-parser": "^0.16.3",
+        "autocorrect-node": "^2.9.0",
         "commitizen": "^4.3.0",
         "cz-conventional-changelog": "^3.3.0",
         "eslint": "^8.56.0",

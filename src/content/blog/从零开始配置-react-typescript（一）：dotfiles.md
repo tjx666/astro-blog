@@ -43,7 +43,7 @@ git init
 
 你可以将 `react-typescript-boilerplate` 替换成任意你需要的项目名，`$_` 表示上一条命令最后的参数，这里就表示项目文件夹。
 
-对于 `dotfiles` 这个词， 我的理解是指那些以点 `.` 开头的配置文件。在我刚开始学习前端框架的时候，看到脚手架生成的一堆 `dotfiles` 我也是很懵逼，头皮发麻，心想怎么写个项目要这么多配置文件，写个前端项目也太麻烦了。其实**存在即合理**，当我了解了它们的用途之后，就能够理解它们的必要性了，而且配置文件很多从某种程度上也反应了前端构建工具生态的活跃不是。
+对于 `dotfiles` 这个词，我的理解是指那些以点 `.` 开头的配置文件。在我刚开始学习前端框架的时候，看到脚手架生成的一堆 `dotfiles` 我也是很懵逼，头皮发麻，心想怎么写个项目要这么多配置文件，写个前端项目也太麻烦了。其实**存在即合理**，当我了解了它们的用途之后，就能够理解它们的必要性了，而且配置文件很多从某种程度上也反应了前端构建工具生态的活跃不是。
 
 ## .gitignore
 
@@ -119,7 +119,7 @@ npm i -g nrm
 nrm use taobao
 ```
 
-通过 `nrm ls` 我们还可以看到其它的一些源:
+通过 `nrm ls` 我们还可以看到其它的一些源：
 
 ```bash
 $ nrm ls
@@ -152,7 +152,7 @@ SASS_BINARY_SITE=http://npm.taobao.org/mirrors/node-sass
 
 ![open source license](https://i.loli.net/2020/02/05/Fb7OUkWmYfIiHyX.png)
 
-根据你的项目性质，去网站 [choose a license](http://choosealicense.online/) 选择一个合适的 license， 复制后粘贴到项目根路径的 `LICENSE` 或 `LICENSE.txt` 文件里面，修改一些配置即可。这里我选择宽松的 MIT 协议，修改其中的年份和作者名：
+根据你的项目性质，去网站 [choose a license](http://choosealicense.online/) 选择一个合适的 license，复制后粘贴到项目根路径的 `LICENSE` 或 `LICENSE.txt` 文件里面，修改一些配置即可。这里我选择宽松的 MIT 协议，修改其中的年份和作者名：
 
 ```
 MIT License
@@ -348,7 +348,7 @@ script:
 
 README.md 就是项目的说明书，每个文件夹中的 README.md 在 github 上都会被渲染到页面上。我们在项目根目录添加的 README.md 自然就会被渲染到仓库的首页。
 
-我们添加一些实用的 badges（徽章），例如 travis CI 的 build 状态，dependencies 版本是否过期等 。badge 本质上就是一个链接，只不过文字部分换成了 svg 渲染的图片，我们可以在网站 [shields.io](https://shields.io/) 上找到各种各样的 badge，平时逛 github 项目的时候看到喜欢的 badge 可用注意收藏一下。
+我们添加一些实用的 badges（徽章），例如 travis CI 的 build 状态，dependencies 版本是否过期等。badge 本质上就是一个链接，只不过文字部分换成了 svg 渲染的图片，我们可以在网站 [shields.io](https://shields.io/) 上找到各种各样的 badge，平时逛 github 项目的时候看到喜欢的 badge 可用注意收藏一下。
 
 ![badge-format.png](https://i.loli.net/2020/02/02/yw7oPEIR59zC2hr.png)
 

@@ -15,7 +15,7 @@ pubDatetime: 2022-03-20
 
 ![快捷键字符序列](https://s2.loli.net/2022/03/20/rASvYOopwTcxIi6.gif)
 
-可以看到快捷键 `ctrl + ->` 本质上是给 shell 输了字符序列: `^[[1;5C`。
+可以看到快捷键 `ctrl + ->` 本质上是给 shell 输了字符序列：`^[[1;5C`。
 
 ## 自定义 shell 快捷键
 
@@ -84,7 +84,7 @@ OK，这样我们就配置好了 iterm2 使用快捷键 `shift + enter` 直接�
 
 ### VSCode 集成终端自定义快捷键字符序列
 
-查看 VSCode 集成终端的官方文档: [Integrated Terminal in Visual Studio Code](https://code.visualstudio.com/docs/editor/integrated-terminal#_send-text-via-a-keybinding)。我们得知如果配置集成终端将快捷键转换自定义的字符序列需要像下面这样配置快捷键。通过 `cmd + shift + p` 打开命令面板，输入 `open shortcuts json` 打开 VSCode 的快捷键配置文件，添加下面的快捷键配置：
+查看 VSCode 集成终端的官方文档：[Integrated Terminal in Visual Studio Code](https://code.visualstudio.com/docs/editor/integrated-terminal#_send-text-via-a-keybinding)。我们得知如果配置集成终端将快捷键转换自定义的字符序列需要像下面这样配置快捷键。通过 `cmd + shift + p` 打开命令面板，输入 `open shortcuts json` 打开 VSCode 的快捷键配置文件，添加下面的快捷键配置：
 
 ```json
 // keybinding.json

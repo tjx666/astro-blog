@@ -71,7 +71,7 @@ console.log(Math.max(1, 2, 3)); // => 3
 // 现在已知一个很大的元素为随机大小的整数数组
 const bigRandomArray = [...Array(10000).keys()].map((num) => Math.trunc(num * Math.random()));
 
-// 怎样使用 Math.max 获取 bigRandomArray 中的最大值呢？Math.max 接受的是多参数而不是数组参数啊!
+// 怎样使用 Math.max 获取 bigRandomArray 中的最大值呢？Math.max 接受的是多参数而不是数组参数啊！
 // 思考下面的写法
 console.log(Math.max.apply(null, bigRandomArray)); // => 9936
 ```
@@ -130,7 +130,7 @@ console.log(arr1); // [1, 2, 3, 4, 5, 6]
 arr1.push(...arr2);
 ```
 
-所以，忘了这种用法吧（￣︶￣）↗ 　。
+所以，忘了这种用法吧（￣︶￣）↗ 。
 
 ### 将[类数组](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Typed_arrays)转换为数组
 
@@ -405,7 +405,7 @@ const boundFunc = printThisAndAndArgs.myBind({ name: 'Lily' }, 1, 2, 3);
 boundFunc(4, 5, 6); // => This is {"name":"Lily"}, arguments is 1, 2, 3, 4, 5, 6
 ```
 
-按照惯例，上面实现的版本肯定是有些问题的ㄟ( ▔, ▔ )ㄏ。
+按照惯例，上面实现的版本肯定是有些问题的ㄟ ( ▔, ▔ ) ㄏ。
 
 #### new 的实现原理
 
@@ -424,7 +424,7 @@ const BoundStudent2 = Student.myBind({ name: 'Taylor' }, 'ly');
 console.log(new BoundStudent2(22)); // => {}
 ```
 
-可以看到 bind 当返回的函数被使用 new 调用时， thisArg 被忽略，此时 bind 函数的作用只是起到了绑定构造函数参数的作用。当前版本的 myBind 只是返回了一个空对象，没有在返回的实例对象上绑定属性。
+可以看到 bind 当返回的函数被使用 new 调用时，thisArg 被忽略，此时 bind 函数的作用只是起到了绑定构造函数参数的作用。当前版本的 myBind 只是返回了一个空对象，没有在返回的实例对象上绑定属性。
 
 这里补充一下 new 操作符的实现原理。我有一个项目[**javascript-code-lab**](https://github.com/tjx666/javascript-code-lab)上保存我探索原生 js 奥秘的一些代码，有兴趣可以看看。其中我 new 操作符的实现是这样的：
 

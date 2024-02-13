@@ -29,7 +29,7 @@ pubDatetime: 2020-01-15 22:02:00
 
 其实就像 npm 包一样，包含 package.json 文件的文件夹我们就可以将其视为一个 npm 包。这是从静态的角度也就从文件的角度来说的。
 
-从扩展运行时来看，chrome 扩展是一个被 chrome 以 `chrome://` 协议托管的一个静态服务器。当我们访问了 chrome 扩展种的各种资源，其实就是向这个服务器请求了以 `chrome://` 协议头开始的某个 URL 。例如请求 background 页面其实就是访问了下图中 URL 对应的 HTML 文件：
+从扩展运行时来看，chrome 扩展是一个被 chrome 以 `chrome://` 协议托管的一个静态服务器。当我们访问了 chrome 扩展种的各种资源，其实就是向这个服务器请求了以 `chrome://` 协议头开始的某个 URL。例如请求 background 页面其实就是访问了下图中 URL 对应的 HTML 文件：
 
 ![background](https://i.loli.net/2020/01/16/yZc17nGaDwLsKqU.png)
 
@@ -255,7 +255,7 @@ source.addEventListener('compiled-successfully', (event: EventSourceEvent) => {
 
 #### 调用扩展 API reload 扩展，并发送消息给所有注入了 content script 的页面让它们刷新页面
 
-查阅 chrome extension 官方文档，发现官方提供了一个 [reload API](https://developer.chrome.com/extensions/runtime#method-reload) 可以在扩展中直接让扩展重载。在 background 的 webpack entry 数组添加 autoReloadPatch.ts ：
+查阅 chrome extension 官方文档，发现官方提供了一个 [reload API](https://developer.chrome.com/extensions/runtime#method-reload) 可以在扩展中直接让扩展重载。在 background 的 webpack entry 数组添加 autoReloadPatch.ts：
 
 ```typescript
 if (!isProd) {

@@ -34,7 +34,7 @@ chrome 本身很多功能做的非常的简洁，因人而异，可能会满足�
 
 ### [Grammarly for Chrome](https://chrome.google.com/webstore/detail/grammarly-for-chrome/kbfnbcaeplbcioakkpcpgfkobkghlhen)
 
-其实包括很多编辑器和 ide 都有类似的扩展用来纠正英文的拼写错误。当你在网页中的编辑框中编辑文本时，这个扩展能提示你单词的拼写错误，你少了标点符号和混淆单词提示等。妈妈再也不用担心我英语不好老拼错单词了。 高级版功能更多，不过我觉得如果你不是日常英文写作的话标准版就已经够用了。
+其实包括很多编辑器和 ide 都有类似的扩展用来纠正英文的拼写错误。当你在网页中的编辑框中编辑文本时，这个扩展能提示你单词的拼写错误，你少了标点符号和混淆单词提示等。妈妈再也不用担心我英语不好老拼错单词了。高级版功能更多，不过我觉得如果你不是日常英文写作的话标准版就已经够用了。
 
 ![img](https://pic3.zhimg.com/v2-a776c7397092af45bf7fcaae38ec43da_b.png)
 
@@ -46,7 +46,7 @@ chrome 本身很多功能做的非常的简洁，因人而异，可能会满足�
 
 ### [uBlock Origin](https://chrome.google.com/webstore/detail/ublock-origin/cjpalhdlnbpafiamejdnhcphjbkeiagm)
 
-拦截广告的扩展有很多，比较有名的有 Adblock，Adblocks plus，AdGuard， uBlock Origin 等。说实话，我没怎么去深入研究过它们的区别，不好评价它们之间的优缺点。挑一个自己喜欢的安装就行了，安装多个完全没必要，浪费内存还容易起冲突。尤其是我们做前端开发的，很可能会导致我们开发网页出现问题，出现误拦截，解决办法就是加白名单或者直接关了广告拦截插件。感觉自从用了拦截广告的扩展后，浏览网页就没怎么碰到过恶心的广告和弹窗，清爽了不少，实在必备神器啊。
+拦截广告的扩展有很多，比较有名的有 Adblock，Adblocks plus，AdGuard，uBlock Origin 等。说实话，我没怎么去深入研究过它们的区别，不好评价它们之间的优缺点。挑一个自己喜欢的安装就行了，安装多个完全没必要，浪费内存还容易起冲突。尤其是我们做前端开发的，很可能会导致我们开发网页出现问题，出现误拦截，解决办法就是加白名单或者直接关了广告拦截插件。感觉自从用了拦截广告的扩展后，浏览网页就没怎么碰到过恶心的广告和弹窗，清爽了不少，实在必备神器啊。
 
 ![img](https://pic2.zhimg.com/v2-43f1705ab13c3dd0487264dfb0fcbbdd_b.png)
 
@@ -78,9 +78,9 @@ chrome 本身很多功能做的非常的简洁，因人而异，可能会满足�
 
 ### [Quick Tabs](https://chrome.google.com/webstore/detail/quick-tabs/jnjfeinjfmenlddahdjdmgpbokiacbbb) 和 [OneTab](https://chrome.google.com/webstore/detail/onetab/chphlpgkkbolifaimnlloiipkdnihall)
 
-经常看到 PM 同事开几十个 tab 页，tab 页多的只能看到一个网站图标 彡(-\_-;)彡。那么多 tab 页一个一个打开看看是不是自己想看的那个 tab 页效率也太低了。如何你平时也是这样的情况，那么 Quick Tabs 和 OneTab 非常适合你。
+经常看到 PM 同事开几十个 tab 页，tab 页多的只能看到一个网站图标 彡 (-\_-;) 彡。那么多 tab 页一个一个打开看看是不是自己想看的那个 tab 页效率也太低了。如何你平时也是这样的情况，那么 Quick Tabs 和 OneTab 非常适合你。
 
-Quick Tabs 激活搜索框的快捷键是 cmd + e ，作者受 IntelliJ IDEA 启发开发的这款按照最近使用顺序排序，可以搜索和快速切换到你想要打开的扩展。
+Quick Tabs 激活搜索框的快捷键是 cmd + e，作者受 IntelliJ IDEA 启发开发的这款按照最近使用顺序排序，可以搜索和快速切换到你想要打开的扩展。
 
 ![img](https://pic2.zhimg.com/v2-0efe002b694552eaef8e5537d6e4dbad_b.png)
 
@@ -170,7 +170,7 @@ Pinbox 同时是一款强大的生产力工具，利用快捷键，您可以迅�
 
 ### [Online Download Manager](https://chrome.google.com/webstore/detail/online-download-manager/opjjpmhoiojifppkkcdabiobhakljdgm)
 
-如果你还在抱怨 chrome 自带的下载管理太简洁了，那么这款下载管理扩展绝对值得尝试。这款插件除了比自带的下载管理在管理方面功能更丰富，还有一大特色就是资源嗅探，可以嗅探出网页中的图片，视频，音频资源。以前有一款同样非常优秀的下载管理扩展叫 chrono，但是不造为啥 chrome 扩展市场已经搜索不到了(O_O)?
+如果你还在抱怨 chrome 自带的下载管理太简洁了，那么这款下载管理扩展绝对值得尝试。这款插件除了比自带的下载管理在管理方面功能更丰富，还有一大特色就是资源嗅探，可以嗅探出网页中的图片，视频，音频资源。以前有一款同样非常优秀的下载管理扩展叫 chrono，但是不造为啥 chrome 扩展市场已经搜索不到了 (O_O)?
 
 ![img](https://pic3.zhimg.com/v2-9314f73804294bb73879dd040d0f283e_b.png)
 
@@ -196,7 +196,7 @@ Pinbox 同时是一款强大的生产力工具，利用快捷键，您可以迅�
 
 ### [Markdown Here](https://chrome.google.com/webstore/detail/markdown-here/elifhakcjgalahccnjkneoccemfahfoa)
 
-官方描述:
+官方描述：
 
 > \``` Markdown Here 允许你在发送电子邮件之前用 Markdown 语法编辑并转换它(让它看起来漂亮极了!)。 这对于那些不喜欢在撰写电邮时反复摆弄排版按钮的人无疑是好消息。 它特别适合那些要在电子邮件中插入代码的程序员们 —— 没错，它甚至支持语法高亮显示。 对于我们之中的数学家们而言，Markdown Here 也支持转换 TeX 公式。 ```
 
@@ -208,13 +208,13 @@ Pinbox 同时是一款强大的生产力工具，利用快捷键，您可以迅�
 
 ### [Tampermonkey](https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo)
 
-很多网友叫这个扩展叫油猴，本质上是一个管理注入网站的 javascript 脚本的扩展。使用它我们可以自定义某个网站打开时注入的脚本，也可以去一些论坛直接安装别人分享的脚本。油猴搭配 idm 对于治疗百度网盘蜗速有奇效,，比较受欢迎的脚本还有破解会员之类的。推荐脚本源 [greasyfork](https://greasyfork.org/zh-CN), 还有一个显示当前网站所有可用脚本的脚本 [Userscript+](https://greasyfork.org/zh-CN/scripts/24508-userscript-show-site-all-userjs)。
+很多网友叫这个扩展叫油猴，本质上是一个管理注入网站的 javascript 脚本的扩展。使用它我们可以自定义某个网站打开时注入的脚本，也可以去一些论坛直接安装别人分享的脚本。油猴搭配 idm 对于治疗百度网盘蜗速有奇效，，比较受欢迎的脚本还有破解会员之类的。推荐脚本源 [greasyfork](https://greasyfork.org/zh-CN), 还有一个显示当前网站所有可用脚本的脚本 [Userscript+](https://greasyfork.org/zh-CN/scripts/24508-userscript-show-site-all-userjs)。
 
 ### [Stylus](https://chrome.google.com/webstore/detail/stylus/clngdbkpkpeebahjckkjfobafhncgmne)
 
 油猴是用来注入 javascript 脚本的，而这个是用来注入 css 样式的。
 
-### [Infinity 新标签页(Pro)](https://chrome.google.com/webstore/detail/infinity-new-tab-pro/nnnkddnnlpamobajfibfdgfnbcnkgngh)
+### [Infinity 新标签页 (Pro)](https://chrome.google.com/webstore/detail/infinity-new-tab-pro/nnnkddnnlpamobajfibfdgfnbcnkgngh)
 
 这个扩展被太多人推荐过了，所以我也不敢放文章最开头介绍，怕被认为我推荐一堆烂大街的扩展。非常良心的一款新标签页扩展，有很多地方都可以自定义，本文的封面就是这个扩展的普通版。我目前用的是 Pro 版本，Pro 版本目前可以无限期免费使用，良心啊。Pro 版本相比较于普通版自定义项更加丰富，还支持文件夹，动画，屏幕缩放等新功能。
 
@@ -306,15 +306,15 @@ github 代码智能高亮。
 
 > 优雅便捷的 V2EX 扩展
 
-- 帖子会话详细.
-- 帖子列表主题预览.
-- 只看楼主功能.
-- 楼主回复背景色高亮(颜色可自定义).
-- 感谢爱心颜色自定义.
-- 插入表情与图片(weibo 或 imgur).
-- 回复内图片旋转.
-- 一键签到与自动签到.
-- 新消息通知提醒并改变扩展按钮颜色.
+- 帖子会话详细。
+- 帖子列表主题预览。
+- 只看楼主功能。
+- 楼主回复背景色高亮 (颜色可自定义).
+- 感谢爱心颜色自定义。
+- 插入表情与图片 (weibo 或 imgur).
+- 回复内图片旋转。
+- 一键签到与自动签到。
+- 新消息通知提醒并改变扩展按钮颜色。
 
 One more thing... ^-^
 
@@ -330,7 +330,7 @@ One more thing... ^-^
 
 ### [新浪微博图床](https://chrome.google.com/webstore/detail/新浪微博图床/fdfdnfpdplfbbnemmmoklbfjbhecpnhf)
 
-简单好用的新浪微博图床,支持选择/拖拽/粘贴上传图片,并生成图片地址,HTML,UBB 和 Markdown 等格式,支持浏览和删除历史记录
+简单好用的新浪微博图床，支持选择/拖拽/粘贴上传图片，并生成图片地址，HTML,UBB 和 Markdown 等格式，支持浏览和删除历史记录
 
 ### [哔哩哔哩助手：bilibili.com 综合辅助扩展](https://chrome.google.com/webstore/detail/哔哩哔哩助手：bilibilicom-综合辅助扩展/kpbnombpnpcffllnianjibmpadjolanh)
 
@@ -412,7 +412,7 @@ EditThisCookie 是一个 cookie 管理器。您可以添加，删除，编辑，
 
 ![img](https://pic2.zhimg.com/v2-2051037c0a827f6e4e6b74fd89f34a89_b.jpg)
 
-### [WEB 前端助手(FeHelper)](https://chrome.google.com/webstore/detail/web前端助手fehelper/pkgccpejnmalmdinmhkkfafefagiiiad)
+### [WEB 前端助手 (FeHelper)](https://chrome.google.com/webstore/detail/web前端助手fehelper/pkgccpejnmalmdinmhkkfafefagiiiad)
 
 这个就不用介绍了吧，很多开发者都在用，国内开发者开发的一套前端工具集。
 
@@ -503,7 +503,7 @@ EditThisCookie 是一个 cookie 管理器。您可以添加，删除，编辑，
 
 另一个要说的事情是在知乎上我看到有人评论 _chrome 应用商店今年就关了_。我特意去查了一下相关资讯，其实是他理解错了，不是 chrome 应用商店要关闭了，只是将停止对 chrome App 的支持。可以看一下雷锋网的这篇文章：[谷歌宣布两年内关闭 Chrome Apps](https://baijiahao.baidu.com/s?id=1655931358904970239&wfr=spider&for=pc)。我贴一下时间表：
 
-> **雷锋网整理出的正式时间表：** 2020 年 3 月：Chrome 网上应用商店停止接受新的 Chrome Apps。开发者可以在 2022 年 6 月之前更新现有的 Chrome Apps。 2020 年 6 月：终止对 Windows，Mac 和 Linux 上的 Chrome Apps 的支持。拥有 Chrome Enterprise 和 Chrome Education Upgrade 的客户可以访问一项政策，将支持延长至 2020 年 12 月。 2020 年 12 月：终止对 Windows，Mac 和 Linux 上的 Chrome Apps 的支持。 2021 年 6 月：终止对 NaCl，PNaCl 和 PPAPI API 的支持。 2021 年 6 月：终止对 Chrome 操作系统上的 Chrome Apps 的支持。拥有 Chrome 企业升级版的客户可以访问一项政策，但是仅支持期限延长至 2022 年 6 月。 2022 年 6 月：对所有客户停止支持 Chrome OS 上的 Chrome Apps。 雷锋网总结这份时间表，Chrome Apps 在上市近 7 年之后，将从 2020 年 3 月开始一步步消失，届时 Chrome Apps 将不再接受新的应用，虽然现有的 App 将一直保持可用状态，但是最终仅维持到 2022 年 6 月。
+> **雷锋网整理出的正式时间表：** 2020 年 3 月：Chrome 网上应用商店停止接受新的 Chrome Apps。开发者可以在 2022 年 6 月之前更新现有的 Chrome Apps。2020 年 6 月：终止对 Windows，Mac 和 Linux 上的 Chrome Apps 的支持。拥有 Chrome Enterprise 和 Chrome Education Upgrade 的客户可以访问一项政策，将支持延长至 2020 年 12 月。2020 年 12 月：终止对 Windows，Mac 和 Linux 上的 Chrome Apps 的支持。2021 年 6 月：终止对 NaCl，PNaCl 和 PPAPI API 的支持。2021 年 6 月：终止对 Chrome 操作系统上的 Chrome Apps 的支持。拥有 Chrome 企业升级版的客户可以访问一项政策，但是仅支持期限延长至 2022 年 6 月。2022 年 6 月：对所有客户停止支持 Chrome OS 上的 Chrome Apps。雷锋网总结这份时间表，Chrome Apps 在上市近 7 年之后，将从 2020 年 3 月开始一步步消失，届时 Chrome Apps 将不再接受新的应用，虽然现有的 App 将一直保持可用状态，但是最终仅维持到 2022 年 6 月。
 
 这篇文章也提到了为什么 Google 对 chrome App 不上心了。其实主要还是因为要推 PWA 嘛，19 年的 Google 开发者大会上，重点之一就是 PWA。我猜那几款 chrome app 到时候有可能会被移植到 PWA 上，不过我觉得更有可能的是 electron。其实已经有很成功的先例了，[draw.io](https://github.com/jgraph/drawio-desktop) 这款非常强大的 web 流程图工具就已经被移植到了 electron 上。
 

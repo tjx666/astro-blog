@@ -13,7 +13,7 @@ pubDatetime: 2019-05-09 21:52:00
 
 9102 年了，前端工程化发展在 nodejs 的基础上已经发展的非常完善了，各种前端构建辅助工具层出不穷。ES6 编译器 babel，css 辅助工具 postcss / sass / less，代码风格检测工具 eslint / prettier / stylelint，git 辅助工具 husky / lint-staged / commitizen / commitlint，自动化构建工具 webpack / gulp / grunt，测试工具 jest / mocha 等等。
 
-这么多开发辅助工具每次写项目都去配置一遍那也太浪费时间了，自己维护一套模板有得时不时去更新。比较方便的配置开发环境还是使用 cli 或者一些热门的 boilerplate。本篇文章将以 react 官方维护的 cli 工具 create-react-app （简称 cra）为基础，以不 eject 的方式去配置 ant design，以及一些 cra 并没有内置的辅助工具。
+这么多开发辅助工具每次写项目都去配置一遍那也太浪费时间了，自己维护一套模板有得时不时去更新。比较方便的配置开发环境还是使用 cli 或者一些热门的 boilerplate。本篇文章将以 react 官方维护的 cli 工具 create-react-app（简称 cra）为基础，以不 eject 的方式去配置 ant design，以及一些 cra 并没有内置的辅助工具。
 
 <!-- more -->
 
@@ -174,7 +174,7 @@ module.exports = override(
 );
 ```
 
-这里利用了 [less-loader](https://github.com/webpack/less-loader#less-options) 的 `modifyVars` 来进行主题配置， 变量和其他配置方式可以参考 [配置主题](https://ant.design/docs/react/customize-theme-cn) 文档。
+这里利用了 [less-loader](https://github.com/webpack/less-loader#less-options) 的 `modifyVars` 来进行主题配置，变量和其他配置方式可以参考 [配置主题](https://ant.design/docs/react/customize-theme-cn) 文档。
 
 修改后重启 `yarn start`。
 
@@ -374,7 +374,7 @@ package.json 中 husky 配置修改为：
 
 ### 添加常用文件夹
 
-项目根目录添加 docs 文件夹用来放文档。在 src 目录下添加 assets（存放资源），components（放组件），pages（页面组件），stores（状态管理工具相关的文件），models（typescript 类或者接口），utils，styles（全局样式主题等） 这几个文件夹。assets 文件夹下面还有 images，videos 等，components 和 pages 目录下加入 index.tsx 用来导出所有 component 和 page。
+项目根目录添加 docs 文件夹用来放文档。在 src 目录下添加 assets（存放资源），components（放组件），pages（页面组件），stores（状态管理工具相关的文件），models（typescript 类或者接口），utils，styles（全局样式主题等）这几个文件夹。assets 文件夹下面还有 images，videos 等，components 和 pages 目录下加入 index.tsx 用来导出所有 component 和 page。
 
 ### 删除无用文件和内容
 
@@ -388,7 +388,7 @@ public/manifest.json 是用来做 PWA 的，不搞 PWA 可以删掉。修改 pub
 
 安装 react-router-dom，classnames，lodash，react-use，constate，faker.js 等工具库和对应的 types 文件，有些自带了类型声明的库就不用安装 types 了。像 react-use 和 constate 本身就是 typescript 编写的就不用安装对应的 types 了。安装 normalize.css 并在 index.tsx 直接导入。
 
-做到这里，我的项目的开发环境算是配置好了,然后就可以进行业务开发了。
+做到这里，我的项目的开发环境算是配置好了，然后就可以进行业务开发了。
 
 我的一个完全按照上述步骤配置的项目：[mini-shop](https://github.com/tjx666/mini-shop)。有需要可以直接去看我的配置，一般来说配置不会经常改动。
 

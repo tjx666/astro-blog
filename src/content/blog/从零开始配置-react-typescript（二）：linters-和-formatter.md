@@ -63,7 +63,7 @@ npx eslint --init
 
 - Does your project use TypeScript?
 
-  这一步一定要选 Y，只有告诉初始化器我们使用 TypeScript，它才会帮助我们配置好 TypeScript 的 ESLint parser，相关的 plugins， 以及其它配置
+  这一步一定要选 Y，只有告诉初始化器我们使用 TypeScript，它才会帮助我们配置好 TypeScript 的 ESLint parser，相关的 plugins，以及其它配置
 
 - Where does your code run?
 
@@ -354,7 +354,7 @@ yarn add prettier -D
   - 3
   ```
 
-  但是不配置 tabWidth 的话， prettier 会格式化成：
+  但是不配置 tabWidth 的话，prettier 会格式化成：
 
   ```
   -   1
@@ -368,7 +368,7 @@ yarn add prettier -D
 
 这部分内容强烈建议先阅读 `prettier` 官方文档 [Integrating with Linters](https://prettier.io/docs/en/integrating-with-linters.html) 部分，官方文档往往是更新最及时，也是最权威的。
 
-我们知道 lint 工具是用来检查代码风格的， prettier 是用来格式化代码的。想想看，如果 prettier 设置缩进为 4 个空格，而我们配置的 eslint 是要求缩进为 2 个空格，这肯定会导致我们格式化代码之后，eslint 会报缩进错误。
+我们知道 lint 工具是用来检查代码风格的，prettier 是用来格式化代码的。想想看，如果 prettier 设置缩进为 4 个空格，而我们配置的 eslint 是要求缩进为 2 个空格，这肯定会导致我们格式化代码之后，eslint 会报缩进错误。
 
 ![conflict](https://i.loli.net/2020/02/20/Tx3Z1CXS4BLHqmF.png)
 
@@ -444,7 +444,7 @@ yarn add stylelint-config-prettier -D
 yarn add husky lint-staged -D
 ```
 
-在 package.json 配置 git commit 时的钩子操作:
+在 package.json 配置 git commit 时的钩子操作：
 
 ```javascript
 // package.json
@@ -484,7 +484,7 @@ prettier 的 --write 参数是干嘛用的呢？举个 🌰 来说，命令行�
 
 > ⚠ Some of your tasks use `git add` command.
 
-原因很简单：**lint-staged 从 V10 版本开始，任何被修改了的原 staged 区的文件都会被自动 git add**，所以我们不需要自己添加 git add 。
+原因很简单：**lint-staged 从 V10 版本开始，任何被修改了的原 staged 区的文件都会被自动 git add**，所以我们不需要自己添加 git add。
 
 ## commitlint
 
@@ -558,7 +558,7 @@ module.exports = {
 
 当调用 `commit-msg` 钩子的时候，环境变量 `HUSKY_GIT_PARAMS` 会被临时设置为保存 commit messsge 的文件的路径，然后 `commitlint` 就会去 lint 这个文件中的 commit message。
 
-如果你想在命令行中交互式的编辑 commit message，可以了解一下 [commitizen](https://github.com/commitizen/cz-cli) ，我们这个项目就不配了，主要还是觉得要配置的话就要根据具体的业务去配，我们这个通用目的的模板项目就算了。我看了一下 `angular` 和 `vue-next` lint commit message 的做法，它们 commitlint 和 commitizen 俩都没配，只是在 git `commit-msg` 时调用了下 node 脚本校验 commit message 。
+如果你想在命令行中交互式的编辑 commit message，可以了解一下 [commitizen](https://github.com/commitizen/cz-cli) ，我们这个项目就不配了，主要还是觉得要配置的话就要根据具体的业务去配，我们这个通用目的的模板项目就算了。我看了一下 `angular` 和 `vue-next` lint commit message 的做法，它们 commitlint 和 commitizen 俩都没配，只是在 git `commit-msg` 时调用了下 node 脚本校验 commit message。
 
 我们接着再配置自动生成 changelog，本地安装 `conventional-changelog-cli`：
 
