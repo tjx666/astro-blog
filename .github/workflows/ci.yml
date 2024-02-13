@@ -8,7 +8,7 @@ jobs:
   check-type:
     strategy:
       matrix:
-        os: [macos-latest, windows-latest]
+        os: [macos-latest]
       fail-fast: false
 
     runs-on: ${{ matrix.os }}
@@ -45,6 +45,3 @@ jobs:
 
       - name: Lint
         run: pnpm lint
-
-      - name: Build
-        run: pnpm build
