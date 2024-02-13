@@ -1,5 +1,7 @@
 # <https://yutengjing.com>
 
+[![ci](https://github.com/tjx666/astro-blog/actions/workflows/ci.yml/badge.svg)](https://github.com/tjx666/astro-blog/actions/workflows/ci.yml)
+
 基于 [astro](https://github.com/withastro/astro) 和 [astro paper](https://github.com/satnaing/astro-paper) 模版，使用 [cloudflare pages](https://dash.cloudflare.com/) 部署。
 
 ## 本地开发
