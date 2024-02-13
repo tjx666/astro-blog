@@ -3,6 +3,7 @@
     "private": true,
     "version": "4.2.0",
     "prettier": "@yutengjing/prettier-config",
+    "packageManager": "pnpm@8.15.2",
     "lint-staged": {
         "*.md": [
             "autocorrect --lint",
