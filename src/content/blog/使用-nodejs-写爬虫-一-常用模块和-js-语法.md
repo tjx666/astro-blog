@@ -98,7 +98,7 @@ superagent 是一个 node 的 http client, 可以类比 java 中的 httpclient �
 // 官方文档的一个调用示例
 request
   .post('/api/pet')
-  .send({ name: 'Manny', species: 'cat' })
+  .send({ name: 'Alice', species: 'cat' })
   .set('X-API-Key', 'foobar')
   .set('Accept', 'application/json')
   .then((res) => {
@@ -195,7 +195,7 @@ module.exports = {
 
 ### sequelize
 
-写项目我们往往会有持久化的需求，简单的场景可以使用 JSON 保存数据，如果数据量比较大还要便于管理，那么我们就要考虑用数据库了。如果是操作 mysql 和 sqllite 建议使用 sequelize, 如果是 mongodb, 我更推荐用专门为 mongodb 设计的 [mongoose](https://github.com/Automattic/mongoose)
+写项目我们往往会有持久化的需求，简单的场景可以使用 JSON 保存数据，如果数据量比较大还要便于管理，那么我们就要考虑用数据库了。如果是操作 mysql 和 sqlite 建议使用 sequelize, 如果是 mongodb, 我更推荐用专门为 mongodb 设计的 [mongoose](https://github.com/Automattic/mongoose)
 
 sequelize 有几点我觉得还是有点不太好，比如默认生成 `id` (primary key), `createdAt` 和 `updatedAt`。
 

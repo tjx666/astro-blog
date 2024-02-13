@@ -65,7 +65,7 @@ yarn add antd
 
 ### 配置 ant design css 按需加载
 
-配置 css 按需加载的方式有很多，归根到底就是修改 cra 的 webpack 配置。可以采用暴露 cra webpack 配置的方式，使用 `yarn eject` 命令即可在项目根目录下暴露出项目的 webpack 配置，配置保存在 config 文件夹下面。我记得 cra 早期版本 eject 之后暴露的配置是拆分成两份 `webpack.config.dev.js`，`webpack.config.prod.js`。最新的 cra 配置被合并到一个配置文件里面了，就一个配置文件，通过一个计算出的环境（development/producation）来动态生成 webpack 配置，这种方式我觉得配置起来更麻烦了，而且 eject 是不可逆的，采用 eject 来修改 webpack 配置需要慎重考虑。这种方式的好处就是 webpack 配置你可以直接修改，所以基本上没什么配置不能通过这种方式来加载。
+配置 css 按需加载的方式有很多，归根到底就是修改 cra 的 webpack 配置。可以采用暴露 cra webpack 配置的方式，使用 `yarn eject` 命令即可在项目根目录下暴露出项目的 webpack 配置，配置保存在 config 文件夹下面。我记得 cra 早期版本 eject 之后暴露的配置是拆分成两份 `webpack.config.dev.js`，`webpack.config.prod.js`。最新的 cra 配置被合并到一个配置文件里面了，就一个配置文件，通过一个计算出的环境（development/production）来动态生成 webpack 配置，这种方式我觉得配置起来更麻烦了，而且 eject 是不可逆的，采用 eject 来修改 webpack 配置需要慎重考虑。这种方式的好处就是 webpack 配置你可以直接修改，所以基本上没什么配置不能通过这种方式来加载。
 
 这里我采用社区的 cra 配置解决方案：[react-app-rewired](https://github.com/timarney/react-app-rewired)。
 

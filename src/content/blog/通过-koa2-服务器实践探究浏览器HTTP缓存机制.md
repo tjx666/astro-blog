@@ -134,7 +134,7 @@ process.on('unhandledRejection', (err) => {
 
 ##### [pragma](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Headers/Pragma)
 
-progma 是 HTTP1.0 时期的产物，和后面要说的 cache-control 作用差不多，它的值只能设置为 `no-cache`。与 Cache-Control: no-cache 效果一致，即禁用强缓存，只能使用协商缓存。
+pragma 是 HTTP1.0 时期的产物，和后面要说的 cache-control 作用差不多，它的值只能设置为 `no-cache`。与 Cache-Control: no-cache 效果一致，即禁用强缓存，只能使用协商缓存。
 
 ##### [expires](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Headers/Expires)
 

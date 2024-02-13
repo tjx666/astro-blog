@@ -11,7 +11,7 @@ author: 余腾靖
 pubDatetime: 2020-01-15 22:02:00
 ---
 
-前不久我写了一个 chrome 扩展，作为一个前端弄潮儿，我当然想用上各种前端界最 fashion 的开发工具。于是乎，折腾到最后使用了 webpack + TypeScript + react 这么一套技术栈。在 github 上研究了几个模板项目之后，发现大多数都太初级了，功能太简单，而且有一个我觉应当提供的很基础的功能始终没发现有哪个项目支持，也就是当修改了 content script 之后自动 reload 扩展和刷新注入了 content script 的页面这个问题。这个问题如果解决了，你就不需要每次修改了扩展代码还去 chrome 扩展列表页面点下刷新按钮刷新扩展。最后在研究了 webpack 的热更新机制和查阅了 webpack 和 chome 扩展官方文档之后解决了这个问题。在开发完我那个扩展之后，我便将其提取成了一个模板项目 [awesome-chrome-extension-boilerplate](https://github.com/tjx666/awesome-chrome-extension-boilerplate)。
+前不久我写了一个 chrome 扩展，作为一个前端弄潮儿，我当然想用上各种前端界最 fashion 的开发工具。于是乎，折腾到最后使用了 webpack + TypeScript + react 这么一套技术栈。在 github 上研究了几个模板项目之后，发现大多数都太初级了，功能太简单，而且有一个我觉应当提供的很基础的功能始终没发现有哪个项目支持，也就是当修改了 content script 之后自动 reload 扩展和刷新注入了 content script 的页面这个问题。这个问题如果解决了，你就不需要每次修改了扩展代码还去 chrome 扩展列表页面点下刷新按钮刷新扩展。最后在研究了 webpack 的热更新机制和查阅了 webpack 和 chrome 扩展官方文档之后解决了这个问题。在开发完我那个扩展之后，我便将其提取成了一个模板项目 [awesome-chrome-extension-boilerplate](https://github.com/tjx666/awesome-chrome-extension-boilerplate)。
 
 其实我在使用 webpack + TypeScript + react 这套技术栈开发 chrome 扩展时碰到的问题真不少，如果全拿出来讲没个两万字我估计是写不完。这篇文章主要聊聊 webpack 开发 chrome 扩展的热更新问题，并重点讲解我是如何实现修改了 content script 之后自动 reload 扩展和刷新注入了 content script 的页面的，这也是我那个模板的最大特色，也算是给它的 README 做个补充。
 
@@ -90,13 +90,13 @@ export default (app: Express, compiler: Compiler): void => {
 
 ### 非 content scripts 的热更新问题
 
-前面一部分内容我就讲了，bacngound, options, popup 等页面其实我们可以直接当作普通的 SPA 页面来开发，也就是说可以直接使用 webpack devServer 自身提供的热更新能力。因此我们还可以配置 react 的 hot reload 等。从配置 webpack 的角度来说，相对与普通的前端项目的区别就是配置多入口，跨域，devServer bundle 写到磁盘等，有一定的复杂度。不喜欢折腾的可以考虑直接用我那个模板，而且我那个模板项目还做了各方面的优化。
+前面一部分内容我就讲了，background, options, popup 等页面其实我们可以直接当作普通的 SPA 页面来开发，也就是说可以直接使用 webpack devServer 自身提供的热更新能力。因此我们还可以配置 react 的 hot reload 等。从配置 webpack 的角度来说，相对与普通的前端项目的区别就是配置多入口，跨域，devServer bundle 写到磁盘等，有一定的复杂度。不喜欢折腾的可以考虑直接用我那个模板，而且我那个模板项目还做了各方面的优化。
 
 前面提到需要修改默认拉取热更新补丁的 path，这是因为：默认情况下，在向 webpack devServer 拉取热更新补丁的 path 是 `/__webpack_hmr`。
 
 ![webpack-hot-middleware.png](https://i.loli.net/2020/01/16/TCtFHdwlDZ8Uz46.png)
 
-如果你不设置 path 为你的 devServser 地址就会出现下面的问题，也就是直接向 chrome 扩展请求热更新数据了：
+如果你不设置 path 为你的 devServer 地址就会出现下面的问题，也就是直接向 chrome 扩展请求热更新数据了：
 
 ![webpack-hmr.png](https://i.loli.net/2020/01/16/MnwvBASWHskTY76.png)
 
@@ -125,9 +125,9 @@ const devEntry: Record<string, string[]> = {
 
 首先我下个结论：**使用 webpack devServer 自带的热更新机制是不可能对 content scripts 起作用的。**
 
-根本原因是因为：由于 chrome 限制了 content script 内无法访问其它 content script，inject script，以及网页本身的 js 脚本内的变量。又因为 webpack devServer 热更新是以 jsonp 的方式来拉取更新补丁的，注入网页的 content scrpit 中包含的实现热更新机制的代码会调用 jsonp 插入页面的热更新补丁中的更新函数，但是由于 chrome 限制，无法调用，也就无法应用热更新补丁。
+根本原因是因为：由于 chrome 限制了 content script 内无法访问其它 content script，inject script，以及网页本身的 js 脚本内的变量。又因为 webpack devServer 热更新是以 jsonp 的方式来拉取更新补丁的，注入网页的 content script 中包含的实现热更新机制的代码会调用 jsonp 插入页面的热更新补丁中的更新函数，但是由于 chrome 限制，无法调用，也就无法应用热更新补丁。
 
-查看 wbpack 源码，可以看到 webpack devServer 用的就是 jsonp 进行热更新的：
+查看 webpack 源码，可以看到 webpack devServer 用的就是 jsonp 进行热更新的：
 
 ![webpack-json.png](https://i.loli.net/2020/01/16/argztvoCY7bBTNh.png)
 
@@ -248,7 +248,7 @@ source.addEventListener('compiled-successfully', (event: EventSourceEvent) => {
     const shouldReload = JSON.parse(event.data).action === 'reload-extension-and-refresh-current-page';
 
     if (shouldReload) {
-    	// 刷新扩展等后续步骤
+     // 刷新扩展等后续步骤
     }
 )
 ```

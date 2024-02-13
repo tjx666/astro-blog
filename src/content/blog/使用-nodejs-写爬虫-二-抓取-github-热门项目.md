@@ -44,7 +44,7 @@ pubDatetime: 2019-04-04 12:12:00
 
 ![request headers](https://i.loli.net/2019/04/04/5ca592da2bb41.png)
 
-比较简单的测试方法是直接用命令行工具 `curl` 来测试，在 gitbash 中输入下面命令即 `curl "请求的url"`
+比较简单的测试方法是直接用命令行工具 `curl` 来测试，在 git bash 中输入下面命令即 `curl "请求的url"`
 
 ```bash
 curl "https://github.com/search?p=2&q=stars%3A%3E60000&type=Repositories"
@@ -52,7 +52,7 @@ curl "https://github.com/search?p=2&q=stars%3A%3E60000&type=Repositories"
 
 不出意外的正常的返回了页面的源代码，这样的话我们的爬虫脚本就不用加上请求头和 cookies 了。
 
-![gitbash-curl-github](https://i.loli.net/2019/04/04/5ca594909a591.png)
+![git-bash-curl-github](https://i.loli.net/2019/04/04/5ca594909a591.png)
 
 通过 chrome 的搜索功能，我们可以看到网页源代码中就有我们需要的项目信息
 

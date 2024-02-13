@@ -41,7 +41,7 @@ type IsUnknown<T> = unknown extends T ? true : false;
 和这个问题类似的还有判断一个类型是否为 `number`，如果要排除 `number` 字面量类型也应该反过来 `extends`：
 
 ```typescript
-type IsNumber<T> = number extends T ? true : falsse;
+type IsNumber<T> = number extends T ? true : false;
 type X = IsNumber<2>; // false
 ```
 

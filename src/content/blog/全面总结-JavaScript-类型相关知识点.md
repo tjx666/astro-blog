@@ -273,7 +273,7 @@ res.error = 4 == type || 5 == type;
 
 #### 千分位问题
 
-##### 使用 Number.prototypo.toLocaleSctring
+##### 使用 Number.prototype.toLocaleString
 
 ```javascript
 console.log((123456.123456).toLocaleString()); // => 123,456.123
@@ -889,7 +889,7 @@ console.log(toString.call(new Bar())); // => [object 自定义的 tag]
 >
 > See [Using `toString()` to detect object class](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/toString#Using_toString_to_detect_object_class).
 
-也就是说在早期版本的 js 中 toString.call(null) 不会返回 `[object Null]`。我们还可以使用 Symbol.toStringTag 属性来定义对象的 stringTag。为什么我们不直接拿变量的 toString 函数返回值去比较而是要用 Object.prototype.toString.call(value) 去绑定对象原型的 toString 函数的 this 到变量上，这样来获取 stringTag 呢？原因其实很简单，一方面大多数类型都重写了自己的 tostring 函数，例如 Date 返回的就是本地时间字符串而不是 [object Date]，另一方面是因为直接对 null 或 undefined 调用 toString 会报错。
+也就是说在早期版本的 js 中 toString.call(null) 不会返回 `[object Null]`。我们还可以使用 Symbol.toStringTag 属性来定义对象的 stringTag。为什么我们不直接拿变量的 toString 函数返回值去比较而是要用 Object.prototype.toString.call(value) 去绑定对象原型的 toString 函数的 this 到变量上，这样来获取 stringTag 呢？原因其实很简单，一方面大多数类型都重写了自己的 toString 函数，例如 Date 返回的就是本地时间字符串而不是 [object Date]，另一方面是因为直接对 null 或 undefined 调用 toString 会报错。
 
 ```javascript
 console.log({}.toString()); // => [object Object]
@@ -987,7 +987,7 @@ console.log(types.isRegExp(/exp/));
 
 ![babel-node-bug](https://i.loli.net/2020/01/15/VbPUtD4epTl2arK.png)
 
-可以看到 bebug 控制台输出的是 false。
+可以看到 debug 控制台输出的是 false。
 
 ### 直接比较值是否等于你要判断的值
 

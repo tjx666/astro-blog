@@ -229,7 +229,7 @@ cd ./scripts && npx tsc --init && cd ..
 
 - `Strict Type-Checking Options`，这部分全开，既然上了 TypeScript 的船，就用最严格的类型检查，拒绝 AnyScript
 
-接着我们新建 `scripts/configs`文件夹，里面用来存放包括 webpack 的配置文件。在其中新建三个 webpack 的配置文件 `webpack.common.ts`， `webpack.dev.ts`和 `webapck.prod.ts`。`webpack.common.ts` 保存一些公共的配置文件，`webpack.dev.ts` 是开发环境用的，会被 devServer 读取，`webapck.prod.ts` 是我们在构建生产环境的 bundle 时用的。
+接着我们新建 `scripts/configs`文件夹，里面用来存放包括 webpack 的配置文件。在其中新建三个 webpack 的配置文件 `webpack.common.ts`， `webpack.dev.ts`和 `webpack.prod.ts`。`webpack.common.ts` 保存一些公共的配置文件，`webpack.dev.ts` 是开发环境用的，会被 devServer 读取，`webpack.prod.ts` 是我们在构建生产环境的 bundle 时用的。
 
 我们接着安装 webpack 和 webpack-merge 以及它们的类型声明文件：
 
@@ -305,8 +305,7 @@ const commonConfig: Configuration = {
 我们先安装 `express` 以及和 webpack devServer 相关的一些中间件：
 
 ```bash
-yarn add express webpack-dev-middleware webpack-hot-middleware @types/express @t
-ypes/webpack-dev-middleware @types/webpack-hot-middleware -D
+yarn add express webpack-dev-middleware webpack-hot-middleware @types/express @types/webpack-dev-middleware @types/webpack-hot-middleware -D
 ```
 
 [webpack-dev-middleware](https://github.com/webpack/webpack-dev-middleware) 这个 `express` 中间件的主要作用：
@@ -541,13 +540,13 @@ npm start
 
 `webpack-dev-server` 在打包时使用 `--progress` 参数会在控制台实时输出百分比表示当前的打包进度，但是从上面的图中可以看出只是输出了一些统计信息（stats）。想要实时显示打包进度我了解的有三种方式：
 
-1.  webpack 内置的 [webpack.ProgressPlugin](https://webpack.docschina.org/plugins/progress-plugin) 插件
+1. webpack 内置的 [webpack.ProgressPlugin](https://webpack.docschina.org/plugins/progress-plugin) 插件
 
-2.  [progress-bar-webpack-plugin](https://github.com/clessg/progress-bar-webpack-plugin)
+2. [progress-bar-webpack-plugin](https://github.com/clessg/progress-bar-webpack-plugin)
 
-3.  [ webpackbar](https://github.com/nuxt/webpackbar)
+3. [webpackbar](https://github.com/nuxt/webpackbar)
 
-内置的 `ProgressPlugig` 非常的原始，你可以在回调函数获取当前进度，然后按照自己喜欢的格式去打印：
+内置的 `ProgressPlugin` 非常的原始，你可以在回调函数获取当前进度，然后按照自己喜欢的格式去打印：
 
 ```javascript
 const handler = (percentage, message, ...args) => {
@@ -673,7 +672,7 @@ const commonConfig: Configuration = {
 
 ![circle-dependencies](https://i.loli.net/2020/02/16/bHQEPLK1WiCXlBA.png)
 
-webpack 默认不会对循环依赖报错，通过 [circular-dependency-plugin ](https://github.com/aackerman/circular-dependency-plugin) 这个 webpack 插件可以帮我们及时发现循环依赖的问题：
+webpack 默认不会对循环依赖报错，通过 [circular-dependency-plugin](https://github.com/aackerman/circular-dependency-plugin) 这个 webpack 插件可以帮我们及时发现循环依赖的问题：
 
 ```bash
 yarn add circular-dependency-plugin @types/circular-dependency-plugin -D
@@ -699,7 +698,7 @@ const commonConfig: Configuration = {
 
 ![circle dependencies error](https://i.loli.net/2020/02/16/VOxjym6zZFftkhr.png)
 
-这里顺便提一下 `cwd` 也就是工作路径的问题，官方文档直接用 `process.cwd()`，这是一种不好的做法，项目路径和工作路径是不同的两个概念。在 node 中表示项目路径永远不要用 `preocess.cwd()`，因为总会有些沙雕用户不去项目根目录启动。`process.cwd()` 也就是工作路径返回的是你运行 node 时所在的路径，假设说项目在 `/code/projectRoot`，有些用户直接在系统根目录打开 terminal，来一句 `node ./code/projectRoot/index.js`，这时 `index.js` 中 `process.cwd()` 返回的是就是系统根路径 `/`，不是有些人认为的还是 `/code/projectRoot`。
+这里顺便提一下 `cwd` 也就是工作路径的问题，官方文档直接用 `process.cwd()`，这是一种不好的做法，项目路径和工作路径是不同的两个概念。在 node 中表示项目路径永远不要用 `process.cwd()`，因为总会有些沙雕用户不去项目根目录启动。`process.cwd()` 也就是工作路径返回的是你运行 node 时所在的路径，假设说项目在 `/code/projectRoot`，有些用户直接在系统根目录打开 terminal，来一句 `node ./code/projectRoot/index.js`，这时 `index.js` 中 `process.cwd()` 返回的是就是系统根路径 `/`，不是有些人认为的还是 `/code/projectRoot`。
 
 获取项目路径应该使用 `path.resolve`：
 
@@ -738,7 +737,7 @@ const commonConfig: Configuration = {
 
 使用 [html-webpack-plugin](https://github.com/jantimon/html-webpack-plugin) 可以自动生成 index.html，并且插入引用到的 bundle 和被拆分的 CSS 等资源路径。
 
-参考 `creat-react-app` 的模板，我们新建 `public` 文件夹，并在其中加入 `index.html`，`favico.ico`，`manifest.json` 等文件。`public` 文件夹用于存放一些将被打包到 `dist` 文件夹一同发布的文件。
+参考 `create-react-app` 的模板，我们新建 `public` 文件夹，并在其中加入 `index.html`，`favicon.ico`，`manifest.json` 等文件。`public` 文件夹用于存放一些将被打包到 `dist` 文件夹一同发布的文件。
 
 安装并配置 [html-webpack-plugin](https://github.com/jantimon/html-webpack-plugin)：
 
@@ -788,7 +787,7 @@ const commonConfig: Configuration = {
                         files: assets,
                         options,
                     },
-        			// 除掉 publicPath 的反斜杠，让用户在模板中拼接路径更自然
+           // 除掉 publicPath 的反斜杠，让用户在模板中拼接路径更自然
                     PUBLIC_PATH: rawPublicPath.endsWith('/')
                         ? rawPublicPath.slice(0, -1)
                         : rawPublicPath,
@@ -799,7 +798,7 @@ const commonConfig: Configuration = {
 };
 ```
 
-为了让用户可以像 `create-react-app` 一样在 `index.html` 里面通过 `PUBLIC_PATH` 访问发布路径，需要配置 `templateParameters` 选项添加 `PUBLIC_PATH` 变量到模板参数，[html-webpack-plugin](https://github.com/jantimon/html-webpack-plugin) 默认支持部分 ejs 语法，我们可以通过下面的方式动态设置 `favicon.ico` , `mainfest.json` 等资源路径：
+为了让用户可以像 `create-react-app` 一样在 `index.html` 里面通过 `PUBLIC_PATH` 访问发布路径，需要配置 `templateParameters` 选项添加 `PUBLIC_PATH` 变量到模板参数，[html-webpack-plugin](https://github.com/jantimon/html-webpack-plugin) 默认支持部分 ejs 语法，我们可以通过下面的方式动态设置 `favicon.ico` , `manifest.json` 等资源路径：
 
 ```html
 <!doctype html>
@@ -819,7 +818,7 @@ const commonConfig: Configuration = {
 
 #### 拷贝文件到 dist
 
-`public` 文件夹中有一些文件例如 `favico.icon` 和 `mainfest.json` 需要被拷贝到 `dist` 文件夹，我们可以使用 [copy-webpack-plugin](https://github.com/webpack-contrib/copy-webpack-plugin) 在使用 devServer 的情况下将文件拷贝到内存文件系统，在生产环境构建的时拷贝到磁盘：
+`public` 文件夹中有一些文件例如 `favicon.icon` 和 `manifest.json` 需要被拷贝到 `dist` 文件夹，我们可以使用 [copy-webpack-plugin](https://github.com/webpack-contrib/copy-webpack-plugin) 在使用 devServer 的情况下将文件拷贝到内存文件系统，在生产环境构建的时拷贝到磁盘：
 
 ```bash
 yarn add copy-webpack-plugin @types/copy-webpack-plugin -D
@@ -891,7 +890,7 @@ const prodConfig = merge(commonConfig, {
 
 #### 缓存神器
 
-[hard-source-webpack-plugin](https://github.com/mzgoddard/hard-source-webpack-plugin) 是一个给 `modules` 提供中间缓存步骤的 webpack 插件，为了看到效果我们可能需要运行两次，第一次就是正常的编译速度，第二次可能会快上很多倍，拿我开发的一个 [VSCode 插件 ](https://github.com/tjx666/view-github-repository)来测试一下：
+[hard-source-webpack-plugin](https://github.com/mzgoddard/hard-source-webpack-plugin) 是一个给 `modules` 提供中间缓存步骤的 webpack 插件，为了看到效果我们可能需要运行两次，第一次就是正常的编译速度，第二次可能会快上很多倍，拿我开发的一个 [VSCode 插件](https://github.com/tjx666/view-github-repository)来测试一下：
 
 我先把 `node_modules/.cache/hard-source` 缓存文件夹删掉，看看没有缓存的时候编译速度：
 
@@ -961,7 +960,7 @@ const commonConfig: Configuration = {
               modules: false,
               // 开启 sourcemap
               sourceMap: true,
-              // 指定在 CSS loader 处理前使用的 laoder 数量
+              // 指定在 CSS loader 处理前使用的 loader 数量
               importLoaders: 0,
             },
           },
@@ -1041,7 +1040,7 @@ const commonConfig: Configuration = {
           {
             loader: 'sass-loader',
             options: {
-              // 中间每个 loader 都要开启 sourcemap，才能生成正确的 soucemap
+              // 中间每个 loader 都要开启 sourcemap，才能生成正确的 sourcemap
               sourceMap: true,
             },
           },
@@ -1095,7 +1094,7 @@ module.exports = {
 ```javascript
 // package.json
 {
-	"browserslist": [
+ "browserslist": [
         "last 2 versions",
         // ESR（Extended Support Release） 长期支持版本
         "Firefox ESR",
@@ -1231,7 +1230,7 @@ const commonConfig: Configuration = {
 
 > `+++` 非常快速, `++` 快速, `+` 比较快, `o` 中等, `-` 比较慢, `--` 慢
 
-sourcemap 是现在前端界很多工具必不可缺的一个功能，webpack，TypeScript，babel，powser-assert 等转换代码的工具都要提供 sourcemap 功能，源代码被压缩，混淆，polyfill，没有 sourcemap，根本没办法调试定位问题。
+sourcemap 是现在前端界很多工具必不可缺的一个功能，webpack，TypeScript，babel，power-assert 等转换代码的工具都要提供 sourcemap 功能，源代码被压缩，混淆，polyfill，没有 sourcemap，根本没办法调试定位问题。
 
 考虑到编译速度，调式友好性，我选择 `eval-source-map`，如果用户在打包时觉得慢，而且能够忍受没有列号，可以考虑调成 `cheap-eval-source-map`。
 
@@ -1254,7 +1253,7 @@ const devConfig = merge(commonConfig, {
 
 ### 热更新
 
-我们前面给 devServer 添加了 [webpack-hot-middleware](https://github.com/webpack-contrib/webpack-hot-middleware) 中间件，参考它的文档我们需要先添加 webapck 插件`webpack.HotModuleReplacementPlugin`：
+我们前面给 devServer 添加了 [webpack-hot-middleware](https://github.com/webpack-contrib/webpack-hot-middleware) 中间件，参考它的文档我们需要先添加 webpack 插件`webpack.HotModuleReplacementPlugin`：
 
 ```javascript
 // webpack.dev.ts
@@ -1398,7 +1397,7 @@ const envPreset = [
   {
     // 只导入需要的 polyfill
     useBuiltIns: 'usage',
-    // 指定 corjs 版本
+    // 指定 corejs 版本
     corejs: 3,
     // 禁用模块化方案转换
     modules: false,
@@ -1588,7 +1587,7 @@ declare module 'speed-measure-webpack-plugin' {
     import { Configuration, Plugin } from 'webpack';
 
     // 查看官方文档，需要哪些选项就声明哪些选项就行
-  	// 可以看出 TypeScript 是非常灵活的
+   // 可以看出 TypeScript 是非常灵活的
     interface SpeedMeasurePluginOptions {
         disable: boolean;
         outputFormat: 'json' | 'human' | 'humanVerbose' | ((outputObj: object) => void);
@@ -1662,7 +1661,7 @@ yarn add compression-webpack-plugin @types/compression-webpack-plugin -D
 
 ![trace size](https://i.loli.net/2020/02/19/Oteqp9js3DPFrCS.png)
 
-[size-plugin](https://github.com/GoogleChromeLabs/size-plugin) 是谷歌出品的一个显示 webpack 各个 chunk gzip 压缩后的体积大小以及相比于上一次的大小变化，上图中红框中的部分显示了我加了一句 log 之后 gizip 体积增加了 11B。
+[size-plugin](https://github.com/GoogleChromeLabs/size-plugin) 是谷歌出品的一个显示 webpack 各个 chunk gzip 压缩后的体积大小以及相比于上一次的大小变化，上图中红框中的部分显示了我加了一句 log 之后 gzip 体积增加了 11B。
 
 ```bash
 yarn add size-plugin -D

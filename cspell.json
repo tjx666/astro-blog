@@ -1,0 +1,14 @@
+{
+    "version": "0.2",
+    "language": "en",
+    "dictionaryDefinitions": [
+        {
+            "name": "project-words",
+            "path": "./project-words.txt",
+            "addWords": true
+        }
+    ],
+    "dictionaries": ["project-words"],
+    "ignorePaths": ["node_modules", "/project-words.txt"],
+    "import": ["./node_modules/@yutengjing/cspell-config/cspell.config.json"]
+}

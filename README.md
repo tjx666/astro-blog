@@ -30,8 +30,8 @@ pnpm build
 - [x] eslint
 - [x] prettier
 - [x] husky -> simple-git-hooks
-- [ ] autocorrect
-- [ ] spellcheck
+- [x] autocorrect
+- [x] spellcheck
 - [ ] 搜索引擎收录
 - [ ] 失效图片链接修复
 - [ ] 根据文章内容自动生成摘要

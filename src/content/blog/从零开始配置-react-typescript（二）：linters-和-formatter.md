@@ -132,7 +132,7 @@ module.exports = {
 
 - 查看 [@typescript-eslint/eslint-plugin](https://www.npmjs.com/package/@typescript-eslint/eslint-plugin) 文档，里面提到我们可以通过添加 `extends: 'plugin:@typescript-eslint/recommended'`来开启它推荐的一些 rules。
 
-- 为了让 `eslint-plugin-import` 能够正确解析 `ts`, `tsx`, `json` 后缀名，我们还需指定允许的后缀名，添加 `setttings` 字段，加入以下配置：
+- 为了让 `eslint-plugin-import` 能够正确解析 `ts`, `tsx`, `json` 后缀名，我们还需指定允许的后缀名，添加 `settings` 字段，加入以下配置：
 
   ```javascript
   // .eslintrc.js
@@ -258,7 +258,7 @@ rules: {
 
 ![stylelint](https://i.loli.net/2020/02/20/1X387zS5GgclEVo.png)
 
-对于 stylelint，我一般都是直接参考 [ant design 的 stylint 配置](https://github.com/ant-design/ant-design/blob/master/.stylelintrc.json)。添加 `.stylelintrc.json` 到项目根路径，copy 过来简单修改一下，：
+对于 stylelint，我一般都是直接参考 [ant design 的 stylelint 配置](https://github.com/ant-design/ant-design/blob/master/.stylelintrc.json)。添加 `.stylelintrc.json` 到项目根路径，copy 过来简单修改一下，：
 
 ```javascript
 // .stylelintrc.json
@@ -287,7 +287,7 @@ rules: {
 
 `src/assets` 文件夹准备用来保存一些资源文件，例如第三方的 css 库，并不需要 lint。VSCode 的 stylelint 插件目前有个 bug，默认居然会 lint `.d.ts` 文件然后报错，所以我也添加了 `"**/typings/**/*"` 来忽略 `.d.ts` 文件：
 
-![vscode stylint bug](https://i.loli.net/2020/02/20/H1g5SiBMrslOI7Q.png)
+![vscode stylelint bug](https://i.loli.net/2020/02/20/H1g5SiBMrslOI7Q.png)
 
 根据上面的配置文件，我们需要安装对应的 npm 包：
 
@@ -434,7 +434,7 @@ yarn add stylelint-config-prettier -D
 1. [pretty-quick](https://github.com/azz/pretty-quick)
 2. [lint-staged](https://github.com/okonet/lint-staged)
 
-我们选择使用 `lint-staged`，因为 `pretty-quick`功能单一，只是提供了 prettier 格式化 stage 区代码的功能，没法配 eslint 和 stylelint 使用，还不能通过配置文件来配置。lint-satged 更灵活，通过它我们可以同时配置 `eslint`，`stylelint`，`prettier`。
+我们选择使用 `lint-staged`，因为 `pretty-quick`功能单一，只是提供了 prettier 格式化 stage 区代码的功能，没法配 eslint 和 stylelint 使用，还不能通过配置文件来配置。lint-staged 更灵活，通过它我们可以同时配置 `eslint`，`stylelint`，`prettier`。
 
 为了达到在我们每次 commit 的时候，都自动 lint 和格式化，我们需要给 git commit 挂个钩子，使用 [husky](https://github.com/typicode/husky) 可以很轻松的给 git 配置钩子。
 
@@ -496,7 +496,7 @@ prettier 的 --write 参数是干嘛用的呢？举个 🌰 来说，命令行�
 
 我知道有些人提交代码喜欢直接来三个点 `...`，这是很不好的习惯，这样你就完全没有利用到 commit message，很不利于项目管理。规范化的编写 commit message 有很多好处，可以方便我们检索提交历史，配合 [conventional-changelog](https://github.com/conventional-changelog/conventional-changelog) 直接生成 changelog，关联 github issue 等。
 
-我们可以通过 `husky` + `commlint` 实现在 commit 的时候先检查 commit message 的规范性，如果不符合规范直接终止 commit。
+我们可以通过 `husky` + `commitlint` 实现在 commit 的时候先检查 commit message 的规范性，如果不符合规范直接终止 commit。
 
 安装需要的依赖：
 
@@ -512,7 +512,7 @@ yarn add @commitlint/cli @commitlint/config-conventional -D
 ["build", "ci", "chore", "docs", "feat", "fix", "perf", "refactor", "revert", "style", "test"]
 ```
 
-添加 commlint 的配置到项目根目录的 `.commitlintrc.js`：
+添加 commitlint 的配置到项目根目录的 `.commitlintrc.js`：
 
 ```javascript
 // .commitlintrc.js
@@ -556,7 +556,7 @@ module.exports = {
 }
 ```
 
-当调用 `commit-msg` 钩子的时候，环境变量 `HUSKY_GIT_PARAMS` 会被临时设置为保存 commit messsge 的文件的路径，然后 `commitlint` 就会去 lint 这个文件中的 commit message。
+当调用 `commit-msg` 钩子的时候，环境变量 `HUSKY_GIT_PARAMS` 会被临时设置为保存 commit message 的文件的路径，然后 `commitlint` 就会去 lint 这个文件中的 commit message。
 
 如果你想在命令行中交互式的编辑 commit message，可以了解一下 [commitizen](https://github.com/commitizen/cz-cli) ，我们这个项目就不配了，主要还是觉得要配置的话就要根据具体的业务去配，我们这个通用目的的模板项目就算了。我看了一下 `angular` 和 `vue-next` lint commit message 的做法，它们 commitlint 和 commitizen 俩都没配，只是在 git `commit-msg` 时调用了下 node 脚本校验 commit message。
 
@@ -577,7 +577,7 @@ yarn add conventional-changelog-cli -D
 
 这样我们就可以通过 `npm run changelog` 生成 angular 风格的 changelog 了，`conventional-changelog` 会读取提交历史中 fix, feat 等 type 的 commit message 自动生成 changelog。
 
-我们接着讨论一个使用了 commilint 后如何插入 emoji 的问题，我们知道 commit message 的格式是这样的：
+我们接着讨论一个使用了 commitlint 后如何插入 emoji 的问题，我们知道 commit message 的格式是这样的：
 
 ```javascript
 // 整行叫 header
@@ -608,7 +608,7 @@ git commit -m ':bug: fix: xxx'
 
 commitlint 等工具在解析的时候应该是将第一个冒号之前的内容解析为 type，也就是说会把 emoji 左边冒号之前的内容解析为 type，那这样解析的话 type 就是空字符串了，所以使用上面的 commit message 提交会报错说你没有填写 type。
 
-如果不修改 commilint 的 type 配置是无法通过 commitlint 的，解决办法之一是添加一个 type `:bug: fix`，但是这样的话 `conventional-changelog-cli` 不会将 commit mesage 提取到 changelog，它只认 `fix: xxx` 不认 `:bug: fix: xxx`。因此，在当前配置下，我们如果要插入 emoji，建议使用下图的方式，虽然我觉得这样不好看，但目前来说是比较折中的方案。
+如果不修改 commitlint 的 type 配置是无法通过 commitlint 的，解决办法之一是添加一个 type `:bug: fix`，但是这样的话 `conventional-changelog-cli` 不会将 commit message 提取到 changelog，它只认 `fix: xxx` 不认 `:bug: fix: xxx`。因此，在当前配置下，我们如果要插入 emoji，建议使用下图的方式，虽然我觉得这样不好看，但目前来说是比较折中的方案。
 
 ```bash
 git commit -m "chore: :memo: improve docs and config json"
@@ -646,14 +646,13 @@ concurrently yarn:watch:node yarn:watch:js yarn:watch:css
 
 看起来就很迷，不了解的人可能还以为后面的冒号也是 `concurrently` 的参数呢，**所以表示带参数的 npm script 不要用冒号做分隔符**。
 
-最后再来一发 `yarn upgarde --latest`，养成每天升级依赖的好习惯，避免以后同时升级很多依赖出了都搞不清楚是哪个依赖升级导致的。不过公司的项目千万别这样搞，容易导致出 bug 连续加班。
+最后再来一发 `yarn upgrade --latest`，养成每天升级依赖的好习惯，避免以后同时升级很多依赖出了都搞不清楚是哪个依赖升级导致的。不过公司的项目千万别这样搞，容易导致出 bug 连续加班。
 
 到这里，**从零开始配置 react + typescript** 系列第二篇算是差不多了，再一次提交代码：
 
 ```bash
 git add -A
-git commit -m 'build: integrate eslint, stylelint, prettier, lint-staged, commi
-tlint'
+git commit -m 'build: integrate eslint, stylelint, prettier, lint-staged, commitlint'
 # 上次 push 的时候使用 -u 参数关联了 master 分支和 github 远程仓库，这里就可以直接 push
 git push
 ```

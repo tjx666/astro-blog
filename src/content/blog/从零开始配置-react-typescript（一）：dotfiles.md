@@ -73,11 +73,11 @@ git init
 
 有人可能会想，`prettier` 也是格式化工具，为什么同一个项目配置俩格式化工具（后面我们还要配置 `prettier`）？事实上，可以看到有些著名的开源项目如 `react`, `VSCode` 就是两个都用了。其实想想看：到最后代码格式化功能肯定是要交给 `prettier` 去干的，一般都是用 `lint-staged`，每次只把修改过的代码格式化。那是否就是说， `editorconfig` 是没有用的配置呢？
 
-当然是有用的，本质上 `editorconfig` 和 `prettier` 的区别在于：`editorconfig` 是主动作用于编辑器的，你添加了 `.editoronfig` 文件，调用 VSCode 的格式化，格式化结果就是 `.editorconfig` 配置的风格。而 `prettier` 只是一个命令行工具，需要我们去调用它，它才会格式化代码，它本身是被动的。如果你不配置 `editorconfig`，那当用户修改了一个文件，调用 `VSCode` 快捷键手动格式化代码，提交时又被 `prettier` 格式化一遍，因为 `VScode` 内置的 `formatter` 和 `prettier` 风格不一样，导致我明明手动格式化了，怎么提交后还被修改了。配置 `editorconfig` ，并且使其和 `prettier` 的风格保持一致，就可以解决前面提到的多次格式化结果不一样的问题。事实上， `react` 就是这样干的。
+当然是有用的，本质上 `editorconfig` 和 `prettier` 的区别在于：`editorconfig` 是主动作用于编辑器的，你添加了 `.editorconfig` 文件，调用 VSCode 的格式化，格式化结果就是 `.editorconfig` 配置的风格。而 `prettier` 只是一个命令行工具，需要我们去调用它，它才会格式化代码，它本身是被动的。如果你不配置 `editorconfig`，那当用户修改了一个文件，调用 `VSCode` 快捷键手动格式化代码，提交时又被 `prettier` 格式化一遍，因为 `VScode` 内置的 `formatter` 和 `prettier` 风格不一样，导致我明明手动格式化了，怎么提交后还被修改了。配置 `editorconfig` ，并且使其和 `prettier` 的风格保持一致，就可以解决前面提到的多次格式化结果不一样的问题。事实上， `react` 就是这样干的。
 
 其实，当用户配置了 `prettier` 作为 VSCode 的 `javascript` formatter， `editorconfig` 配置就没什么用了。
 
-![edittorconfig-prettier.png](https://i.loli.net/2020/02/01/lrV5nzXkGugMxfj.png)
+![editorconfig-prettier.png](https://i.loli.net/2020/02/01/lrV5nzXkGugMxfj.png)
 
 说了那么多，其实配置起来非常简单，建议安装 VSCode 扩展 [EditorConfig for VS Code](https://marketplace.visualstudio.com/items?itemName=EditorConfig.EditorConfig)，安装之后可以通过命令 `Generate .editorcofig` 生成默认的配置，个人建议最后加上一行 `end_of_line = unset`，让行尾换行符直接遵守操作系统的换行符。
 

@@ -37,11 +37,11 @@ console.log(person.introduce()); // => Hello everyone! My name is YuTengjing. I'
 
 ```javascript
 const myFriend = {
-  name: 'dongdong',
+  name: 'XiaoMing',
   age: 21,
 };
 
-console.log(person.introduce.call(myFriend)); // => Hello everyone! My name is dongdong. I'm 21 years old.
+console.log(person.introduce.call(myFriend)); // => Hello everyone! My name is XiaoMing. I'm 21 years old.
 ```
 
 通过上面代码我们可以看出 `introduce` 这个函数中的 this 指向被改成了 myFriend。Function.prototype.call 的函数签名是 `fun.call(thisArg, arg1, arg2, ...)`。第一个参数为调用函数时 this 的指向，随后的参数则作为函数的参数并调用，也就是 fn(arg1, arg2, ...)。
@@ -653,7 +653,7 @@ defineProperties(FunctionPrototype, {
     // XXX Build a dynamic function with desired amount of arguments is the only
     // way to set the length property of a function.
     // In environments where Content Security Policies enabled (Chrome extensions,
-    // for ex.) all use of eval or Function costructor throws an exception.
+    // for ex.) all use of eval or Function constructor throws an exception.
     // However in all of these environments Function.prototype.bind exists
     // and so this code will never be executed.
     bound = $Function(
@@ -696,7 +696,7 @@ defineProperties(FunctionPrototype, {
 });
 ```
 
-由于这个库是用来兼容 ES5 的，所以没有用 ES6 的 **new.target** 而是用 **instanceOf** 来判断是否是使用 new 来调用的，也没有使用 ES6 的 Object.defineProperty 或者 Object.definePropertyies。可以看到官方源代码中的注释还是很详细清晰的，感兴趣的读者可以自行研究一下，有什么问题也可以在评论区提出来。
+由于这个库是用来兼容 ES5 的，所以没有用 ES6 的 **new.target** 而是用 **instanceOf** 来判断是否是使用 new 来调用的，也没有使用 ES6 的 Object.defineProperty 或者 Object.defineProperties。可以看到官方源代码中的注释还是很详细清晰的，感兴趣的读者可以自行研究一下，有什么问题也可以在评论区提出来。
 
 ## 几个疑问
 
@@ -719,7 +719,7 @@ boundTest(); // => { name: 'ly' }
 boundTest = boundTest.bind({ name: 'dongdong' });
 boundTest(); // => { name: 'ly' }
 
-boundTest.call({ name: 'yinyin' }); // => { name: 'ly' }
+boundTest.call({ name: 'bob' }); // => { name: 'ly' }
 ```
 
 其实最近看过有些公司前端面试还考了偏函数的知识，其实也用到了 bind。这里我不打算讲偏函数了，偏函数我有空再写一篇文章单独讲。

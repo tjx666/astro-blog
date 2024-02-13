@@ -174,7 +174,7 @@ Object.defineProperty(Apple.prototype, 'constructor', {
   value: Student,
   writable: true,
   // 不可枚举，无法通过 Object.keys() 获取到
-  enumerable: fasle,
+  enumerable: false,
 });
 ```
 
@@ -658,9 +658,9 @@ app.use(cookieParser());
 app.use('/', express.static(path.join(__dirname, 'views')));
 app.post('/signup', (req, res) => {
   var body = JSON.parse(JSON.stringify(req.body));
-  var copybody = clone(body);
-  if (copybody.name) {
-    res.cookie('name', copybody.name).json({
+  var copyBody = clone(body);
+  if (copyBody.name) {
+    res.cookie('name', copyBody.name).json({
       done: 'cookie set',
     });
   } else {
@@ -670,8 +670,8 @@ app.post('/signup', (req, res) => {
   }
 });
 app.get('/getFlag', (req, res) => {
-  var аdmin = JSON.parse(JSON.stringify(req.cookies));
-  if (admin.аdmin == 1) {
+  var admin = JSON.parse(JSON.stringify(req.cookies));
+  if (admin.admin == 1) {
     res.send('hackim19{}');
   } else {
     res.send('You are not authorized');
@@ -691,7 +691,7 @@ curl -vv 'http://127.0.0.1/getFlag'
 
 首先请求 `/signup` 接口，在 NodeJS 服务中，我们调用了有漏洞的 `merge` 方法，并通过 `__proto__` 为 `Object.prototype`（因为 `{}.__proto__ === Object.prototype`）添加上一个新的属性 `admin`，且值为 1。
 
-再次请求 `getFlag` 接口，访问了 Object 原型上的`admin`，条件语句 `admin.аdmin == 1` 为 `true`，服务被攻击。
+再次请求 `getFlag` 接口，访问了 Object 原型上的`admin`，条件语句 `admin.admin == 1` 为 `true`，服务被攻击。
 
 ### 预防原型污染
 
@@ -699,7 +699,7 @@ curl -vv 'http://127.0.0.1/getFlag'
 
 #### Object.create(null)
 
-笔者看过一些类库的源码时，经常能看到这种操作，例如 [EventEmitter3](https://github.com/primus/eventemitter3/blob/master/index.js#L23)。通过 Object.create(null) 创建没有原型的对象，即便你对它设置`__proto__` 也没有用，因为它的原型一开始就是 null，没有 `__proro__` 的 `setter`。
+笔者看过一些类库的源码时，经常能看到这种操作，例如 [EventEmitter3](https://github.com/primus/eventemitter3/blob/master/index.js#L23)。通过 Object.create(null) 创建没有原型的对象，即便你对它设置`__proto__` 也没有用，因为它的原型一开始就是 null，没有 `__proto__` 的 `setter`。
 
 ```javascript
 const obj = Object.create(null);
@@ -740,9 +740,9 @@ console.log(p1.hosts);
 console.log(p2.hosts);
 ```
 
-运行结果是：先输出 `undefiend`，然后报错 `TypeError: Cannot read property 'hosts' of undefined`。
+运行结果是：先输出 `undefined`，然后报错 `TypeError: Cannot read property 'hosts' of undefined`。
 
-为什么 `console.log(p1.hosts)` 是输出 `undefiend` 呢，前面我们提过 new 的时候如果 return 了对象，会直接拿这个对象作为 new 的结果，因此，`p1` 应该是 `this.hosts` 的结果，而在 `new Page()` 的时候，this 是一个以 `Page.prototype` 为原型的 `target` 对象，所以这里 `this.hosts` 可以访问到 `Page.prototype.hosts` 也就是 `['h2']`。这样 `p1` 就是等于 `['h2']`，`['h2']` 没有 `hosts` 属性所以返回 `undefined`。
+为什么 `console.log(p1.hosts)` 是输出 `undefined` 呢，前面我们提过 new 的时候如果 return 了对象，会直接拿这个对象作为 new 的结果，因此，`p1` 应该是 `this.hosts` 的结果，而在 `new Page()` 的时候，this 是一个以 `Page.prototype` 为原型的 `target` 对象，所以这里 `this.hosts` 可以访问到 `Page.prototype.hosts` 也就是 `['h2']`。这样 `p1` 就是等于 `['h2']`，`['h2']` 没有 `hosts` 属性所以返回 `undefined`。
 
 为什么 `console.log(p2.hosts)` 会报错呢，`p2` 是直接调用 `Page` 构造函数的结果，直接调用 `page` 函数，这个时候 `this` 指向全局对象，全局对象并没 `hosts` 属性，因此返回 `undefined`，往 `undefined` 上访问 `hosts` 当然报错。
 

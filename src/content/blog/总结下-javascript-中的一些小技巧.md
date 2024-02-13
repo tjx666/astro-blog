@@ -455,9 +455,9 @@ console.log({ a, b }); // => { a: 999, b: 666 }
 
 截取下标 2 开始后的字符串是因为不需要 Math.random() 返回的小数构成的字符串的 `0.` 这两个字符。使用 36 进制可以制造字符种类更多些的随机字符串
 
-```
-console.log(Math.random().toString(16).substring(2)); // 13位 => 45d9d0bb10b31
-console.log(Math.random().toString(36).substring(2)); // 11位 => zwcx1yewjvj
+```javascript
+console.log(Math.random().toString(16).substring(2)); // 13 位 => 45d9d0bb10b31
+console.log(Math.random().toString(36).substring(2)); // 11 位 => zwcx1yewjvj
 ```
 
 ### 扁平化数组

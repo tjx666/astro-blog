@@ -108,7 +108,7 @@ CEP([Common Extensibility Platform](https://github.com/Adobe-CEP/CEP-Resources/b
 
 #### UXP 面板插件
 
-[UXP](https://developer.adobe.com/photoshop/uxp/guides/#the-uxp-technology-stack) (**U**nified E**x**tensibility **P**latform) 是下一代的面板插件架构，未来 CEP 扩展的结局会和 Flash 插件一样被废弃，并被 UXP 架构取代。
+[UXP](https://developer.adobe.com/photoshop/uxp/guides/#the-uxp-technology-stack) (**Unified Extensibility Platform**) 是下一代的面板插件架构，未来 CEP 扩展的结局会和 Flash 插件一样被废弃，并被 UXP 架构取代。
 
 官方文档有提到 UXP 和 CEP 的优劣势对比：[UXP for CEP Developers](https://developer.adobe.com/photoshop/uxp/2022/guides/uxp_for_you/uxp_for_cep_devs/)。我这意译一下：
 

@@ -13,7 +13,7 @@ pubDatetime: 2019-02-22 22:16:00
 本文主要由以下几部分构成：
 
 1. 为什么我选择了 react native
-2. react natve 开发 App 体验
+2. react native 开发 App 体验
 3. react native 的有哪些坑
 4. 对未来移动跨平台开发的展望
 
@@ -21,7 +21,7 @@ pubDatetime: 2019-02-22 22:16:00
 
 ## 为什么我选择了 react native
 
-当前比较火的开发原生 APP 的跨平台技术其实挺多的，h5+, mui, uniAPP, hybird, react native, weex, flutter。最具竞争力当属 react native, weex, lutter 了。
+当前比较火的开发原生 APP 的跨平台技术其实挺多的，h5+, mui, uniAPP, hybird, react native, weex, flutter。最具竞争力当属 react native, weex, flutter 了。
 
 ### weex
 
