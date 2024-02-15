@@ -38,9 +38,9 @@ pnpm dev
 pnpm build
 ```
 
-### Thanks
+## 致谢
 
-感谢一下以下网站在我设计博客时给予的灵感：
+非常感谢下以下网站在我设计博客时给予的灵感：
 
 - [liruifengv 的博客](https://liruifengv.com/)
 - [antfu 的博客](https://antfu.me/)
