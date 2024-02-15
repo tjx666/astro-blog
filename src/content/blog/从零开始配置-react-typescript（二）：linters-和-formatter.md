@@ -356,7 +356,7 @@ yarn add prettier -D
 
   但是不配置 tabWidth 的话，prettier 会格式化成：
 
-  ```
+  ```plaintext
   -   1
   -   2
   -   3

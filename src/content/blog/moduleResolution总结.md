@@ -223,7 +223,7 @@ const add = require('lodash/src/add');
   - 首先 `types` 和另一个字段`type` 很接近，容易拼错。
   - 另外，我们 ts 项目里面的 .d.ts 一般也放 `typings` 文件夹
   - `ts-node` 查找 .d.ts 默认也只找 `typings` 目录。
-- `unpkg`：和 `jsdeliver`, `cdn`, `browser` 字段一样都是给 cdn 厂家用的，细节可以参考这个 issue: [[What about `cdn` entry?](https://github.com/stereobooster/package.json/issues/14#top)](https://github.com/stereobooster/package.json/issues/14)
+- `unpkg`：和 `jsdeliver`, `cdn`, `browser` 字段一样都是给 cdn 厂家用的，细节可以参考这个 issue: [What about `cdn` entry?](https://github.com/stereobooster/package.json/issues/14)
 
 ### vite 如何选择模块入口
 
@@ -921,7 +921,7 @@ Relative import paths need explicit file extensions in EcmaScript imports when '
 
 需要注意的是：你要设置 `package.json` 中 `"type": "module"` 来明确开启 `esm`，否则即便你配置了 `"module": "ESNext"`，那些 `esm` 限制也不会生效。
 
-#### 优先级
+#### 类型解析优先级
 
 可以看到它同时配置了 `typesVersion` 和 `exports`，那 `tsc` 以哪个为标准呢？
 

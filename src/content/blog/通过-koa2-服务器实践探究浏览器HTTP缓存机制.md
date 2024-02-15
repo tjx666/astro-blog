@@ -232,7 +232,7 @@ router.get(/\S*\.css$/, async (ctx, next) => {
 
 设置了 cache-control: no-cache 后，每次刷新都是下面截图一样，浏览器不再使用缓存，如果使用了缓存就会像上面的那张截图一样在 Status Code 部分有说明。得出结论 cache-control 确实优先级比 expires 高。
 
-![](https://i.loli.net/2019/06/22/5d0e28a42085198392.png)
+![测试优先级](https://i.loli.net/2019/06/22/5d0e28a42085198392.png)
 
 设置 cache-control: max-age=60，理论上效果应该是缓存 1 分钟后失效，事实证明确实如此。
 
@@ -396,7 +396,7 @@ process.on('unhandledRejection', (err) => {
 
 首先是禁用缓存情况下首次访问，可以看到请求头中没有 if-modified-since，服务器返回了 last-modified。
 
-![](https://i.loli.net/2019/06/23/5d0f7bf17fe8b85005.png)
+![首次访问情况](https://i.loli.net/2019/06/23/5d0f7bf17fe8b85005.png)
 
 关闭 disable cache 后再次访问图片时，发现带上了 if-modified-since 请求头，值就是上次请求响应的 last-modified 值，因为图片最后修改时间不变，所以 304 Not Modified,。其实上面的代码有点小毛病，在 if-modified-since 不等于 last-modified 时没有设置 content-type，不过这些细节不影响我们探讨协商缓存核心知识。
 
@@ -404,7 +404,7 @@ process.on('unhandledRejection', (err) => {
 
 当我把 sunset.jpg 这张图替换成另外一张图后，图片最后修改时间改变了，所以返回了新的图片并且响应头中还加入了最新的 last-modified，下次请求带上的 if-modified-since 就是这次返回后的 last-modified 了。
 
-![](https://i.loli.net/2019/06/23/5d0f7e780cc7448744.png)
+![更新 if-modified-since](https://i.loli.net/2019/06/23/5d0f7e780cc7448744.png)
 
 #### 测试使用 etag 配置协商缓存
 

@@ -902,15 +902,15 @@ const prodConfig = merge(commonConfig, {
 
 哇 🚀，直接快了 3.6 倍多...
 
-实测发现这个插件在初次打包会耗时严重，并且即将发布的 webpack5 将内置这个功能，具体可以看这个 issue: [[spec: webpack 5] - A module disk cache between build processes ](https://github.com/webpack/webpack/issues/6527)。因此我们这个项目就不集成这个插件了。
+实测发现这个插件在初次打包会耗时严重，并且即将发布的 webpack5 将内置这个功能，具体可以看这个 issue: [[spec: webpack 5] - A module disk cache between build processes](https://github.com/webpack/webpack/issues/6527)。因此我们这个项目就不集成这个插件了。
 
-好了，插件部分介绍完了，接下来开始配置 loaders ！
+好了，插件部分介绍完了，接下来开始配置 loaders！
 
 ### loaders
 
 webpack 默认只支持导入 js，处理不了其它文件，需要配置对应的 loader，像 `excel-loader` 就可以解析 excel 为一个对象，`file-loader` 可以解析 png 图片为最终的发布路径。loader 是作用于一类文件的，plugin 是作用于 webpack 编译的各个时期。
 
-前面我们只配置了 `babel-loader`， 使得 webpack 能够处理 TypeScript 文件，实际的开发中我们还需要支持导入样式文件，图片文件，字体文件等。
+前面我们只配置了 `babel-loader`，使得 webpack 能够处理 TypeScript 文件，实际的开发中我们还需要支持导入样式文件，图片文件，字体文件等。
 
 #### 处理样式文件
 
@@ -1096,7 +1096,7 @@ module.exports = {
 {
  "browserslist": [
         "last 2 versions",
-        // ESR（Extended Support Release） 长期支持版本
+        // ESR（Extended Support Release）长期支持版本
         "Firefox ESR",
         "> 1%",
         "ie >= 11"
@@ -1104,7 +1104,7 @@ module.exports = {
 }
 ```
 
-回顾 CSS， less，sass 的配置可以看到有大量的重复，我们重构并修改 `importLoaders` 选项：
+回顾 CSS，less，sass 的配置可以看到有大量的重复，我们重构并修改 `importLoaders` 选项：
 
 ```javascript
 function getCssLoaders(importLoaders: number) {
@@ -1162,7 +1162,7 @@ const commonConfig: Configuration = {
 
 #### 处理图片和字体
 
-一般来说我们的项目在开发的时候会使用一些图片来测试效果，正式上线再替换成 CDN 而不是使用 webpack 打包的本地图片。处理文件的常用 loader 有俩，`file-loader` 和 `url-loader`，`file-loader` 用于解析导入的文件为发布时的 url， 并将文件输出到指定的位置，而后者是对前者的封装，提供了将低于阈值体积(下面就设置为 8192 个字节）的图片转换成 base64。我忽然想起以前腾讯的一个面试官问过这么个问题：使用 base64 有什么坏处吗？其实我觉得 base64 好处就是不用二次请求，坏处就是图片转 base64 体积反而会变大，变成原来的三分之四倍。
+一般来说我们的项目在开发的时候会使用一些图片来测试效果，正式上线再替换成 CDN 而不是使用 webpack 打包的本地图片。处理文件的常用 loader 有俩，`file-loader` 和 `url-loader`，`file-loader` 用于解析导入的文件为发布时的 url，并将文件输出到指定的位置，而后者是对前者的封装，提供了将低于阈值体积 (下面就设置为 8192 个字节）的图片转换成 base64。我忽然想起以前腾讯的一个面试官问过这么个问题：使用 base64 有什么坏处吗？其实我觉得 base64 好处就是不用二次请求，坏处就是图片转 base64 体积反而会变大，变成原来的三分之四倍。
 
 ![base64](https://i.loli.net/2020/02/20/IouO1Kvt5wFAWVl.png)
 
@@ -1212,7 +1212,7 @@ const commonConfig: Configuration = {
 
 ### sourcemap
 
-| devtool                        | 构建速度 | 重新构建速度 | 生产环境 | 品质(quality)          |
+| devtool                        | 构建速度 | 重新构建速度 | 生产环境 | 品质 (quality)         |
 | ------------------------------ | -------- | ------------ | -------- | ---------------------- |
 | (none)                         | +++      | +++          | yes      | 打包后的代码           |
 | eval                           | +++      | +++          | no       | 生成后的代码           |
@@ -1228,7 +1228,7 @@ const commonConfig: Configuration = {
 | hidden-source-map              | --       | --           | yes      | 原始源代码             |
 | nosources-source-map           | --       | --           | yes      | 无源代码内容           |
 
-> `+++` 非常快速, `++` 快速, `+` 比较快, `o` 中等, `-` 比较慢, `--` 慢
+> `+++` 非常快速，`++` 快速，`+` 比较快，`o` 中等，`-` 比较慢，`--` 慢
 
 sourcemap 是现在前端界很多工具必不可缺的一个功能，webpack，TypeScript，babel，power-assert 等转换代码的工具都要提供 sourcemap 功能，源代码被压缩，混淆，polyfill，没有 sourcemap，根本没办法调试定位问题。
 
@@ -1302,7 +1302,7 @@ yarn add @babel/preset-env -D
 
 #### @babel/plugin-transform-runtime
 
-我们知道默认情况下， babel 在编译每一个模块的时候在需要的时候会插入一些辅助函数例如 `_extend`，每一个需要的模块都会生成这个辅助函数会造成没必要的代码膨胀，`@babel/plugin-transform-runtime` 这个插件会将所有的辅助函数都从 `@babel/runtime` 导入，来减少代码体积。
+我们知道默认情况下，babel 在编译每一个模块的时候在需要的时候会插入一些辅助函数例如 `_extend`，每一个需要的模块都会生成这个辅助函数会造成没必要的代码膨胀，`@babel/plugin-transform-runtime` 这个插件会将所有的辅助函数都从 `@babel/runtime` 导入，来减少代码体积。
 
 ```bash
 yarn add @babel/plugin-transform-runtime -D
@@ -1312,13 +1312,13 @@ yarn add @babel/plugin-transform-runtime -D
 
 虽然 `@babel/preset-typescript` 就能转换 tsx 成 js 代码，但是 `@babel/preset-react` 还集成了一些针对 react 项目的实用的插件。
 
-`@babel/preset-react` 默认会开启下面这些插件:
+`@babel/preset-react` 默认会开启下面这些插件：
 
 - [@babel/plugin-syntax-jsx](https://babeljs.io/docs/en/babel-plugin-syntax-jsx)
 - [@babel/plugin-transform-react-jsx](https://babeljs.io/docs/en/babel-plugin-transform-react-jsx)
 - [@babel/plugin-transform-react-display-name](https://babeljs.io/docs/en/babel-plugin-transform-react-display-name)
 
-如果设置了 `development: true` 还会开启:
+如果设置了 `development: true` 还会开启：
 
 - [@babel/plugin-transform-react-jsx-self](https://babeljs.io/docs/en/babel-plugin-transform-react-jsx-self)
 - [@babel/plugin-transform-react-jsx-source](https://babeljs.io/docs/en/babel-plugin-transform-react-jsx-source)
@@ -1456,7 +1456,7 @@ const Hr = () => {
 
 ### 添加版权声明
 
-这个直接用 webpack 内置的 `BannerPlugin` 即可:
+这个直接用 webpack 内置的 `BannerPlugin` 即可：
 
 ```javascript
 import { BannerPlugin } from 'webpack';
@@ -1596,7 +1596,7 @@ declare module 'speed-measure-webpack-plugin' {
         granularLoaderData: boolean;
     }
 
-    // 继承 Plugin 类, Plugin 类都有 apply 方法
+    // 继承 Plugin 类，Plugin 类都有 apply 方法
     class SpeedMeasurePlugin extends Plugin {
         constructor(options?: Partial<SpeedMeasurePluginOptions>);
         wrap(webpackConfig: Configuration): Configuration;

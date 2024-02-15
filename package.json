@@ -7,7 +7,8 @@
     "lint-staged": {
         "*.md": [
             "autocorrect --lint",
-            "cspell lint"
+            "cspell lint",
+            "markdownlint"
         ],
         "*.{js,jsx,ts,tsx,md,mdx,json,astro}": [
             "prettier --write"
@@ -28,6 +29,7 @@
         "lint:eslint": "eslint .",
         "lint:spell": "cspell lint src/**/*.md",
         "lint:typo": "autocorrect --lint src/**/*.md",
+        "lint:md": "markdownlint 'src/**/*.md'",
         "lint:format": "prettier . --check",
         "autocorrect": "autocorrect --fix src/**/*.md",
         "format": "prettier --write ."
@@ -65,6 +67,7 @@
         "eslint-plugin-astro": "^0.31.4",
         "eslint-plugin-simple-import-sort": "^12.0.0",
         "lint-staged": "^15.2.2",
+        "markdownlint-cli": "^0.39.0",
         "prettier": "^3.2.5",
         "prettier-plugin-astro": "^0.13.0",
         "prettier-plugin-tailwindcss": "^0.5.11",
