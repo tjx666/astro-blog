@@ -100,3 +100,6 @@ yewjvj
 zhlint
 Zilla
 zwcx
+Boxicons
+liruifengv
+Tablers

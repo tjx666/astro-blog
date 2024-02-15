@@ -18,7 +18,7 @@ const { frontmatter } = Astro.props;
     <main id="main-content">
         <section id="about" class="prose mb-28 max-w-3xl prose-img:border-0">
             <h1 class="pt-5 text-center text-2xl tracking-wider sm:text-3xl">
-                {frontmatter.title}
+                {SITE.author}
             </h1>
             <slot />
             <p class="pt-4 text-center">

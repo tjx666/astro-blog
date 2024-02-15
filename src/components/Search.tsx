@@ -86,7 +86,7 @@ export default function SearchBar({ searchList }: Props) {
         border-opacity-40 bg-skin-fill py-3 pl-10
         pr-3 placeholder:italic placeholder:text-opacity-75 
         focus:border-skin-accent focus:outline-none"
-                    placeholder="Search for anything..."
+                    placeholder="搜索文章..."
                     type="text"
                     name="search"
                     value={inputVal}

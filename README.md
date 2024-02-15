@@ -2,7 +2,21 @@
 
 [![ci](https://github.com/tjx666/astro-blog/actions/workflows/ci.yml/badge.svg)](https://github.com/tjx666/astro-blog/actions/workflows/ci.yml)
 
-基于 [astro](https://github.com/withastro/astro) 和 [astro paper](https://github.com/satnaing/astro-paper) 模版，使用 [cloudflare pages](https://dash.cloudflare.com/) 部署。
+我的个人博客。
+
+## 技术栈
+
+**SSG 框架** - [Astro](https://astro.build/)  
+**开发语言** - [TypeScript](https://www.typescriptlang.org/)  
+**组件框架** - [ReactJS](https://reactjs.org/)  
+**CSS 方案** - [TailwindCSS](https://tailwindcss.com/)  
+**模糊搜索** - [FuseJS](https://fusejs.io/)  
+**图标** - [Boxicons](https://boxicons.com/) | [Tablers](https://tabler-icons.io/)  
+**代码格式化** - [Prettier](https://prettier.io/)  
+**部署** - [Cloudflare Pages](https://pages.cloudflare.com/)  
+**代码风格检查** - [ESLint](https://eslint.org)
+**中文排版** - [Autocorrect](https://github.com/huacnlee/autocorrect)
+**拼写检查** - [CSpell](https://cspell.org/)
 
 ## 本地开发
 
@@ -24,6 +38,14 @@ pnpm dev
 pnpm build
 ```
 
+### Thanks
+
+感谢一下以下网站在我设计博客时给予的灵感：
+
+- [liruifengv 的博客](https://liruifengv.com/)
+- [antfu 的博客](https://antfu.me/)
+- [张鑫旭的博客](https://www.zhangxinxu.com/)
+
 ## TODOS
 
 - [x] 社交链接图片
@@ -42,6 +64,7 @@ pnpm build
   - [ ] 360，待更新索引
 - [x] RSS
 - [x] 失效图片链接修复
+- [x] 汉化
 - [ ] 根据文章内容自动生成摘要
 - [ ] 中文排版优化
 - [ ] 主题色优化
@@ -50,7 +73,6 @@ pnpm build
 - [ ] 文章封面
 - [ ] 阅读耗时
 - [ ] 按照年份对文章归档
-- [ ] 汉化
 - [ ] 评论
 - [ ] 访问次数统计
 - [ ] 捐赠页面

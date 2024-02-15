@@ -14,9 +14,9 @@ const posts = await getCollection('blog');
 const tags = getUniqueTags(posts);
 ---
 
-<Layout title={`Tags | ${SITE.title}`}>
+<Layout title={`标签 | ${SITE.title}`}>
     <Header activeNav="tags" />
-    <Main pageTitle="Tags">
+    <Main pageDesc={`所有标签：`}>
         <ul>
             {tags.map(({ tag }) => <Tag {tag} size="lg" />)}
         </ul>
