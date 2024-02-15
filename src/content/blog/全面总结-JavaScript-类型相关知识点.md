@@ -985,7 +985,7 @@ console.log(types.isRegExp(/exp/));
 
 这里提一下我之前在使用 babel 转码 node 代码发现的一个 bug，就是 `util.types.isGeneratorFunction` 方法在 babel 转码之后判断有问题：
 
-![babel-node-bug](../../assets/images/全面总结-JavaScript-类型相关知识点/utils-bug.webp)
+<!-- ![babel-node-bug](../../assets/images/全面总结-JavaScript-类型相关知识点/utils-bug.webp) -->
 
 可以看到 debug 控制台输出的是 false。
 

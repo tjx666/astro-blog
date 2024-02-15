@@ -256,7 +256,7 @@ Steps:
 5. 把光标定到第二行的行首，<kbd>⌘</kbd>+<kbd>Alt</kbd>+<kbd>↓</kbd> 往下面同一列添加多光标
 6. 先 <kbd>⌫</kbd>，再敲一个空格就可以把整个文本复制到 terminal 了
 
-![安装多个 node package](../../assets/images/VSCode又酷又实用的多光标编辑/安装多个packages.gif)
+<!-- ![安装多个 node package](../../assets/images/VSCode 又酷又实用的多光标编辑/安装多个 packages.gif) -->
 
 ### 重构 react router path 为枚举
 

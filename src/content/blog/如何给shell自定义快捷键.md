@@ -5,7 +5,7 @@ pubDatetime: 2022-03-20
 
 最近在开发的时候有刻意的去思考有哪些影响自己开发效率的因素。比如我实际碰到的一个问题就是当 `zsh-autosuggestions` 插件完整提示出你要运行的命令，但是我在 Mac 上要先输入 `cmd + ->`，再敲回车。输入 Mac 自带键盘的右箭头是很影响输入效率的，当时我就想，我能不能通过快捷键 `shift + enter` 实现接受 zsh 提示并回车运行。在摸了两小时 🐟 后，总算是在 iterm2 和 VSCode 的 terminal 都完美实现了自己的需求。
 
-![VSCode 示例](../../assets/images/如何给shell自定义快捷键/vscode-example.gif)
+<!-- ![VSCode 示例](../../assets/images/如何给 shell 自定义快捷键/vscode-example.gif) -->
 
 ### shell 快捷键原理
 
@@ -13,7 +13,7 @@ pubDatetime: 2022-03-20
 
 在 zsh 中，你可以通过先输入快捷键 `ctrl + v` 再输入你的快捷键，来看你输入的快捷键被转换成了什么字符序列：
 
-![快捷键字符序列](../../assets/images/如何给shell自定义快捷键/查看快捷键字符序列.gif)
+<!-- ![快捷键字符序列](../../assets/images/如何给 shell 自定义快捷键/查看快捷键字符序列.gif) -->
 
 可以看到快捷键 `ctrl + ->` 本质上是给 shell 输了字符序列：`^[[1;5C`。
 

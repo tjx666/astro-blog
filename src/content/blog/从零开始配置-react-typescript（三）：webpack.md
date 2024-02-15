@@ -1736,7 +1736,7 @@ compiler.run((error, stats) => {
 });
 ```
 
-![effect](../../assets/images/从零开始配置-react-typescript（三）：webpack/effect.gif)
+<!-- ![effect](../../assets/images/从零开始配置-react-typescript（三）：webpack/effect.gif) -->
 
 我最近一直在忙毕业和找工作的事情，下一篇可能要在一个月后左右了。如果读者对文章中有哪些不理解的地方建议先去看下[源代码](https://github.com/tjx666/react-typescript-boilerplate)，还有问题的话可以在 [github issues](https://github.com/tjx666/react-typescript-boilerplate/issues) 或者发布平台的评论区向我提问，如果觉得本文对你有用，不妨赏颗 star 😁。
 
