@@ -10,7 +10,7 @@ Linter 泛指能够检测代码问题的工具，这些问题可能包括：
 - 代码风格，代码格式是代码风格的一部分
 - 逻辑 bug
 
-![ESLint --init](https://github.com/tjx666/blog/blob/main/images/%E9%9D%A2%E5%90%91%20lint%20%E7%BC%96%E7%A8%8B/eslint-init.png)
+![ESLint --init](https://github.com/tjx666/blog/blob/main/images/%E9%9D%A2%E5%90%91%20lint%20%E7%BC%96%E7%A8%8B/eslint-init.png?raw=true)
 
 常见的 linter：
 
@@ -34,7 +34,7 @@ Linter 泛指能够检测代码问题的工具，这些问题可能包括：
 
 很多 lint 工具的设计都是类似的，以大家最熟悉的 ESLint 为例。下图是我们编写 Lint 工具插件常用的网站 [astexplorer](https://astexplorer.net/)，图中的一些标注对应了 ESLint 中的一些常见概念。
 
-![astexplorer](https://github.com/tjx666/blog/blob/main/images/%E9%9D%A2%E5%90%91%20lint%20%E7%BC%96%E7%A8%8B/astexplorer.png)
+![astexplorer](https://github.com/tjx666/blog/blob/main/images/%E9%9D%A2%E5%90%91%20lint%20%E7%BC%96%E7%A8%8B/astexplorer.png?raw=true)
 
 ### Parser
 
@@ -87,7 +87,7 @@ module.exports = {
 
 #### ESLint 自身配置
 
-![eslint define config](https://github.com/tjx666/blog/blob/main/images/%E9%9D%A2%E5%90%91%20lint%20%E7%BC%96%E7%A8%8B/eslint-define-config.png)
+![eslint define config](https://github.com/tjx666/blog/blob/main/images/%E9%9D%A2%E5%90%91%20lint%20%E7%BC%96%E7%A8%8B/eslint-define-config.png?raw=true)
 
 - .eslintrc 几乎所有的 eslint 可自定义的内容都可以在这个文件配置，支持多种格式，
   - json 好处在于可以借助 [json schema](https://github.com/microsoft/vscode-eslint/blob/c023aab96e56f7e1accf8c742a6c601e568bde1e/package-json-schema.json#L2) 很容易获取 IDE 提示，适合配置内容很少的场景
@@ -198,11 +198,11 @@ interface RulesRecord {
 
 ESLint 规则众多，我们怎样查看一个规则对应的文档呢？Google 确实是一种方法，如果是在 VSCode 中，我们可以直接通过 `quick fix` 快速打开规则对应的文档。
 
-![documentation](https://github.com/tjx666/blog/blob/main/images/%E9%9D%A2%E5%90%91%20lint%20%E7%BC%96%E7%A8%8B/documentation.png)
+![documentation](https://github.com/tjx666/blog/blob/main/images/%E9%9D%A2%E5%90%91%20lint%20%E7%BC%96%E7%A8%8B/documentation.png?raw=true)
 
 一般来讲在编写 ESLint 插件时我们都会把所有的规则的文档都平铺到一个文件夹：
 
-![documentation folder](https://github.com/tjx666/blog/blob/main/images/%E9%9D%A2%E5%90%91%20lint%20%E7%BC%96%E7%A8%8B/documentation-folder.png)
+![documentation folder](https://github.com/tjx666/blog/blob/main/images/%E9%9D%A2%E5%90%91%20lint%20%E7%BC%96%E7%A8%8B/documentation-folder.png?raw=true)
 
 这样方便统一设置规则的文档：
 
@@ -267,7 +267,7 @@ parent?.childNodes[parent.childNodes.length - 1];
 
 使用 IDE 手动修复的例子：
 
-![editor suggestion](https://github.com/tjx666/blog/blob/main/images/%E9%9D%A2%E5%90%91%20lint%20%E7%BC%96%E7%A8%8B/editor-suggestion.png)
+![editor suggestion](https://github.com/tjx666/blog/blob/main/images/%E9%9D%A2%E5%90%91%20lint%20%E7%BC%96%E7%A8%8B/editor-suggestion.png?raw=true)
 
 ### [Disable](https://eslint.org/docs/latest/use/configure/rules#disabling-rules)
 
@@ -347,7 +347,7 @@ git config core.hooksPath .git/hooks/
 
 我目前主要维护的公司项目两个都会走，本地好办，直接上 lint-staged，但是 ci 上 lint-staged 很难用，放一张图你就明白了：
 
-![lint changed](https://github.com/tjx666/blog/blob/main/images/%E9%9D%A2%E5%90%91%20lint%20%E7%BC%96%E7%A8%8B/ci-lint-changed.png)
+![lint changed](https://github.com/tjx666/blog/blob/main/images/%E9%9D%A2%E5%90%91%20lint%20%E7%BC%96%E7%A8%8B/ci-lint-changed.png?raw=true)
 
 总结下问题就是：
 
@@ -356,7 +356,7 @@ git config core.hooksPath .git/hooks/
 
 下面是我优化后的效果：
 
-![lint changed fixed](https://github.com/tjx666/blog/blob/main/images/%E9%9D%A2%E5%90%91%20lint%20%E7%BC%96%E7%A8%8B/lint-changed-fixed.png)
+![lint changed fixed](https://github.com/tjx666/blog/blob/main/images/%E9%9D%A2%E5%90%91%20lint%20%E7%BC%96%E7%A8%8B/lint-changed-fixed.png?raw=true)
 
 通过自己实现了一个脚本读取 lint-staged 配置文件来实现 lint changed，优化代码：
 
@@ -502,7 +502,7 @@ consola.success('Lint 通过');
 }
 ```
 
-![commit no verify](https://github.com/tjx666/blog/blob/main/images/%E9%9D%A2%E5%90%91%20lint%20%E7%BC%96%E7%A8%8B/commit-no-verify.png)
+![commit no verify](https://github.com/tjx666/blog/blob/main/images/%E9%9D%A2%E5%90%91%20lint%20%E7%BC%96%E7%A8%8B/commit-no-verify.png?raw=true)
 
 ### 并发 lint 导致的问题
 
@@ -651,7 +651,7 @@ if (count) {
 
 [ota-meshi](https://github.com/ota-meshi) 老哥开发的很多 eslint 插件都有 [playground](https://ota-meshi.github.io/eslint-plugin-vue-demo/)，你可以在 playground 里面把所有的规则都打开，然后写上你需要被检测出错误的代码，这样根据错误提示你就知道应该用什么规则了：
 
-![eslint playground](https://github.com/tjx666/blog/blob/main/images/%E9%9D%A2%E5%90%91%20lint%20%E7%BC%96%E7%A8%8B/eslint-playground.png)
+![eslint playground](https://github.com/tjx666/blog/blob/main/images/%E9%9D%A2%E5%90%91%20lint%20%E7%BC%96%E7%A8%8B/eslint-playground.png?raw=true)
 
 ### 规则那么多，配置起来好麻烦
 

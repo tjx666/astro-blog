@@ -686,7 +686,7 @@ new Suite()
 
 结果出人意料，还特么是算法一效率高
 
-```
+```plaintext
 /* =>
 removeDuplicates1 x 94,495,506 ops/sec ±1.94% (83 runs sampled)
 removeDuplicates2 x 11,855,308 ops/sec ±3.34% (84 runs sampled)
@@ -902,7 +902,7 @@ console.log(null.toString()); // Cannot read property 'toString' of null
 
 ### 比较构造器
 
-**通过直接比较对象得构造器是不是等于某个构造器也可以用来做类型判断，**笔者前不久在看 [co](https://github.com/tj/co/blob/master/index.js) 源码的时候看到它定义了好几个类型判断函数，先来看一个简单点的：
+**通过直接比较对象得构造器是不是等于某个构造器也可以用来做类型判断**，笔者前不久在看 [co](https://github.com/tj/co/blob/master/index.js) 源码的时候看到它定义了好几个类型判断函数，先来看一个简单点的：
 
 ```javascript
 function isObject(val) {
@@ -985,7 +985,7 @@ console.log(types.isRegExp(/exp/));
 
 这里提一下我之前在使用 babel 转码 node 代码发现的一个 bug，就是 `util.types.isGeneratorFunction` 方法在 babel 转码之后判断有问题：
 
-![babel-node-bug](https://i.loli.net/2020/01/15/VbPUtD4epTl2arK.png)
+![babel-node-bug](../../assets/images/全面总结-JavaScript-类型相关知识点/utils-bug.webp)
 
 可以看到 debug 控制台输出的是 false。
 
@@ -1000,7 +1000,7 @@ function isObject(value) {
 }
 ```
 
-本文的内容就这么多，最近写了两个 VSCode 插件：[[view-github-repository](https://github.com/tjx666/view-github-repository)] 和 [open-in-external-app](https://github.com/tjx666/open-in-external-app)，以及几个模板项目：[awesome-chrome-extension-boilerplate](https://github.com/tjx666/awesome-chrome-extension-boilerplate), [vscode-extension-boilerplate](https://github.com/tjx666/vscode-extension-boilerplate) 和 [koa-restful-boilerplate](https://github.com/tjx666/koa-restful-boilerplate)。感兴趣不妨去[我的 github 主页](https://github.com/tjx666)逛逛。
+本文的内容就这么多，最近写了两个 VSCode 插件：[view-github-repository](https://github.com/tjx666/view-github-repository) 和 [open-in-external-app](https://github.com/tjx666/open-in-external-app)，以及几个模板项目：[awesome-chrome-extension-boilerplate](https://github.com/tjx666/awesome-chrome-extension-boilerplate), [vscode-extension-boilerplate](https://github.com/tjx666/vscode-extension-boilerplate) 和 [koa-restful-boilerplate](https://github.com/tjx666/koa-restful-boilerplate)。感兴趣不妨去[我的 github 主页](https://github.com/tjx666)逛逛。
 
 最后，快过年了，祝大家新年快乐，2020 事业更上一层楼。
 

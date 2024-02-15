@@ -94,8 +94,6 @@ featured: true
 
 和这个扩展功能相同，下载量同样非常高的另一个扩展是：[Node.js Modules Intellisense](https://marketplace.visualstudio.com/items?itemName=leizongmin.node-module-intellisense)。
 
-![npm Intellisense](https://i.loli.net/2020/04/06/AG82NgZBfvlRWJ7.gif)
-
 ### [Document This](https://marketplace.visualstudio.com/items?itemName=joelday.docthis)
 
 > Last updated: 2018/6/4

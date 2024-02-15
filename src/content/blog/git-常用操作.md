@@ -127,7 +127,7 @@ git push remote-server-name -u branch-name
 
 例如推送到 github：
 
-```
+```bash
 git push github -u master
 ```
 

@@ -640,7 +640,7 @@ concurrently yarn:watch-node yarn:watch-js yarn:watch-css
 
 那你说如果用冒号来做分隔符，那要写就是：
 
-```
+```bash
 concurrently yarn:watch:node yarn:watch:js yarn:watch:css
 ```
 

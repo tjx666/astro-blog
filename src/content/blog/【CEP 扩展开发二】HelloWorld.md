@@ -77,7 +77,7 @@ function isVectorDensityModified(layerDesc) {
 
 最终我们 Hello world 项目的目录结构是这样的：
 
-```
+```plaintext
 .
 ├── .debug # CEP 扩展 debug 模式配置文件，只开开发时需要
 ├── CSXS # 用于存放扩展的配置和资源文件（例如图标）

@@ -154,7 +154,7 @@ SASS_BINARY_SITE=http://npm.taobao.org/mirrors/node-sass
 
 根据你的项目性质，去网站 [choose a license](http://choosealicense.online/) 选择一个合适的 license，复制后粘贴到项目根路径的 `LICENSE` 或 `LICENSE.txt` 文件里面，修改一些配置即可。这里我选择宽松的 MIT 协议，修改其中的年份和作者名：
 
-```
+```plaintext
 MIT License
 
 Copyright (c) [2020] [YuTengjing]
