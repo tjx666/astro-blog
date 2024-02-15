@@ -2,7 +2,7 @@
 
 [![ci](https://github.com/tjx666/astro-blog/actions/workflows/ci.yml/badge.svg)](https://github.com/tjx666/astro-blog/actions/workflows/ci.yml)
 
-我的个人博客。
+我的个人博客前端源码。
 
 ## 技术栈
 
@@ -13,9 +13,9 @@
 **模糊搜索** - [FuseJS](https://fusejs.io/)  
 **图标** - [Boxicons](https://boxicons.com/) | [Tablers](https://tabler-icons.io/)  
 **代码格式化** - [Prettier](https://prettier.io/)  
-**部署** - [Cloudflare Pages](https://pages.cloudflare.com/)  
-**代码风格检查** - [ESLint](https://eslint.org)
-**中文排版** - [Autocorrect](https://github.com/huacnlee/autocorrect)
+**静态部署** - [Cloudflare Pages](https://pages.cloudflare.com/)  
+**代码风格检查** - [ESLint](https://eslint.org) | [Markdownlint](https://github.com/DavidAnson/markdownlint)  
+**中文排版** - [Autocorrect](https://github.com/huacnlee/autocorrect)  
 **拼写检查** - [CSpell](https://cspell.org/)
 
 ## 本地开发
@@ -56,6 +56,7 @@ pnpm build
 - [x] husky -> simple-git-hooks
 - [x] autocorrect
 - [x] spellcheck
+- [x] markdownlint
 - [ ] 搜索引擎收录
   - [x] 谷歌
   - [x] 必应
