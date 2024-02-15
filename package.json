@@ -5,14 +5,11 @@
     "prettier": "@yutengjing/prettier-config",
     "packageManager": "pnpm@8.15.3",
     "lint-staged": {
-        "*.md": [
-            "autocorrect --lint",
-            "cspell lint",
-            "markdownlint"
-        ],
-        "*.{js,jsx,ts,tsx,md,mdx,json,astro}": [
-            "prettier --write"
-        ]
+        "*.md": "autocorrect --fix",
+        "**.md": "cspell lint",
+        "***.md": "markdownlint",
+        "*.{ts,tsx,md,json,astro}": "eslint --fix",
+        "*.{js,jsx,ts,tsx,md,mdx,json,astro}": "prettier --write"
     },
     "simple-git-hooks": {
         "pre-commit": "npx lint-staged"
