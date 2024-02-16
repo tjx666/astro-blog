@@ -6,7 +6,6 @@ import { type CollectionEntry } from 'astro:content';
 import { Resvg } from '@resvg/resvg-js';
 import satori, { type SatoriOptions } from 'satori';
 
-import { projectRoot } from './constants';
 import postOgImage from './og-templates/post';
 import siteOgImage from './og-templates/site';
 
@@ -15,8 +14,8 @@ const fetchFonts = async () =>
         ['Regular', 'Bold'].map(async (weight) =>
             fs.readFile(
                 resolve(
-                    projectRoot,
-                    `public/assets/fonts/lxgw-wenkai/LXGWWenKaiMono-${weight}.ttf`,
+                    import.meta.dirname,
+                    `../../public/assets/fonts/lxgw-wenkai/LXGWWenKaiMono-${weight}.ttf`,
                 ),
             ),
         ),
