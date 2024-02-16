@@ -13,5 +13,7 @@
     "editor.codeActionsOnSave": {
         "source.fixAll.eslint": "explicit"
     },
+    // https://github.com/tailwindlabs/tailwindcss/discussions/5258#discussioncomment-1979394
+    "css.customData": [".vscode/tailwind.json"],
     "tailwindCSS.experimental.classRegex": [["clsx\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)"]]
 }
