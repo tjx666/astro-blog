@@ -15,6 +15,7 @@ BCDA
 BDAC
 BDCA
 bgriaem
+Boxicons
 CABD
 cacahe
 CADB
@@ -59,6 +60,7 @@ jsonstringify
 KBRG
 koro
 Linkclump
+liruifengv
 listscroll
 lstcp
 lyreal
@@ -84,13 +86,17 @@ PRLD
 qupingce
 rafaelrinaldi
 Restlet
+rmpkgs
 rusti
 Screencastify
 signup
+Tablers
 Tage
 tiza
+turbopack
 uodq
 Userscript
+vben
 vicmd
 viins
 viopp
@@ -100,6 +106,3 @@ yewjvj
 zhlint
 Zilla
 zwcx
-Boxicons
-liruifengv
-Tablers
