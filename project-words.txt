@@ -90,6 +90,7 @@ rmpkgs
 rusti
 Screencastify
 signup
+sortablejs
 Tablers
 Tage
 tiza
