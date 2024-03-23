@@ -62,6 +62,7 @@ koro
 Linkclump
 liruifengv
 listscroll
+lockb
 lstcp
 lyreal
 menuselect
@@ -79,6 +80,7 @@ Oquake
 Orign
 pcalc
 pkcs
+plugh
 PPAPI
 PPRO
 premierepro
