@@ -833,9 +833,10 @@ await Promise.all(lintTasks);
 consola.success('Lint 通过');
 ```
 
-## 折腾 linters 期间写的 vscode 插件
+## 一些使用过但前面没提到的工具
 
-- [Better Colorizer](https://marketplace.visualstudio.com/items?itemName=YuTengjing.better-colorizer) support syntax highlight for git error file and output panel
+- [ast explorer](https://astexplorer.net/) 查看 ast 节点
+- [Better Colorizer](https://marketplace.visualstudio.com/items?itemName=YuTengjing.better-colorizer) 支持 git error file 以及 output panel 的语法高亮
 
 ## 总结
 
