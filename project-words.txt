@@ -1,10 +1,12 @@
 ABDC
 ACBD
 ACDB
+ACMR
 ADBC
 ADCB
 adobeprerelease
 AICY
+aigc
 attw
 AUDT
 BACD
@@ -96,8 +98,10 @@ signup
 sortablejs
 Tablers
 Tage
+textcontent
 tiza
 turbopack
+turborepo
 uodq
 Userscript
 vben
