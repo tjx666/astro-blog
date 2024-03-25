@@ -20,6 +20,8 @@ pubDatetime: 2024-03-24
 
 bad:
 
+// autocorrect-disable
+
 ```javascript
 // loading 过程中禁止全选
 
@@ -27,6 +29,8 @@ bad:
  * Loading 过程中禁止全选
  */
 ```
+
+// autocorrect-enable
 
 good:
 
@@ -236,12 +240,12 @@ result.push(1);
 result.push('a');
 ```
 
-1. 你可能会错误的认为 resp 会被推导为 Resp 类型，然而实际上 resp 是 any 类型
-2. 你还可能错误的认为只要开启了 tsconfig.json 中 compilerOptions.noImplicitAny，tsc 会对这种 any 报错
+1. 你可能会错误的认为 `resp` 会被推导为 `Resp` 类型，然而实际上 resp 是 `any` 类型
+2. 你还可能错误的认为只要开启了 `tsconfig.json` 中 `compilerOptions.noImplicitAny`，tsc 会对这种 `any` 报错
 
 你可以在 [ts playground](https://www.typescriptlang.org/play?#code/JYOwLgpgTgZghgYwgAgEoQM4AdkG8CwAUMsgCZxhwBceRJJwpNGYUoA5ncgL4DaAukW5EicDAE8QCZDACuUsMAD2IGRDAIAFgGUlAWwgAVTRwAUAShoAFKPuAYIAHnTYAfLWLIo62VFUFPEnJKGl5cZEYaAHIARiiefgAaLm4AbiERQjFJaTkFZVU9OFALDxIAenKvTBxAejNkOBBxZEBvH0Bo9S4AG3Vq7HTPVmaA+l6cAF4GgHdisDUNHX0jExB2C36SbmQECi1kU2hbKHMy+gQVDCVugDoDpSh9qEPzdZ5MiqrAWDlAUqNATFSub2wyAmMX6XDOIAu106SlWAKwzwyhCIlWQgA34wCQ5oAAOUAs56ACP1ABx6gEHIwAhboBRg0ArYqAGH-ANHygCDNQDQcoAjdOJvVknVm9Ua4gERG6swBbNmEwE-RR3z+hAF7KuWFkGE0phiiWQUTgUXMQA) 中验证。
 
-typescript 不像 rust，rust 声明变量的类型会被推断为第一次初始化的类型，ts 你声明变量的时候没有标类型就是 any，并且这种情况不适用于 compilerOptions.noImplicitAny 选项：[--noImplicitAny error not reported for variable declaration](https://github.com/microsoft/TypeScript/issues/30899)
+`typescript` 不像 `rust`，`rust` 声明变量的类型会被推断为第一次初始化的类型，ts 你声明变量的时候没有标类型就是 `any`，并且这种情况不适用于 compilerOptions.noImplicitAny 选项：[--noImplicitAny error not reported for variable declaration](https://github.com/microsoft/TypeScript/issues/30899)
 
 合理的做法应该在声明变量的同时声明类型：
 
@@ -254,8 +258,8 @@ let result: number[] = [];
 
 核心思路：
 
-1. 这个规则应该只处理 ts 或者 vue lang=ts/tsx
-2. 遍历 `VariableDeclaration` ast 节点，如果没有声明类型，也就是没有 `typeAnnotation`，报错
+1. 这个规则应该只处理 ts 或者 .vue 文件并且 lang=ts/tsx
+2. 遍历 `VariableDeclaration` ast 节点，如果没有初始化并且没有声明类型，也就是没有 `init` 和 `typeAnnotation`，报错。对于 `let array = []` 这种情况即便有 `init` 也要报错。
 3. 需要排除 for of 循环，例如 `for (let item of elements)`，这里变量声明不需要声明类型
 
 ### 实现
