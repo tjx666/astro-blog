@@ -1,0 +1,20 @@
+{
+    "Frontmatter": {
+        "scope": "markdown",
+        "prefix": "---",
+        "body": [
+            "---",
+            "title: $TM_FILENAME_BASE",
+            "author: 余腾靖",
+            "pubDatetime: $CURRENT_YEAR-$CURRENT_MONTH-$CURRENT_DATE",
+            "modDatetime: $0",
+            "featured: ${1|false,true|}",
+            "draft: ${2|true,false|}",
+            "tags:",
+            "  - $3",
+            "description: $4",
+            "---",
+        ],
+        "description": "Adds the frontmatter block",
+    }
+}
