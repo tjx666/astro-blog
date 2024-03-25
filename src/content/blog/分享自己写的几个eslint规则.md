@@ -20,17 +20,17 @@ pubDatetime: 2024-03-24
 
 bad:
 
+```javascript
 // autocorrect-disable
 
-```javascript
-// loading 过程中禁止全选
+// loading过程中禁止全选
 
 /**
- * Loading 过程中禁止全选
+ * Loading过程中禁止全选
  */
-```
 
 // autocorrect-enable
+```
 
 good:
 
