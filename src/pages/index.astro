@@ -13,7 +13,7 @@ import getSortedPosts from '@utils/getSortedPosts';
 
 const posts = await getCollection('blog');
 
-const sortedPosts = getSortedPosts(posts);
+const sortedPosts = await getSortedPosts(posts);
 const recentPosts = sortedPosts.slice(0, 4);
 const featuredPosts = sortedPosts.filter(
     (post) => post.data.featured && !recentPosts.includes(post),

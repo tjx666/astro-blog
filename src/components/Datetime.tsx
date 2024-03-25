@@ -44,9 +44,16 @@ const FormattedDatetime = ({ pubDatetime, modDatetime }: DatetimesProps) => {
 interface Props extends DatetimesProps {
     size?: 'sm' | 'lg';
     className?: string;
+    readingTime?: string;
 }
 
-export default function Datetime({ pubDatetime, modDatetime, size = 'sm', className }: Props) {
+export default function Datetime({
+    pubDatetime,
+    modDatetime,
+    readingTime,
+    size = 'sm',
+    className,
+}: Props) {
     return (
         <div className={`flex items-center space-x-2 opacity-80 ${className}`}>
             <svg
@@ -68,6 +75,7 @@ export default function Datetime({ pubDatetime, modDatetime, size = 'sm', classN
             )}
             <span className={`italic ${size === 'sm' ? 'text-sm' : 'text-base'}`}>
                 <FormattedDatetime pubDatetime={pubDatetime} modDatetime={modDatetime} />
+                <span> ({readingTime})</span>
             </span>
         </div>
     );

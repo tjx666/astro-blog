@@ -11,7 +11,7 @@ export interface Props {
 }
 
 export default function Card({ href, frontmatter, secHeading = true }: Props) {
-    const { title, pubDatetime, modDatetime, description } = frontmatter;
+    const { title, pubDatetime, modDatetime, description, readingTime } = frontmatter;
 
     const headerProps = {
         style: { viewTransitionName: slugifyStr(title) },
@@ -26,7 +26,11 @@ export default function Card({ href, frontmatter, secHeading = true }: Props) {
             >
                 {secHeading ? <h2 {...headerProps}>{title}</h2> : <h3 {...headerProps}>{title}</h3>}
             </a>
-            <Datetime pubDatetime={pubDatetime} modDatetime={modDatetime} />
+            <Datetime
+                pubDatetime={pubDatetime}
+                modDatetime={modDatetime}
+                readingTime={readingTime}
+            />
             <p>{description}</p>
         </li>
     );

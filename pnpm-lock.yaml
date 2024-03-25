@@ -64,6 +64,9 @@ devDependencies:
   '@tailwindcss/typography':
     specifier: ^0.5.10
     version: 0.5.10(tailwindcss@3.4.1)
+  '@types/mdast':
+    specifier: ^4.0.3
+    version: 4.0.3
   '@types/node':
     specifier: ^20.11.30
     version: 20.11.30
@@ -106,6 +109,12 @@ devDependencies:
   markdownlint-cli:
     specifier: ^0.39.0
     version: 0.39.0
+  mdast:
+    specifier: ^3.0.0
+    version: 3.0.0
+  mdast-util-to-string:
+    specifier: ^4.0.0
+    version: 4.0.0
   prettier:
     specifier: ^3.2.5
     version: 3.2.5
@@ -115,12 +124,21 @@ devDependencies:
   prettier-plugin-tailwindcss:
     specifier: ^0.5.12
     version: 0.5.12(prettier-plugin-astro@0.13.0)(prettier@3.2.5)
+  reading-time:
+    specifier: ^1.5.0
+    version: 1.5.0
   simple-git-hooks:
     specifier: ^2.11.0
     version: 2.11.0
   typescript:
     specifier: ~5.4.3
     version: 5.4.3
+  unified:
+    specifier: ^11.0.4
+    version: 11.0.4
+  vfile:
+    specifier: ^6.0.1
+    version: 6.0.1
 
 packages:
 
@@ -6265,6 +6283,11 @@ packages:
       unist-util-visit: 5.0.0
     dev: false
 
+  /mdast@3.0.0:
+    resolution: {integrity: sha512-xySmf8g4fPKMeC07jXGz971EkLbWAJ83s4US2Tj9lEdnZ142UP5grN73H1Xd3HzrdbU5o9GYYP/y8F9ZSwLE9g==}
+    deprecated: '`mdast` was renamed to `remark`'
+    dev: true
+
   /mdn-data@2.0.28:
     resolution: {integrity: sha512-aylIc7Z9y4yzHYAJNuESG3hfhC+0Ibp/MAMiaOZgNv4pmEdFyfZhhhny4MNiAfWdBQ1RQ2mfDWmM1x8SvGyp8g==}
     dev: true
@@ -7370,6 +7393,10 @@ packages:
     engines: {node: '>=8.10.0'}
     dependencies:
       picomatch: 2.3.1
+
+  /reading-time@1.5.0:
+    resolution: {integrity: sha512-onYyVhBNr4CmAxFsKS7bz+uTLRakypIe4R+5A824vBSkQy/hB3fZepoVEf8OVAxzLvK+H/jm9TzpI3ETSm64Kg==}
+    dev: true
 
   /refa@0.12.1:
     resolution: {integrity: sha512-J8rn6v4DBb2nnFqkqwy6/NnTYMcgLA+sLr0iIO41qpv0n+ngb7ksag2tMRl0inb1bbO/esUwzW1vbJi7K0sI0g==}

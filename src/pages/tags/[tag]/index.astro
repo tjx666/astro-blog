@@ -21,7 +21,7 @@ export async function getStaticPaths() {
 
 const { tag, tagName, posts } = Astro.props;
 
-const postsByTag = getPostsByTag(posts, tag);
+const postsByTag = await getPostsByTag(posts, tag);
 
 const pagination = getPagination({
     posts: postsByTag,
