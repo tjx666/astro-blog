@@ -109,9 +109,6 @@ devDependencies:
   markdownlint-cli:
     specifier: ^0.39.0
     version: 0.39.0
-  mdast:
-    specifier: ^3.0.0
-    version: 3.0.0
   mdast-util-to-string:
     specifier: ^4.0.0
     version: 4.0.0
@@ -6282,11 +6279,6 @@ packages:
       unist-util-is: 6.0.0
       unist-util-visit: 5.0.0
     dev: false
-
-  /mdast@3.0.0:
-    resolution: {integrity: sha512-xySmf8g4fPKMeC07jXGz971EkLbWAJ83s4US2Tj9lEdnZ142UP5grN73H1Xd3HzrdbU5o9GYYP/y8F9ZSwLE9g==}
-    deprecated: '`mdast` was renamed to `remark`'
-    dev: true
 
   /mdn-data@2.0.28:
     resolution: {integrity: sha512-aylIc7Z9y4yzHYAJNuESG3hfhC+0Ibp/MAMiaOZgNv4pmEdFyfZhhhny4MNiAfWdBQ1RQ2mfDWmM1x8SvGyp8g==}
