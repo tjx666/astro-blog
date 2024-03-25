@@ -45,6 +45,7 @@ fileheader
 flexbox
 flexbugs
 FLPR
+giscus
 grex
 hackim
 HMRSSE

@@ -33,6 +33,7 @@
     },
     "dependencies": {
         "@astrojs/rss": "^4.0.5",
+        "@giscus/react": "^3.0.0",
         "@resvg/resvg-js": "^2.6.0",
         "astro": "^4.5.9",
         "clsx": "^2.1.0",

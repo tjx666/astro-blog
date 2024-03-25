@@ -26,6 +26,12 @@ function reflectPreference() {
 
     document.querySelector('#theme-btn')?.setAttribute('aria-label', themeValue);
 
+    window.dispatchEvent(new CustomEvent('blog:setTheme', {
+        detail: {
+            newTheme: themeValue
+        }
+    }))
+
     // Get a reference to the body element
     const body = document.body;
 
