@@ -101,6 +101,7 @@ Tablers
 Tage
 textcontent
 tiza
+tsconfigs
 turbopack
 turborepo
 uodq

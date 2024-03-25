@@ -1,5 +1,5 @@
+import { useTheme } from '@composables/useTheme';
 import Giscus from '@giscus/react';
-import { useTheme } from 'composables/useTheme';
 
 export default function Comments() {
     const theme = useTheme();
