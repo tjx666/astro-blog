@@ -8,6 +8,6 @@ export const remarkReadingTime: Plugin<void[], Root> = () => {
         const { data } = file as RemarkVFile;
         const textOnPage = toString(tree);
         const readingTime = getReadingTime(textOnPage);
-        data.astro.frontmatter.readingTime = readingTime.text;
+        data.astro.frontmatter.readingTime = `${Math.round(readingTime.minutes)}分钟`;
     };
 };
