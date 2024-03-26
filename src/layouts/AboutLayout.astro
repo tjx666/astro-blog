@@ -17,11 +17,11 @@ const { frontmatter } = Astro.props;
 <Layout title={`${frontmatter.title} | ${SITE.title}`}>
     <main id="main-content">
         <section id="about" class="prose mb-28 max-w-3xl prose-img:border-0">
-            <h1 class="pt-5 text-center text-2xl tracking-wider sm:text-3xl">
-                {SITE.author}
+            <h1 class="pt-16 text-center text-2xl tracking-wider sm:text-3xl">
+                <a class="no-underline" href="/">{SITE.author}</a>
             </h1>
             <slot />
-            <p class="pt-4 text-center">
+            <p class="pt-16 text-center">
                 <a href="/">返回首页</a>
                 <a href="https://github.com/tjx666/astro-blog" target="_blank">网站仓库</a>
             </p>
