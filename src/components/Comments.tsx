@@ -19,7 +19,7 @@ export default function Comments() {
             inputPosition="bottom"
             lang="zh-CN"
             theme={theme === 'light' ? 'light' : 'dark'}
-            loading="lazy"
+            loading="eager"
         />
     );
 }
