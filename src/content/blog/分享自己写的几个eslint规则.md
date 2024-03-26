@@ -6,6 +6,7 @@ categories:
   - 前端
 author: 余腾靖
 pubDatetime: 2024-03-24
+modDatetime: 2024-03-26
 ---
 
 在被裁后准备跑路的最后一周，把一些自己做的工作成果能开源的都给开源了，其中便包括一些[自己写的 eslint 规则](https://github.com/tjx666/eslint-config/tree/main/packages/eslint-plugin/rules)，不然你也看不到这篇文章了。由于深知自己的怠惰，所以我一直坚信一句话：**永远不要高估开发的主观能动性**，能够靠工具自动化的就不要靠开发自觉去做。我是一个对开发效率有极致追求的人，所以在开发日常碰到开发低效的场景总是会尝试使用最舒服，高效的方法去解决它。也因此在上家公司搞前端基建的那段时间，基于自己碰到的问题写了一些 eslint 规则。
@@ -22,13 +23,11 @@ bad:
 
 ```javascript
 // autocorrect-disable
-
 // loading过程中禁止全选
 
 /**
  * Loading过程中禁止全选
  */
-
 // autocorrect-enable
 ```
 

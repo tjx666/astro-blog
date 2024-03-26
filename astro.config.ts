@@ -8,6 +8,7 @@ import remarkToc from 'remark-toc';
 
 import { SITE } from './src/config';
 import { remarkReadingTime } from './src/utils/remark-plugins/remark-reading-time';
+import { remarkRemoveIgnoreComments } from './src/utils/remark-plugins/remark-remove-ignore-comments';
 
 // https://astro.build/config
 export default defineConfig({
@@ -23,6 +24,7 @@ export default defineConfig({
         remarkPlugins: [
             remarkToc,
             remarkReadingTime,
+            remarkRemoveIgnoreComments,
             [
                 remarkCollapse,
                 {
