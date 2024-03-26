@@ -51,7 +51,8 @@ export default function Datetime({ pubDatetime, readingTime, size = 'sm', classN
         <div className={`flex items-center space-x-2 opacity-80 ${className}`}>
             <span className={`${size === 'sm' ? 'text-sm' : 'text-base'}`}>
                 <FormattedDatetime pubDatetime={pubDatetime} />
-                <span> {readingTime}</span>
+                &nbsp;&nbsp;
+                <span>{readingTime}</span>
             </span>
         </div>
     );
