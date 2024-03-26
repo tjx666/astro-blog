@@ -1,5 +1,6 @@
 ---
 title: 那些你应该考虑卸载的 VSCode 扩展
+description: 这篇文章可能会得罪一部分 VSCode 扩展的作者，但是我实在是看不惯网上很多的文章还在推荐一些已经过时的扩展，我觉得作为 VSCode 的老粉，我有必要写一篇文章科普一下。
 tags:
   - VSCode
 categories:

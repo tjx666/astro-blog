@@ -1,5 +1,6 @@
 ---
 title: VSCode 又酷又实用的多光标编辑
+description: 如果要说 VSCode 哪个特性极大的提高了编码效率，多光标编辑绝对是其中之一。多光标编辑让我们避免重复进行相同的文本操作，VSCode 内建的和第三方扩展提供的文本处理命令更是能极大的增强多光标编辑
 pubDatetime: 2022-03-27
 modDatetime: 2022-03-29
 featured: true

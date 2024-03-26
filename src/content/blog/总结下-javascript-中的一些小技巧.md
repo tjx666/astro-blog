@@ -1,5 +1,6 @@
 ---
 title: 总结下 javascript 中的一些小技巧
+description: 这篇文章主要记录一下平时自己实践得到的，博客中学习的以及在一些项目源码中看到的 javascript 技巧。有些东西可以说是奇淫技巧，有些可能是 ES6+ 中一些比较具有实用性的新语法。
 tags:
   - javascript
 categories:

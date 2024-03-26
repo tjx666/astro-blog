@@ -1,5 +1,6 @@
 ---
 title: 如何给 shell 自定义快捷键
+description: 最近在开发的时候有刻意的去思考有哪些影响自己开发效率的因素。比如我实际碰到的一个问题就是当 zsh-autosuggestions 插件完整提示出你要运行的命令，但是我在 Mac 上要先输入 cmd 
 pubDatetime: 2022-03-20
 ---
 

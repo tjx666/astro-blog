@@ -1,5 +1,6 @@
 ---
 title: 搭建 react + typescript + ant design 开发环境
+description: 9102 年了，前端工程化发展在 nodejs 的基础上已经发展的非常完善了，各种前端构建辅助工具层出不穷。ES6 编译器 babel，css 辅助工具 postcss / sass / less，代
 tags:
   - react
   - typescript

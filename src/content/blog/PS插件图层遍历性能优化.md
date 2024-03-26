@@ -1,5 +1,6 @@
 ---
 title: PS 插件图层遍历性能优化
+description: Photoshop 中的 ExtendScript 和浏览器环境下 JavaScript 一样存在 DOM API 用于访问 PS 中的各种对象。图层类似 Web 中的 Element 是最基本的操作
 pubDatetime: 2022-09-11
 modDatetime: 2022-09-11
 ---

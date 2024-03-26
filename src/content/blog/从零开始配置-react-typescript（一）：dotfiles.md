@@ -1,5 +1,6 @@
 ---
 title: 从零开始配置 react + typescript（一）：dotfiles
+description: 之前我写过一篇文章 搭建 react + typescript + ant design 开发环境，现在看来很多内容都已经过时了。但是我看到前不久还有读者给我这篇文章点赞，不更新的话总感觉坑了它们，有
 tags:
   - react
   - typescript

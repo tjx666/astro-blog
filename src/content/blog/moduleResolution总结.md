@@ -1,5 +1,6 @@
 ---
 title: moduleResolution 总结
+description: 模块化之争的在 ESM 标准出来的时候已成为定局，这两年前端界也在进行 ESM 大迁移。关于 ESM 个人感觉可以聊的并不多，最近讨论最多的可能还是到底该不该用 default import 以及它俩
 pubDatetime: 2023-04-14
 modDatetime: 2023-04-15
 featured: true

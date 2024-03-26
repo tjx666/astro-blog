@@ -1,5 +1,6 @@
 ---
 title: 全面总结 JavaScript 类型相关知识点
+description: 相信到了年底，不少前端都准备找工作跳槽了。而作为春招大军的一员，估计很多准备春招的应届生和我一样这个年过得很焦虑。JavaScript 类型是前端面试中考察 JavaScript 基础的常考知识点，经
 tags:
   - javascript
 categories:

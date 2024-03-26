@@ -1,5 +1,6 @@
 ---
 title: 通过 koa2 服务器实践探究浏览器 HTTP 缓存机制
+description: 浏览器 HTTP 缓存是一种常见的 web 性能优化的手段，也是在前端面试中经常被考察的一个知识点。本文通过配置 koa2 服务器，在实践中带你探究浏览器的 HTTP 缓存机制。
 tags:
   - HTTP
 categories:

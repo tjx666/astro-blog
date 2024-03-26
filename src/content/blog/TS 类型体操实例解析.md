@@ -1,5 +1,6 @@
 ---
 title: TS 类型体操实例解析
+description: 周会的分享内容，通过解析几个实用或者有趣的类型体操实例给大家分享一些 TypeScript 类型知识。也算是对自己刷了近 100 道 type-challenges 学到的知识做个小总结。由于分享时间
 pubDatetime: 2022-03-25
 modDatetime: 2022-03-25
 ---

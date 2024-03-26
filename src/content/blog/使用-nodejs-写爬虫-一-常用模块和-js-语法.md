@@ -1,5 +1,6 @@
 ---
 title: '使用 nodejs 写爬虫 (一): 常用模块和 js 语法'
+description: 本篇是使用 nodejs 写爬虫系列教程的第一篇，介绍了使用 nodejs 写爬虫过程中常用的模块和一些必须掌握的 js 语法
 tags:
   - node
   - spider

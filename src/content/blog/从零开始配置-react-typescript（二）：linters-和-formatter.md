@@ -1,5 +1,6 @@
 ---
 title: 从零开始配置 react + typescript（二）：linters 和 formatter
+description: 继 从零开始配置 react + typescript（一）：dotfiles 介绍了一些最先配置的 dotfiles，本篇将继续介绍 lint 工具 eslint，stylelint，代码格式化工具
 tags:
   - eslint
   - stylelint

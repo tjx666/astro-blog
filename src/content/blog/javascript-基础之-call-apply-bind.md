@@ -1,5 +1,6 @@
 ---
 title: javascript 基础之 call, apply, bind
+description: 系统，扎实的 javascript 语言基础是一个优秀的前端工程师必须具备的。在看了一些关于 call，apply，bind 的文章后，我还是打算写下这篇总结，原因有几个。首先，在如今 ES6 大行其
 tags:
   - javascript
 categories:

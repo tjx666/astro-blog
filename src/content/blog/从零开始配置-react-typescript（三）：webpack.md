@@ -1,5 +1,6 @@
 ---
 title: 从零开始配置 react + typescript（三）：webpack
+description: 本篇为 从零开始配置 react + typescript 系列第三篇，将带大家完成模板项目的 webpack 配置。整个项目的配置我力求达到以下目标：
 tags:
   - typescript
   - react

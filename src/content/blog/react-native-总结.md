@@ -1,5 +1,6 @@
 ---
 title: react native 总结
+description: 最近用 react native 做了一个移动端跨平台 App。Learn once, write everywhere 确实不是吹的。
 tags:
   - react native
 categories:

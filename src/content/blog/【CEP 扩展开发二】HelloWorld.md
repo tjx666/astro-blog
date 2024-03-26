@@ -1,5 +1,6 @@
 ---
 title: 【CEP 扩展开发二】HelloWorld
+description: 本文是 CEP 扩展开发系列教程的第二篇，通过手把手实现一个 Hello World 级别的插件来初步掌握 CEP 插件的配置和开发。
 pubDatetime: 2022-05-01
 modDatetime: 2022-08-14
 ---

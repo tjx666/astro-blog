@@ -1,5 +1,6 @@
 ---
 title: 使用 webpack 构建 chrome 扩展的热更新问题
+description: 前不久我写了一个 chrome 扩展，作为一个前端弄潮儿，我当然想用上各种前端界最 fashion 的开发工具。于是乎，折腾到最后使用了 webpack + TypeScript + react 这么
 tags:
   - webpack
   - typescript
