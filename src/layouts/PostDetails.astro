@@ -170,24 +170,31 @@ const layoutProps = {
         const copyButtonLabel = 'Copy';
         const codeBlocks = Array.from(document.querySelectorAll('pre'));
 
+        const screenWidth = window.innerWidth;
+        const isDesktop = screenWidth > 640;
         for (const codeBlock of codeBlocks) {
             const wrapper = document.createElement('div');
             wrapper.style.position = 'relative';
 
             const copyButton = document.createElement('button');
             copyButton.className =
-                'opacity-0 transition-opacity copy-code absolute right-3 -top-3 rounded bg-skin-card px-2 py-1 text-xs leading-4 text-skin-base font-medium';
+                'transition-opacity copy-code absolute right-3 -top-3 rounded bg-skin-card px-2 py-1 text-xs leading-4 text-skin-base font-medium';
+            if (isDesktop) {
+                copyButton.classList.add('opacity-0');
+            }
             copyButton.innerHTML = copyButtonLabel;
             codeBlock.setAttribute('tabindex', '0');
             codeBlock.append(copyButton);
 
             // hover to show copy button
-            codeBlock.addEventListener('pointerenter', () => {
-                copyButton.classList.remove('opacity-0');
-            });
-            codeBlock.addEventListener('pointerleave', () => {
-                copyButton.classList.add('opacity-0');
-            });
+            if (isDesktop) {
+                codeBlock.addEventListener('pointerenter', () => {
+                    copyButton.classList.remove('opacity-0');
+                });
+                codeBlock.addEventListener('pointerleave', () => {
+                    copyButton.classList.add('opacity-0');
+                });
+            }
 
             // wrap codebock with relative parent element
             codeBlock?.parentNode?.insertBefore(wrapper, codeBlock);
