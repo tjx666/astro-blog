@@ -7,7 +7,7 @@ export const SITE: Site = {
     title: '余腾靖的博客',
     ogImage: 'site-og.png',
     lightAndDarkMode: true,
-    postPerPage: 5,
+    postPerPage: 6,
     scheduledPostMargin: 15 * 60 * 1000, // 15 minutes
 };
 
