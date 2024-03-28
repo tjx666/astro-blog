@@ -46,7 +46,7 @@ function updateFrontmatter(content: string) {
             .filter((line) => !line.startsWith('## '))
             .join('\n');
         md = md.slice(0, md.indexOf('\n\n')).slice(0, 300);
-        const description = removeMd(md).trim().slice(0, 100);
+        const description = removeMd(md).slice(0, 100).trim();
         if (description.length > 60) {
             updateContent = updateContent.replace(titleRegexp, `$&description: ${description}\n`);
         }
