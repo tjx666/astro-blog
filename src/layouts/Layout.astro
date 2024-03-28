@@ -82,6 +82,19 @@ const socialImageURL = new URL(ogImage ?? SITE.ogImage ?? 'og.png', Astro.url.or
         <meta property="twitter:description" content={description} />
         <meta property="twitter:image" content={socialImageURL} />
 
+        <!-- Google tag (gtag.js) -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-WX2XNXYLM0"></script>
+        <script>
+            /* eslint-disable @typescript-eslint/ban-ts-comment, prefer-rest-params, no-undef */
+            // @ts-nocheck this is jscode
+            window.dataLayer = window.dataLayer || [];
+            function gtag() {
+                dataLayer.push(arguments);
+            }
+            gtag('js', new Date());
+            gtag('config', 'G-WX2XNXYLM0');
+        </script>
+
         <!-- Google Font -->
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
