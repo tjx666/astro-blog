@@ -26,7 +26,12 @@ const socialCount = SOCIALS.filter((social) => social.active).length;
     <Header />
     <main id="main-content">
         <section id="hero">
-            <p>98 年前端程序员，找工作中...</p>
+            <p>
+                98 年前端程序员，曾经在字节跳动，稿定设计工作过，目前在 <a
+                    class="underline"
+                    href="https://openart.ai/">OpenArt</a
+                > 搬砖。
+            </p>
             {
                 // only display if at least one social link is enabled
                 socialCount > 0 && (
