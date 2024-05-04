@@ -2,7 +2,7 @@
 title: Mac 装机记录
 description: 由于这两年公司裁了不少人，所以其实一直都是有不少 m1 机器可以换的，但是之前由于软件兼容性的问题一直没有换。今年工作内容变了，加上最近夏天快到了，温度越来越高，实在是忍不了那滚烫的 touch ba
 pubDatetime: 2023-05-15
-modDatetime: 2023-10-22
+modDatetime: 2024-05-04
 ---
 
 由于这两年公司裁了不少人，所以其实一直都是有不少 m1 机器可以换的，但是之前由于软件兼容性的问题一直没有换。今年工作内容变了，加上最近夏天快到了，温度越来越高，实在是忍不了那滚烫的 touch bar，于是决定换台 m1。
@@ -65,21 +65,22 @@ modDatetime: 2023-10-22
 ### 一些日常在用的 Chrome 插件
 
 - [Better History](https://chrome.google.com/webstore/detail/better-history/egehpkpgpgooebopjihjmnpejnjafefi) 我觉得 Chrome Devtools 团队是在做事情的，每个月都有惊喜。但感觉 Chrome 浏览器本身的产品经理正事不干，净添乱。Chrome 浏览器本身非常简陋，自带的历史记录很难用。
+- [Checker Plus for Gmail™](https://chromewebstore.google.com/detail/checker-plus-for-gmail/oeopbcgkkoapgobdbedcemjljbihmemj) 接收邮件很方便
 - [uBlock Origin](https://chrome.google.com/webstore/detail/ublock-origin/cjpalhdlnbpafiamejdnhcphjbkeiagm) 拦截网页广告
 - [Vimium C](https://chrome.google.com/webstore/detail/vimium-c-all-by-keyboard/hfjbmagddngcpeloejdejnfgbamkjaeg) 虽然我不用 VIM 写代码，但是用 VIM 的方式来操作网页确实挺方便。不用原版是因为原版不咋更新了，和这个国内开发者在 github issue 交流还是蛮愉快的。
 - [OneTab](https://chrome.google.com/webstore/detail/onetab/chphlpgkkbolifaimnlloiipkdnihall) 分组功能对我很有用，用来管理平时不同的业务需求对应的几个常开的网页。我不是那种同时开几十个网页的那种，超过三个都觉得太乱了
-- [沙拉查词](https://chrome.google.com/webstore/detail/%E6%B2%99%E6%8B%89%E6%9F%A5%E8%AF%8D-%E8%81%9A%E5%90%88%E8%AF%8D%E5%85%B8%E5%88%92%E8%AF%8D%E7%BF%BB%E8%AF%91/cdonnmffkdaoajfknoeeecmchibpmkmg) 翻译工具千千万，选你合适的就好。等我搞定 ChatGPT 订阅的问题，可能会考虑换到 [openai-translator](https://github.com/yetone/openai-translator)
 - [Infinity 新标签页](https://chrome.google.com/webstore/detail/infinity-new-tab-pro/nnnkddnnlpamobajfibfdgfnbcnkgngh) 标签页插件千千万，有人喜欢 Momentum，有人喜欢掘金标签页，有人喜欢直接打开某个网页，有人直接默认，反正我这个老年人还是觉得点点点方便点。使用微信账号登入，同步数据。
 - [Refined GitHub](https://chrome.google.com/webstore/detail/refined-github/hlepfoohegkhhmjieoechaddaejaokhf) 大佬出品，维护积极，高度自定义，完美！
 - [Notifications Preview for GitHub](https://chrome.google.com/webstore/detail/notifications-preview-for/kgilejfahkjidpaclkepbdoeioeohfmj) Github 虽然一直在做事，但太慢了，新的 Code Search 不错，可以替代 OctoTree。这个插件的功能不知道啥时候能内置，让你不用打开 issue 页面就预览消息页表，简直不要太方便。
 - [OctoLinker](https://chrome.google.com/webstore/detail/octolinker/jlmafbaeoofdegohdhinkhilhclaklkp) 最近没咋用了，因为一直没有适配最新的 Code Search。
 - [Minimal Theme for Twitter](https://chrome.google.com/webstore/detail/minimal-theme-for-twitter/pobhoodpcipjmedfenaigbeloiidbflp) 装上它后，刷 twitter 的瘾更大了，更喜欢摸鱼了
-- [v2ex plus](https://chrome.google.com/webstore/detail/v2ex-plus/daeclijmnojoemooblcbfeeceopnkolo) 好像最近同类的插件在 V2EX 上卷起来了，但是我觉得这个已经够用了
+- [V2EX Polish](https://chrome.google.com/webstore/detail/onnepejgdiojhiflfoemillegpgpabdm) V2EX 增强
 - [Hover Zoom+](https://chrome.google.com/webstore/detail/hover-zoom%20/pccckmaobkjjboncdfnnofkonhgpceea) 配合触发键查看图片和视频预览挺方便的
 - [Stylus](https://chrome.google.com/webstore/detail/stylus/clngdbkpkpeebahjckkjfobafhncgmne) 当你实在是对某些网站的设计下不了眼的时候，它就很有用了
 - [Wappalyzer](https://chrome.google.com/webstore/detail/wappalyzer-technology-pro/gppongmhjkpfnbhagpmjfkannfbllamg) 查看网页用到的技术
 - [JSON Viewer Pro](https://chrome.google.com/webstore/detail/json-viewer-pro/eifflpmocdbdmepbjaopkkhbfmdgijcc) 可能不是最好用的 JSON Viewer，但绝对是最好看的
-- [SwitchyOmega](https://chrome.google.com/webstore/detail/proxy-switchyomega/padekgcemlokbadohgkifijomclgjgif) 用的最多的是反倒是切换系统代理和直连，其它可能用到的场景例如配置网页走 charles 代理，调试网页接口
+- [Extension Manager](https://github.com/JasonGrass/auto-extension-manager) 插件管理器
+- [SmartProxy](https://github.com/salarcode/SmartProxy) 替代 SwitchyOmega
 - [Chrono](https://chrome.google.com/webstore/detail/chrono-download-manager/mciiogijehkdemklbdcbfkefimifhecn) 上上一次更新好像还是几年前。今年忽然诈尸了
 
 以上是部分我日常在用的插件，其实还有一些开着但不常用，以及装了但是平时禁用的插件就不介绍了，总共有 90 多个插件。好在 Chrome 支持同步安装的插件和插件数据，只要登入了 Google 账号就能把旧电脑上的插件同步过来了。
@@ -116,6 +117,8 @@ modDatetime: 2023-10-22
 - [Obsidian](https://github.com/obsidianmd/obsidian-releases) 多数时候是用来记 TODO 的
 - [QQ 音乐](https://y.qq.com/) 版权最多的国内音乐平台，其实更多时候我是开着 Youtube 音乐合集，除非喜欢的歌手发了新歌，可能就用它单曲循环
 - [Snipaste](https://www.snipaste.com/) 截图标注界的神
+- [Easydict](https://github.com/tisfeng/Easydict)
+- [ResponsivelyApp](https://github.com/responsively-org/responsively-app)
 - [Typora](https://typora.io/) 付费用户，弥补了 Obsidian 不能单独打开 markdown 文件编辑的问题，暂时还是写博客的主力工具，后续可能会迁移到使用 Obsidian 写博客
 - [柠檬清理](https://github.com/Tencent/lemon-cleaner) 腾讯开源的系统维护工具
 - [钉钉](https://page.dingtalk.com/wow/z/dingtalk/simple/ddhomedownload#/) 公司用的 IM 工具
@@ -411,6 +414,8 @@ clash-speedtest  github-compare   go-global-update
 
 - Siri，并且从 touch 移除
 - 自动亮度，显示器 -> 自动亮度 -> 关闭，我不用自动调节亮度，平时都是亮度拉满。
+- 系统设置 -> 电池 -> 低电量模式 -> 关闭，会导致屏幕亮度自动降低
+- 系统设置 -> 触控板 -> 更多手势 -> 在页面之间轻扫 -> 关闭，我不喜欢这个手势，经常会误触
 
 ### 轻点来点按
 
@@ -450,6 +455,14 @@ clash-speedtest  github-compare   go-global-update
   - 活动监视器
   - QuickTime Player
   - 字体册 开发字体需求的时候经常要用
+
+设置桌面图标 6 行 8 列：
+
+```bash
+defaults write com.apple.dock springboard-rows -int 6
+defaults write com.apple.dock springboard-columns -int 8
+defaults write com.apple.dock ResetLaunchPad -bool true;killall Dock
+```
 
 ## 数据同步
 
@@ -508,6 +521,8 @@ clash-speedtest  github-compare   go-global-update
 ## clashX 订阅无法更新
 
 订阅链接加上 `unset` 参数就可以更新了。
+
+或者直接在浏览器中下下载配置为本地文件，让 clashX 读取本地文件，再添加订阅链接就能更新了。
 
 ### github 没办法链接
 
