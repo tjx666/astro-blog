@@ -83,7 +83,8 @@ const socialImageURL = new URL(ogImage ?? SITE.ogImage ?? 'og.png', Astro.url.or
         <meta property="twitter:image" content={socialImageURL} />
 
         <!-- Google tag (gtag.js) -->
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-WX2XNXYLM0"></script>
+        <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-WX2XNXYLM0"
+        ></script>
         <script>
             /* eslint-disable @typescript-eslint/ban-ts-comment, prefer-rest-params, no-undef */
             // @ts-nocheck this is jscode
