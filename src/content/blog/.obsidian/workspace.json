@@ -1,0 +1,152 @@
+{
+    "main": {
+        "id": "7032ec73485d8816",
+        "type": "split",
+        "children": [
+            {
+                "id": "2978acaad8c0cf89",
+                "type": "tabs",
+                "children": [
+                    {
+                        "id": "10ea3952e1881246",
+                        "type": "leaf",
+                        "state": {
+                            "type": "markdown",
+                            "state": {
+                                "file": "记录裁员后的半年前端求职经历.md",
+                                "mode": "source",
+                                "source": false
+                            }
+                        }
+                    }
+                ]
+            }
+        ],
+        "direction": "vertical"
+    },
+    "left": {
+        "id": "b29146f913a701eb",
+        "type": "split",
+        "children": [
+            {
+                "id": "71726473a10d92e0",
+                "type": "tabs",
+                "children": [
+                    {
+                        "id": "0d81ca011631d957",
+                        "type": "leaf",
+                        "state": {
+                            "type": "file-explorer",
+                            "state": {
+                                "sortOrder": "alphabetical"
+                            }
+                        }
+                    },
+                    {
+                        "id": "647fab5fba794b8c",
+                        "type": "leaf",
+                        "state": {
+                            "type": "search",
+                            "state": {
+                                "query": "",
+                                "matchingCase": false,
+                                "explainSearch": false,
+                                "collapseAll": false,
+                                "extraContext": false,
+                                "sortOrder": "alphabetical"
+                            }
+                        }
+                    },
+                    {
+                        "id": "e965c7a38c17ccd5",
+                        "type": "leaf",
+                        "state": {
+                            "type": "bookmarks",
+                            "state": {}
+                        }
+                    }
+                ]
+            }
+        ],
+        "direction": "horizontal",
+        "width": 300,
+        "collapsed": true
+    },
+    "right": {
+        "id": "82873beec2dbab94",
+        "type": "split",
+        "children": [
+            {
+                "id": "407c715696a2f96c",
+                "type": "tabs",
+                "children": [
+                    {
+                        "id": "35080b67d2b4c0bf",
+                        "type": "leaf",
+                        "state": {
+                            "type": "backlink",
+                            "state": {
+                                "file": "记录裁员后的半年前端求职经历.md",
+                                "collapseAll": false,
+                                "extraContext": false,
+                                "sortOrder": "alphabetical",
+                                "showSearch": false,
+                                "searchQuery": "",
+                                "backlinkCollapsed": false,
+                                "unlinkedCollapsed": true
+                            }
+                        }
+                    },
+                    {
+                        "id": "da06063add570ac1",
+                        "type": "leaf",
+                        "state": {
+                            "type": "outgoing-link",
+                            "state": {
+                                "file": "记录裁员后的半年前端求职经历.md",
+                                "linksCollapsed": false,
+                                "unlinkedCollapsed": true
+                            }
+                        }
+                    },
+                    {
+                        "id": "74653e41032c9f57",
+                        "type": "leaf",
+                        "state": {
+                            "type": "tag",
+                            "state": {
+                                "sortOrder": "frequency",
+                                "useHierarchy": true
+                            }
+                        }
+                    },
+                    {
+                        "id": "f92dd44b9a742fbc",
+                        "type": "leaf",
+                        "state": {
+                            "type": "outline",
+                            "state": {
+                                "file": "记录裁员后的半年前端求职经历.md"
+                            }
+                        }
+                    }
+                ],
+                "currentTab": 3
+            }
+        ],
+        "direction": "horizontal",
+        "width": 200
+    },
+    "left-ribbon": {
+        "hiddenItems": {
+            "switcher:打开快速切换": false,
+            "graph:查看关系图谱": false,
+            "canvas:新建白板": false,
+            "daily-notes:打开/创建今天的日记": false,
+            "templates:插入模板": false,
+            "command-palette:打开命令面板": false
+        }
+    },
+    "active": "10ea3952e1881246",
+    "lastOpenFiles": ["记录裁员后的半年前端求职经历.md"]
+}
