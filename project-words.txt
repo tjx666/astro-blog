@@ -109,3 +109,5 @@ shopee
 typehero
 Webvie
 openart
+artiffuse
+upstash
