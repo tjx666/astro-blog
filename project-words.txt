@@ -112,3 +112,4 @@ openart
 artiffuse
 upstash
 iconify
+quickjs
