@@ -2,7 +2,7 @@ import type { CollectionEntry } from 'astro:content';
 
 import { SITE } from '@config';
 
-export default (post: CollectionEntry<'blog'>) => {
+export default function Post(post: CollectionEntry<'blog'>) {
     return (
         <div
             style={{
@@ -93,4 +93,4 @@ export default (post: CollectionEntry<'blog'>) => {
             </div>
         </div>
     );
-};
+}

@@ -1,10 +1,11 @@
 import fs from 'node:fs/promises';
 import { resolve } from 'node:path';
 
-import { type CollectionEntry } from 'astro:content';
+import type { CollectionEntry } from 'astro:content';
 
 import { Resvg } from '@resvg/resvg-js';
-import satori, { type SatoriOptions } from 'satori';
+import type { SatoriOptions } from 'satori';
+import satori from 'satori';
 
 import { projectRoot } from './constants';
 import postOgImage from './og-templates/post';

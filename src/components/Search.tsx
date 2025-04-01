@@ -44,7 +44,7 @@ export default function SearchBar({ searchList }: Props) {
     useEffect(() => {
         // if URL has search query,
         // insert that search query in input field
-        const searchUrl = new URLSearchParams(window.location.search);
+        const searchUrl = new URLSearchParams(globalThis.location.search);
         const searchStr = searchUrl.get('q');
         if (searchStr) setInputVal(searchStr);
 
@@ -63,12 +63,12 @@ export default function SearchBar({ searchList }: Props) {
 
         // Update search string in URL
         if (inputVal.length > 0) {
-            const searchParams = new URLSearchParams(window.location.search);
+            const searchParams = new URLSearchParams(globalThis.location.search);
             searchParams.set('q', inputVal);
-            const newRelativePathQuery = `${window.location.pathname}?${searchParams.toString()}`;
+            const newRelativePathQuery = `${globalThis.location.pathname}?${searchParams.toString()}`;
             history.replaceState(history.state, '', newRelativePathQuery);
         } else {
-            history.replaceState(history.state, '', window.location.pathname);
+            history.replaceState(history.state, '', globalThis.location.pathname);
         }
     }, [inputVal]);
 
