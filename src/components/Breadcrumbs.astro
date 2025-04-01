@@ -13,7 +13,7 @@ const chineseMap = new Map([
 ]);
 breadcrumbList[0] = chineseMap.get(breadcrumbList[0]) ?? breadcrumbList[0];
 const getHref = (index: number, breadcrumb: string) =>
-    `/${index === 0 ? [...chineseMap.entries()].find((entry) => entry[1] === breadcrumb)?.[0] ?? breadcrumb : breadcrumb}/`;
+    `/${index === 0 ? ([...chineseMap.entries()].find((entry) => entry[1] === breadcrumb)?.[0] ?? breadcrumb) : breadcrumb}/`;
 
 // if breadcrumb is Home > Posts > 1 <etc>
 // replace Posts with Posts (page number)
